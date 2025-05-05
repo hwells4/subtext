@@ -23,8 +23,10 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Mckay's App Template",
-  description: "A full-stack web app template."
+  metadataBase: new URL("https://voicescape.com"),
+  title: "Voicescape",
+  description:
+    "An app template built with Next.js, Clerk, Drizzle, Supabase, Shadcn UI, Tailwind CSS, Framer Motion, and Stripe."
 }
 
 export default async function RootLayout({

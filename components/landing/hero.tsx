@@ -9,7 +9,7 @@ This client component provides the hero section for the landing page.
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import { ChevronRight, Rocket } from "lucide-react"
+import { ChevronRight, Rocket, Github } from "lucide-react"
 import Link from "next/link"
 import posthog from "posthog-js"
 import AnimatedGradientText from "../magicui/animated-gradient-text"
@@ -28,7 +28,7 @@ export const HeroSection = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex items-center justify-center"
       >
-        <Link href="https://github.com/mckaywrigley/mckays-app-template">
+        <Link href="https://github.com/hwells4/voicescape">
           <AnimatedGradientText>
             🚀 <hr className="mx-2 h-4 w-px shrink-0 bg-gray-300" />
             <span
@@ -74,7 +74,7 @@ export const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
         >
           <Link
-            href="https://github.com/mckaywrigley/mckays-app-template"
+            href="https://github.com/hwells4/voicescape"
             onClick={handleGetStartedClick}
           >
             <Button className="bg-blue-500 text-lg hover:bg-blue-600">

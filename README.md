@@ -1,6 +1,7 @@
-# Mckay's App Template
+# Voicescape
 
-This is a full-stack app template for courses on [Takeoff](https://JoinTakeoff.com/).
+A Next.js 14 App Router template with Clerk, Drizzle ORM, PostgreSQL, Shadcn UI,
+Tailwind CSS, Framer Motion, and Stripe.
 
 ## Sponsors
 
@@ -60,7 +61,22 @@ NEXT_PUBLIC_POSTHOG_HOST=
 
 ## Setup
 
-1. Clone the repository
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/hwells4/voicescape.git
+   ```
+
 2. Copy `.env.example` to `.env.local` and fill in the environment variables from above
 3. Run `npm install` to install dependencies
 4. Run `npm run dev` to run the app locally
+
+### Star on GitHub ⭐
+
+If you find this template useful, please star it on GitHub!
+
+[![Star on GitHub](https://img.shields.io/github/stars/hwells4/voicescape?style=social)](https://github.com/hwells4/voicescape)
+
+---
+
+Built by [Harrison Wells](https://harrisonwells.io).
