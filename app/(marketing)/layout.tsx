@@ -1,12 +1,24 @@
 /*
 <ai_context>
-This server layout provides a shared header and basic structure for (marketing) routes.
+This layout provides a shared structure for (marketing) routes.
 </ai_context>
 */
 
-"use server"
+import { ThemeProvider } from "@/components/utilities/theme-provider"
+import { cn } from "@/lib/utils"
+import type { Metadata } from "next"
+import { Inter as FontSans } from "next/font/google"
 
-import Header from "@/components/header"
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans"
+})
+
+export const metadata: Metadata = {
+  title: "VoiceScape - Unlock Reddit's Insights",
+  description:
+    "Stop guessing. Start validating. Our AI analyzes thousands of Reddit conversations, extracting authentic user language to give you trustworthy product insights in minutes, not weeks."
+}
 
 export default async function MarketingLayout({
   children
@@ -14,10 +26,22 @@ export default async function MarketingLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-
-      <div className="flex-1">{children}</div>
-    </div>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-white font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light" // Force light theme as per design inspiration
+          enableSystem={false} // Disable system theme preference
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }

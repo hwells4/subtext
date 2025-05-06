@@ -7,7 +7,12 @@ Contains middleware for protecting routes, checking user authentication, and red
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
 
-const isProtectedRoute = createRouteMatcher(["/todo(.*)"])
+// Define routes that should be protected
+const isProtectedRoute = createRouteMatcher([
+  "/dashboard(.*)", // Example: protect all routes under /dashboard
+  "/profile(.*)",   // Example: protect all routes under /profile
+  // Add any other routes here that require authentication
+])
 
 export default clerkMiddleware(async (auth, req) => {
   const { userId, redirectToSignIn } = await auth()
@@ -24,5 +29,9 @@ export default clerkMiddleware(async (auth, req) => {
 })
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"]
+  matcher: [
+    // Skip Next.js internals and static files
+    "/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
+    "/", // Include the root route if it needs auth or might use auth()
+  ]
 }
