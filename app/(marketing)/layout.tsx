@@ -8,10 +8,12 @@ import { ThemeProvider } from "@/components/utilities/theme-provider"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Inter as FontSans } from "next/font/google"
+import React from "react"
 
 const fontSans = FontSans({
   subsets: ["latin"],
-  variable: "--font-sans"
+  variable: "--font-sans",
+  display: "swap"
 })
 
 export const metadata: Metadata = {
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
     "Stop guessing. Start validating. Our AI analyzes thousands of Reddit conversations, extracting authentic user language to give you trustworthy product insights in minutes, not weeks."
 }
 
-export default async function MarketingLayout({
+export default function MarketingLayout({
   children
 }: {
   children: React.ReactNode

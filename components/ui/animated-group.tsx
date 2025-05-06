@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { motion, Variants, HTMLMotionProps } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 // Explicitly define props inherited from HTMLDivElement that we might use
@@ -51,17 +51,22 @@ export function AnimatedGroup({
     }
   }
 
+  // Ensure children is an array even if it's a single child
+  const childrenArray = React.Children.toArray(children)
+
   return (
     <motion.div
       className={cn(className)}
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
     >
-      {React.Children.map(children, child =>
-        // Only wrap valid React elements, pass others through
+      {childrenArray.map((child, index) =>
         React.isValidElement(child) ? (
-          <motion.div variants={itemVariants}>{child}</motion.div>
+          <motion.div key={index} variants={itemVariants}>
+            {child}
+          </motion.div>
         ) : (
           child
         )

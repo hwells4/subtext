@@ -11,6 +11,7 @@ import { NextResponse } from "next/server"
 const isProtectedRoute = createRouteMatcher([
   "/dashboard(.*)", // Example: protect all routes under /dashboard
   "/profile(.*)",   // Example: protect all routes under /profile
+  "/todo(.*)",      // Protect todo routes
   // Add any other routes here that require authentication
 ])
 
@@ -19,19 +20,18 @@ export default clerkMiddleware(async (auth, req) => {
 
   // If the user isn't signed in and the route is private, redirect to sign-in
   if (!userId && isProtectedRoute(req)) {
-    return redirectToSignIn({ returnBackUrl: "/login" })
+    return redirectToSignIn({ returnBackUrl: req.url })
   }
 
-  // If the user is logged in and the route is protected, let them view.
-  if (userId && isProtectedRoute(req)) {
-    return NextResponse.next()
-  }
+  // For all routes, whether protected or public, proceed
+  return NextResponse.next()
 })
 
 export const config = {
   matcher: [
+    // Match all routes, including public ones
+    "/(.*)",
     // Skip Next.js internals and static files
     "/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
-    "/", // Include the root route if it needs auth or might use auth()
   ]
 }
