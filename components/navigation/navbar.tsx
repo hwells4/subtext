@@ -38,12 +38,13 @@ export function Navbar() {
         <div
           className={cn(
             "mx-auto mt-4 max-w-7xl px-6 transition-all duration-300 lg:px-12",
+            "rounded-2xl border border-transparent bg-white/5 backdrop-blur-md",
             isScrolled &&
-              "max-w-6xl rounded-2xl border bg-white/95 shadow-lg backdrop-blur-lg lg:px-8"
+              "max-w-6xl border-slate-200 bg-white/95 shadow-lg backdrop-blur-lg lg:px-8"
           )}
         >
           <div className="relative flex items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
-            <div className="flex items-center justify-between lg:w-auto">
+            <div className="flex items-center lg:w-auto">
               <Link
                 href="/"
                 aria-label="home"
@@ -51,26 +52,26 @@ export function Navbar() {
               >
                 <Logo />
               </Link>
-
-              <button
-                onClick={() => setMenuState(!menuState)}
-                aria-label={menuState ? "Close Menu" : "Open Menu"}
-                className="relative z-20 block cursor-pointer p-2 lg:hidden"
-              >
-                <Menu
-                  className={cn(
-                    "text-foreground size-6 transition-all duration-300",
-                    !menuState ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                  )}
-                />
-                <X
-                  className={cn(
-                    "text-foreground absolute inset-0 m-auto size-6 transition-all duration-300",
-                    menuState ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                  )}
-                />
-              </button>
             </div>
+
+            <button
+              onClick={() => setMenuState(!menuState)}
+              aria-label={menuState ? "Close Menu" : "Open Menu"}
+              className="relative z-20 block cursor-pointer p-2 lg:hidden"
+            >
+              <Menu
+                className={cn(
+                  "text-foreground size-6 transition-all duration-300",
+                  !menuState ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                )}
+              />
+              <X
+                className={cn(
+                  "text-foreground absolute inset-0 m-auto size-6 transition-all duration-300",
+                  menuState ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                )}
+              />
+            </button>
 
             <div className="hidden lg:flex lg:items-center lg:justify-center">
               <ul className="flex gap-8 text-sm">
@@ -145,15 +146,17 @@ export function Navbar() {
 
               {/* Mobile Action Buttons Container */}
               <div className="flex w-full flex-col space-y-3">
-                <button
-                  className={cn(
-                    ctaButtonStyles,
-                    "bg-transparent text-slate-900 shadow-none hover:bg-slate-100",
-                    "border border-slate-300"
-                  )}
-                >
-                  <span>Login</span>
-                </button>
+                {!isScrolled && (
+                  <button
+                    className={cn(
+                      ctaButtonStyles,
+                      "bg-transparent text-slate-900 shadow-none hover:bg-slate-100",
+                      "border border-slate-300"
+                    )}
+                  >
+                    <span>Login</span>
+                  </button>
+                )}
                 <button className={ctaButtonStyles}>
                   <span>{isScrolled ? "Start Validating" : "Get Started"}</span>
                 </button>
