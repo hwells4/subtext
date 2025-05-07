@@ -4,7 +4,7 @@ import { ArrowRight, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AnimatedGroup } from "@/components/ui/animated-group"
 import { cn } from "@/lib/utils"
-import { HeroHeader } from "@/components/layout/hero-header"
+import { Navbar } from "@/components/navigation"
 
 const transitionVariants = {
   item: {
@@ -29,7 +29,7 @@ const transitionVariants = {
 export function HeroSection() {
   return (
     <>
-      <HeroHeader />
+      <Navbar />
       <main className="overflow-hidden">
         <div
           aria-hidden
