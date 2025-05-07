@@ -52,6 +52,14 @@ export default async function WaitlistPage() {
           />
         </div>
       </div>
+
+      <footer className="relative z-10 mt-12 w-full py-8 sm:mt-16">
+        <div className="mx-auto flex flex-col items-center justify-center">
+          <p className="text-center text-xs text-slate-500">
+            &copy; {new Date().getFullYear()} Subtext.ai. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }

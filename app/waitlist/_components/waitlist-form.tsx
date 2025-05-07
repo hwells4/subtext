@@ -250,21 +250,23 @@ export default function WaitlistForm() {
   const currentStepConfig = allFormSteps[currentStepIndex]
   const totalSteps = allFormSteps.length
 
-  let containerMinHeight = "280px"
-  if (currentStepConfig.type === "checkbox") containerMinHeight = "320px"
+  let containerMinHeight = "260px" // Base height, slightly reduced
+  if (currentStepConfig.type === "checkbox") {
+    containerMinHeight = "290px" // Slightly reduced
+  }
   if (currentStepConfig.type === "select") {
-    containerMinHeight = formData.howHeard === "Other" ? "380px" : "300px"
+    containerMinHeight = formData.howHeard === "Other" ? "350px" : "280px" // Reduced heights
   }
 
   return (
     <div className="w-full max-w-lg">
-      {/* Progress Dots */}
-      <div className="mb-6 flex justify-center space-x-2">
+      {/* Progress Dots - reduced margin bottom on mobile */}
+      <div className="mb-4 flex justify-center space-x-1.5 sm:mb-6 sm:space-x-2">
         {allFormSteps.map((_, index) => (
           <div
             key={index}
             className={cn(
-              "size-2.5 rounded-full transition-all duration-300 ease-in-out",
+              "size-2 rounded-full transition-all duration-300 ease-in-out sm:size-2.5",
               index === currentStepIndex
                 ? "scale-125 bg-slate-700"
                 : "bg-slate-300"
@@ -274,7 +276,7 @@ export default function WaitlistForm() {
       </div>
 
       <div
-        className="relative overflow-hidden rounded-lg bg-transparent p-2"
+        className="relative overflow-hidden rounded-lg bg-transparent p-1 sm:p-2" // Reduced padding on mobile
         style={{ minHeight: containerMinHeight }}
       >
         <AnimatePresence mode="wait">
@@ -285,28 +287,28 @@ export default function WaitlistForm() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute inset-0 flex flex-col p-4"
+            className="absolute inset-0 flex flex-col p-3 sm:p-4" // Reduced padding on mobile
           >
             {currentStepIndex > 0 && (
               <button
                 type="button"
                 onClick={handlePreviousStep}
-                className="mb-5 inline-flex items-center self-start text-sm text-slate-600 hover:text-slate-800"
+                className="mb-3 inline-flex items-center self-start text-xs text-slate-500 hover:text-slate-700 sm:mb-4 sm:text-sm"
               >
-                <ArrowLeft className="mr-1.5 size-4" />
+                <ArrowLeft className="mr-1 size-3.5 sm:mr-1.5 sm:size-4" />
                 Back
               </button>
             )}
             <div className="flex grow flex-col justify-center">
               <label
                 htmlFor={currentStepConfig.id}
-                className="mb-4 block text-xl font-medium text-slate-800 sm:text-2xl"
+                className="mb-3 block text-lg font-medium text-slate-800 sm:mb-4 sm:text-xl"
               >
                 {currentStepConfig.label}
               </label>
 
               {currentStepConfig.type === "checkbox" ? (
-                <div className="mt-2 flex items-start">
+                <div className="mt-1 flex items-start sm:mt-2">
                   <div className="flex h-5 items-center">
                     <input
                       ref={checkboxRef}
@@ -317,13 +319,13 @@ export default function WaitlistForm() {
                       onChange={handleInputChange}
                       disabled={isPending}
                       onKeyPress={handleKeyPress}
-                      className="size-4 rounded border-slate-300 text-slate-600 focus:ring-slate-500"
+                      className="size-3.5 rounded border-slate-400 text-slate-600 focus:ring-slate-500 sm:size-4"
                     />
                   </div>
-                  <div className="ml-3 text-sm">
+                  <div className="ml-2 text-xs sm:ml-3 sm:text-sm">
                     <label
                       htmlFor={currentStepConfig.id}
-                      className="font-medium text-slate-700 hover:cursor-pointer sm:text-base"
+                      className="font-medium text-slate-600 hover:cursor-pointer sm:text-base"
                     >
                       {currentStepConfig.checkboxLabel}
                     </label>
@@ -340,10 +342,10 @@ export default function WaitlistForm() {
                     required={currentStepConfig.required}
                     disabled={isPending}
                     className={cn(
-                      "block w-full appearance-none rounded-lg border-0 border-b-2 border-slate-300 bg-transparent p-2.5 text-lg text-slate-900 shadow-sm focus:border-slate-600 focus:outline-none focus:ring-0 sm:text-xl",
+                      "block w-full appearance-none rounded-lg border-0 border-b-2 border-slate-400 bg-transparent p-2 text-base text-slate-800 shadow-sm placeholder:text-slate-400 focus:border-slate-600 focus:outline-none focus:ring-0 sm:text-lg",
                       formData[currentStepConfig.name] === ""
                         ? "text-slate-400"
-                        : "text-slate-900"
+                        : "text-slate-800"
                     )}
                   >
                     {currentStepConfig.options?.map(option => (
@@ -351,6 +353,7 @@ export default function WaitlistForm() {
                         key={option}
                         value={option}
                         disabled={option === "" && currentStepConfig.required}
+                        className="bg-white text-slate-800"
                       >
                         {option === ""
                           ? currentStepConfig.placeholder || "Select an option"
@@ -358,17 +361,17 @@ export default function WaitlistForm() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-slate-400" />
+                  <ChevronDown className="pointer-events-none absolute right-2 top-1/2 size-4 -translate-y-1/2 text-slate-400 sm:right-3 sm:size-5" />
                   {formData.howHeard === "Other" && (
                     <motion.div
                       initial={{ opacity: 0, height: 0, marginTop: 0 }}
                       animate={{
                         opacity: 1,
                         height: "auto",
-                        marginTop: "1rem"
+                        marginTop: "0.75rem"
                       }}
                       exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                      className="mt-4 w-full"
+                      className="w-full"
                     >
                       <input
                         ref={otherInputRef}
@@ -379,7 +382,7 @@ export default function WaitlistForm() {
                         onChange={handleInputChange}
                         onKeyPress={handleKeyPress}
                         disabled={isPending}
-                        className="block w-full appearance-none rounded-lg border-0 border-b-2 border-slate-300 bg-transparent p-2.5 text-lg text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-slate-600 focus:outline-none focus:ring-0 sm:text-xl"
+                        className="block w-full appearance-none rounded-lg border-0 border-b-2 border-slate-400 bg-transparent p-2 text-base text-slate-800 shadow-sm placeholder:text-slate-400 focus:border-slate-600 focus:outline-none focus:ring-0 sm:text-lg"
                         placeholder={currentStepConfig.otherInputPlaceholder}
                       />
                     </motion.div>
@@ -396,40 +399,40 @@ export default function WaitlistForm() {
                   onKeyPress={handleKeyPress}
                   required={currentStepConfig.required}
                   disabled={isPending}
-                  className="block w-full appearance-none rounded-lg border-0 border-b-2 border-slate-300 bg-transparent p-2.5 text-lg text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-slate-600 focus:outline-none focus:ring-0 sm:text-xl"
+                  className="block w-full appearance-none rounded-lg border-0 border-b-2 border-slate-400 bg-transparent p-2 text-base text-slate-800 shadow-sm placeholder:text-slate-400 focus:border-slate-600 focus:outline-none focus:ring-0 sm:text-lg"
                   placeholder={currentStepConfig.placeholder}
                 />
               )}
 
               {formMessage?.type === "error" && (
                 <motion.p
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-2 text-sm text-red-600"
+                  className="mt-1.5 text-xs text-red-500 sm:mt-2 sm:text-sm"
                 >
                   {formMessage.text}
                 </motion.p>
               )}
             </div>
 
-            <div className="flex items-center justify-end pt-6">
+            <div className="flex items-center justify-end pt-4 sm:pt-6">
               <button
                 type="submit"
                 disabled={isPending}
                 className={cn(
-                  "inline-flex items-center rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white shadow-md transition-all duration-200 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70 sm:text-base",
+                  "inline-flex items-center rounded-lg bg-slate-900 px-4 py-2 text-center text-sm font-medium text-white shadow-md transition-all duration-200 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70 sm:px-5 sm:py-2.5",
                   currentStepIndex === totalSteps - 1 &&
-                    "w-full justify-center py-3 sm:text-lg md:px-10 md:py-3.5"
+                    "w-full justify-center py-2.5 text-base sm:py-3 sm:text-lg"
                 )}
               >
                 {isPending && currentStepIndex === totalSteps - 1 ? (
-                  <Loader2 className="mr-2 size-5 animate-spin" />
+                  <Loader2 className="mr-1.5 size-4 animate-spin sm:mr-2 sm:size-5" />
                 ) : null}
                 {currentStepIndex === totalSteps - 1
                   ? "Submit Waitlist Application"
                   : "Next"}
                 {!(currentStepIndex === totalSteps - 1) && (
-                  <ArrowRight className="ml-2 size-4 sm:size-5" />
+                  <ArrowRight className="ml-1.5 size-3.5 sm:ml-2 sm:size-4" />
                 )}
               </button>
             </div>
