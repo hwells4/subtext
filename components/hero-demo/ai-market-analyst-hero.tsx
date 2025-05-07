@@ -87,10 +87,10 @@ const AnimatedTooltip = ({
   }
 
   return (
-    <div className={cn("flex items-center", className)}>
+    <div className={cn("flex items-center justify-center", className)}>
       {items.map(item => (
         <div
-          className="group relative -mr-5"
+          className="group relative -mr-3 sm:-mr-4 md:-mr-5"
           key={item.id}
           onMouseEnter={() => setHoveredIndex(item.id)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -134,7 +134,7 @@ const AnimatedTooltip = ({
             width={100}
             src={item.image}
             alt={item.name}
-            className="relative !m-0 size-14 rounded-full border-2 border-white object-cover object-top !p-0 shadow-sm transition duration-500 group-hover:z-30 group-hover:scale-105 md:size-16"
+            className="relative !m-0 size-10 rounded-full border-2 border-white object-cover object-top !p-0 shadow-sm transition duration-500 group-hover:z-30 group-hover:scale-105 sm:size-12 md:size-14"
           />
         </div>
       ))}
@@ -143,15 +143,12 @@ const AnimatedTooltip = ({
 }
 
 export default function AiMarketAnalystHero() {
-  const accentColorFrom = "#4F46E5" // Tailwind indigo-600
-  const accentColorTo = "#818CF8" // Tailwind indigo-400 (for a subtle gradient on icon)
-
   return (
-    <div className="relative w-full overflow-hidden bg-white px-4 pb-16 pt-20 text-center md:pb-24 md:pt-28">
-      {/* Background SVG elements - using divs with background images for better SSR compatibility */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Rocket SVG */}
-        <div className="absolute -right-16 top-16 size-48 opacity-10 md:right-4 md:top-20 md:size-64 lg:opacity-15">
+    <div className="relative w-full overflow-x-hidden bg-white px-4 py-12 text-center sm:py-16 md:px-6 md:py-20 lg:py-24">
+      {/* Subtle Background SVG elements */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        {/* Rocket SVG - Adjusted for subtlety and responsiveness */}
+        <div className="absolute -right-20 top-10 size-32 opacity-[0.03] sm:-right-16 sm:top-16 sm:size-48 sm:opacity-[0.04] md:right-4 md:top-20 md:size-56 lg:opacity-[0.05]">
           <div
             className="size-full rotate-12 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/rocket.svg)" }}
@@ -159,8 +156,8 @@ export default function AiMarketAnalystHero() {
           />
         </div>
 
-        {/* Chain SVG */}
-        <div className="absolute -left-16 bottom-16 size-48 opacity-10 md:bottom-24 md:left-4 md:size-64 lg:opacity-15">
+        {/* Chain SVG - Adjusted for subtlety and responsiveness */}
+        <div className="absolute -left-20 bottom-10 size-32 opacity-[0.03] sm:-left-16 sm:bottom-16 sm:size-48 sm:opacity-[0.04] md:bottom-24 md:left-4 md:size-56 lg:opacity-[0.05]">
           <div
             className="size-full -rotate-12 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/chain.svg)" }}
@@ -168,15 +165,15 @@ export default function AiMarketAnalystHero() {
           />
         </div>
 
-        {/* Gear SVG */}
-        <div className="opacity-8 absolute -left-24 top-24 size-48 md:-left-12 md:top-12 md:size-56 lg:opacity-10">
+        {/* Gear SVG - Adjusted for subtlety and responsiveness */}
+        <div className="absolute -left-24 top-20 size-32 opacity-[0.02] sm:-left-20 sm:top-24 sm:size-48 sm:opacity-[0.03] md:-left-12 md:top-12 md:size-56 lg:opacity-[0.04]">
           <motion.div
             className="size-full bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/gear.svg)" }}
             animate={{ rotate: 360 }}
             transition={{
               repeat: Infinity,
-              duration: 15,
+              duration: 25, // Slower rotation
               ease: "linear"
             }}
             aria-hidden="true"
@@ -184,57 +181,53 @@ export default function AiMarketAnalystHero() {
         </div>
       </div>
 
-      <div className="relative mx-auto w-full max-w-4xl">
-        {/* Testimonial Avatars with AnimatedTooltip */}
-        <div className="mb-8 flex justify-center">
+      <div className="relative z-10 mx-auto w-full max-w-4xl">
+        <div className="mb-6 flex justify-center sm:mb-8">
           <AnimatedTooltip items={people} />
         </div>
 
-        {/* Headline with Accent Icon - PRD 5.4 */}
-        <h1 className="mb-6 text-5xl font-extrabold capitalize tracking-tight md:text-6xl lg:text-7xl ">
-          <span className="bg-gradient-to-r from-slate-800 to-slate-950 bg-clip-text text-transparent">
-            Capture real customer language 100x faster
-          </span>
-          <span className="relative top-[-0.05em] ml-2 inline-block size-10 rotate-[3deg] align-middle md:ml-3 md:size-12 lg:size-14">
-            <Image
-              src="/lightning-icon.png"
-              alt="Lightning Bolt"
-              width={56}
-              height={56}
-              className="transition-transform duration-200 ease-in-out hover:scale-110"
-              priority
-            />
+        <h1 className="mb-5 text-center text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl">
+          <span className="block">Capture real customer</span>
+          <span className="block">
+            language 100x faster
+            <span className="[-top_0.08em] relative ml-1.5 inline-block size-7 rotate-[3deg] align-middle sm:ml-2 sm:size-8 md:size-10 lg:ml-3 lg:size-12">
+              <Image
+                src="/lightning-icon.png"
+                alt="Lightning Bolt"
+                fill
+                className="object-contain transition-transform duration-200 ease-in-out hover:scale-110"
+                priority
+              />
+            </span>
           </span>
         </h1>
 
-        {/* Sub-headline - PRD 5.5 */}
-        <p className="mx-auto mb-10 max-w-2xl text-lg font-light leading-relaxed text-slate-600 md:text-xl lg:max-w-3xl">
+        <p className="xs:max-w-xs mx-auto mb-8 max-w-[280px] text-base font-light leading-relaxed text-slate-600 sm:max-w-md sm:text-lg md:mb-10 md:max-w-xl md:text-xl lg:max-w-2xl">
           Subtext extracts and analyzes authentic language from thousands of
           real conversations at once, turning your audience's actual words into
           messaging that resonates and drives conversions.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
+        <div className="mx-auto flex max-w-[320px] flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row">
           <a
             href="#"
-            className="w-full rounded-lg bg-slate-900 px-8 py-3 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 md:w-auto md:px-10 md:py-4"
+            className="w-full rounded-lg bg-slate-900 px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 sm:w-auto sm:px-8 sm:py-3.5 sm:text-lg md:px-10"
           >
             Start $1 Trial
           </a>
 
           <a
             href="#"
-            className="w-full rounded-lg border border-slate-900 bg-transparent px-8 py-3 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 md:w-auto md:px-10 md:py-4"
+            className="w-full rounded-lg border border-slate-900 bg-transparent px-6 py-3 text-center text-base font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 sm:w-auto sm:px-8 sm:py-3.5 sm:text-lg md:px-10"
           >
             <span className="flex items-center justify-center">
-              <Calendar className="mr-2 size-4" />
+              <Calendar className="mr-2 size-4 sm:size-5" />
               Book a Demo
             </span>
           </a>
         </div>
 
-        <p className="mt-6 text-sm text-slate-500">
+        <p className="mt-6 text-xs text-slate-500 sm:text-sm">
           $1 trial requires credit card and includes full access for 14 days. No
           credit card required for demo.
         </p>

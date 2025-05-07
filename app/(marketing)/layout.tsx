@@ -28,22 +28,20 @@ export default function MarketingLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen bg-white font-sans antialiased",
-          fontSans.variable
-        )}
+    <div
+      className={cn(
+        "min-h-screen bg-white font-sans antialiased",
+        fontSans.variable
+      )}
+    >
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light" // Force light theme as per design inspiration
+        enableSystem={false} // Disable system theme preference
+        disableTransitionOnChange
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light" // Force light theme as per design inspiration
-          enableSystem={false} // Disable system theme preference
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+        {children}
+      </ThemeProvider>
+    </div>
   )
 }
