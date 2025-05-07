@@ -210,14 +210,14 @@ export default function AiMarketAnalystHero() {
 
         <div className="mx-auto flex max-w-[320px] flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row">
           <a
-            href="#"
+            href="/waitlist"
             className="w-full rounded-lg bg-slate-900 px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 sm:w-auto sm:px-8 sm:py-3.5 sm:text-lg md:px-10"
           >
-            Start $1 Trial
+            Join Waitlist
           </a>
 
           <a
-            href="#"
+            href="/waitlist"
             className="w-full rounded-lg border border-slate-900 bg-transparent px-6 py-3 text-center text-base font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 sm:w-auto sm:px-8 sm:py-3.5 sm:text-lg md:px-10"
           >
             <span className="flex items-center justify-center">
@@ -228,8 +228,8 @@ export default function AiMarketAnalystHero() {
         </div>
 
         <p className="mt-6 text-xs text-slate-500 sm:text-sm">
-          $1 trial requires credit card and includes full access for 14 days. No
-          credit card required for demo.
+          Join the waitlist to be notified when we launch. No credit card
+          required for demo.
         </p>
       </div>
     </div>

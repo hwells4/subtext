@@ -84,10 +84,10 @@ export default function HowItWorksSection() {
         {/* CTA Button */}
         <div className="mt-16 text-center">
           <a
-            href="#"
+            href="/waitlist"
             className="inline-flex items-center rounded-lg bg-slate-900 px-6 py-3 text-lg font-semibold text-white transition-all duration-200 hover:bg-slate-800 hover:shadow-lg"
           >
-            Try It Now
+            Join Waitlist
             <ArrowRight className="ml-2 size-4" />
           </a>
         </div>

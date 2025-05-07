@@ -20,14 +20,14 @@ export default function CtaSection() {
 
             <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
               <a
-                href="#"
+                href="/waitlist"
                 className="w-full rounded-lg bg-white px-8 py-3 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 md:w-auto"
               >
-                Start $1 Trial
+                Join Waitlist
               </a>
 
               <a
-                href="#"
+                href="/waitlist"
                 className="w-full rounded-lg border border-white bg-transparent px-8 py-3 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-white/10 md:w-auto"
               >
                 <span className="flex items-center justify-center">
@@ -38,8 +38,8 @@ export default function CtaSection() {
             </div>
 
             <p className="mt-6 text-sm text-slate-400">
-              $1 trial requires credit card and includes full access for 14
-              days. No credit card required for demo.
+              Join the waitlist to be notified when we launch. No credit card
+              required for demo.
             </p>
           </div>
         </div>

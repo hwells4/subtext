@@ -149,8 +149,8 @@ export function HeroSection() {
                       size="lg"
                       className="w-full rounded-lg px-5 py-2.5 text-sm font-semibold sm:w-auto sm:rounded-xl sm:px-6 sm:py-3 sm:text-base"
                     >
-                      <Link href="#link">
-                        <span className="text-nowrap">Start Building</span>
+                      <Link href="/waitlist">
+                        <span className="text-nowrap">Join Waitlist</span>
                       </Link>
                     </Button>
                   </div>

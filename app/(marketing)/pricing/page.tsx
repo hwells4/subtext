@@ -29,18 +29,16 @@ export default async function PricingPage() {
           title="Monthly Plan"
           price="$10"
           description="Billed monthly"
-          buttonText="Subscribe Monthly"
-          buttonLink={
-            process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_MONTHLY || "#"
-          }
+          buttonText="Join Waitlist"
+          buttonLink="/waitlist"
           userId={userId}
         />
         <PricingCard
           title="Yearly Plan"
           price="$100"
           description="Billed annually"
-          buttonText="Subscribe Yearly"
-          buttonLink={process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK_YEARLY || "#"}
+          buttonText="Join Waitlist"
+          buttonLink="/waitlist"
           userId={userId}
         />
       </div>
@@ -65,9 +63,7 @@ function PricingCard({
   buttonLink,
   userId
 }: PricingCardProps) {
-  const finalButtonLink = userId
-    ? `${buttonLink}?client_reference_id=${userId}`
-    : buttonLink
+  const finalButtonLink = userId ? `${buttonLink}` : buttonLink
 
   return (
     <Card className="flex h-full flex-col">

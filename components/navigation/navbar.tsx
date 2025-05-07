@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/layout/logo"
+import { useRouter } from "next/navigation"
 
 const menuItems = [
   { name: "Features", href: "#link" },
@@ -20,6 +21,7 @@ const ctaButtonStyles =
 export function Navbar() {
   const [menuState, setMenuState] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
+  const router = useRouter()
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -101,13 +103,19 @@ export function Navbar() {
                   >
                     <span>Login</span>
                   </button>
-                  <button className={ctaButtonStyles}>
-                    <span>Get Started</span>
+                  <button
+                    className={ctaButtonStyles}
+                    onClick={() => router.push("/waitlist")}
+                  >
+                    <span>Join Waitlist</span>
                   </button>
                 </>
               ) : (
-                <button className={ctaButtonStyles}>
-                  <span>Start Validating</span>
+                <button
+                  className={ctaButtonStyles}
+                  onClick={() => router.push("/waitlist")}
+                >
+                  <span>Join Waitlist</span>
                 </button>
               )}
             </div>
@@ -157,8 +165,14 @@ export function Navbar() {
                     <span>Login</span>
                   </button>
                 )}
-                <button className={ctaButtonStyles}>
-                  <span>{isScrolled ? "Start Validating" : "Get Started"}</span>
+                <button
+                  className={ctaButtonStyles}
+                  onClick={() => {
+                    router.push("/waitlist")
+                    setMenuState(false) // Close menu on click
+                  }}
+                >
+                  <span>Join Waitlist</span>
                 </button>
               </div>
             </div>

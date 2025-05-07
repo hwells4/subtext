@@ -14,11 +14,13 @@ import {
   Shield,
   Zap
 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function CtaSection() {
   const [email, setEmail] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,6 +34,7 @@ export function CtaSection() {
       setIsSubmitting(false)
       setIsSuccess(true)
       setEmail("")
+      router.push("/waitlist") // Redirect to waitlist page
 
       // Reset success message after 3 seconds
       setTimeout(() => setIsSuccess(false), 3000)
@@ -73,7 +76,7 @@ export function CtaSection() {
                 Ready to Transform Your Voice Communications?
               </h2>
               <p className="text-muted-foreground max-w-2xl text-lg">
-                Start your free 14-day trial today. No credit card required.
+                Join our waitlist to be the first to know when we launch.
                 Experience the full power of our platform with all premium
                 features.
               </p>
@@ -211,12 +214,14 @@ export function CtaSection() {
               </div>
 
               <div className="border-t p-6">
-                <Button className="group w-full" size="lg">
-                  Start Your Free Trial
-                  <ChevronRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                <Button className="group w-full" size="lg" asChild>
+                  <a href="/waitlist">
+                    Join Waitlist
+                    <ChevronRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                  </a>
                 </Button>
                 <p className="text-muted-foreground mt-3 text-center text-xs">
-                  No credit card required. Cancel anytime.
+                  Be the first to know when we launch.
                 </p>
               </div>
             </Card>
