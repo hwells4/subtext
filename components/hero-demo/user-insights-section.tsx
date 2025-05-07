@@ -16,7 +16,7 @@ export default function UserInsightsSection() {
       iconClassName: "text-blue-500",
       titleClassName: "text-blue-500",
       className:
-        "[grid-area:stack] hover:-translate-y-16 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity will-change-transform hover:grayscale-0 before:left-0 before:top-0 transition-all duration-1000 ease-in-out"
+        "[grid-area:stack] translate-y-0 hover:-translate-y-16 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity will-change-transform hover:grayscale-0 before:left-0 before:top-0 transition-all duration-1000 ease-in-out"
     },
     {
       icon: <MessageSquare className="size-5 text-emerald-300" />,
@@ -27,7 +27,7 @@ export default function UserInsightsSection() {
       iconClassName: "text-emerald-500",
       titleClassName: "text-emerald-500",
       className:
-        "[grid-area:stack] translate-x-12 translate-y-20 hover:-translate-y-4 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity will-change-transform hover:grayscale-0 before:left-0 before:top-0 transition-all duration-1000 ease-in-out"
+        "[grid-area:stack] translate-x-12 translate-y-16 hover:-translate-y-4 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity will-change-transform hover:grayscale-0 before:left-0 before:top-0 transition-all duration-1000 ease-in-out"
     },
     {
       icon: <Lightbulb className="size-5 text-amber-300" />,
@@ -38,15 +38,15 @@ export default function UserInsightsSection() {
       iconClassName: "text-amber-500",
       titleClassName: "text-amber-500",
       className:
-        "[grid-area:stack] translate-x-24 translate-y-40 hover:-translate-y-0 will-change-transform transition-all duration-1000 ease-in-out"
+        "[grid-area:stack] translate-x-24 translate-y-32 hover:-translate-y-0 will-change-transform transition-all duration-1000 ease-in-out"
     }
   ]
 
   return (
-    <section className="relative w-full bg-slate-50 py-24">
+    <section className="relative w-full bg-slate-50 py-16">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-6 text-3xl font-extrabold text-slate-900 md:text-5xl">
+        <div className="mb-10 text-center">
+          <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-5xl">
             Stop Guessing What Your Audience Thinks
           </h2>
           <p className="mx-auto max-w-3xl text-lg text-slate-600 md:text-xl">
@@ -55,9 +55,9 @@ export default function UserInsightsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-5">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
           {/* Left side - explanatory text - now 2/5 of the space */}
-          <div className="flex flex-col justify-center space-y-8 px-4 md:col-span-2">
+          <div className="flex flex-col justify-center space-y-6 px-4 md:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -69,9 +69,9 @@ export default function UserInsightsSection() {
                 stiffness: 30,
                 damping: 10
               }}
-              className="space-y-6"
+              className="space-y-5"
             >
-              <ul className="space-y-6 text-slate-600">
+              <ul className="space-y-5 text-slate-600">
                 <li className="flex items-start gap-3">
                   <span className="mt-1 flex size-6 items-center justify-center rounded-full bg-red-100 text-red-600">
                     ✕
@@ -101,7 +101,7 @@ export default function UserInsightsSection() {
                 </li>
               </ul>
 
-              <h3 className="mt-10 text-2xl font-semibold text-slate-900 md:text-3xl">
+              <h3 className="mt-8 text-2xl font-semibold text-slate-900 md:text-3xl">
                 From scattered comments to actionable messaging
               </h3>
               <p className="text-lg text-slate-600">
@@ -122,9 +122,9 @@ export default function UserInsightsSection() {
               delay: 0.4,
               ease: "easeOut"
             }}
-            className="flex items-start justify-start py-8 md:col-span-3 md:justify-center"
+            className="flex items-center justify-center md:col-span-3"
           >
-            <div className="h-[650px] w-full max-w-[700px]">
+            <div className="h-[500px] w-full max-w-[700px] -translate-y-16">
               <DisplayCards cards={userInsightCards} />
             </div>
           </motion.div>

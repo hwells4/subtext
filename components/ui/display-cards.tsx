@@ -68,7 +68,7 @@ export default function DisplayCards({ cards }: DisplayCardsProps) {
   const displayCards = cards || defaultCards
 
   return (
-    <div className="grid place-items-start justify-items-start opacity-100 [grid-template-areas:'stack'] md:place-items-center md:justify-items-center">
+    <div className="grid size-full place-items-center justify-items-center opacity-100 [grid-template-areas:'stack']">
       {displayCards.map((cardProps, index) => (
         <DisplayCard key={index} {...cardProps} />
       ))}
