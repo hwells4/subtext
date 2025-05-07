@@ -3,7 +3,6 @@
 import React from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/layout/logo"
 
@@ -13,6 +12,10 @@ const menuItems = [
   { name: "Pricing", href: "#link" },
   { name: "About", href: "#link" }
 ]
+
+// Define the custom button styles to match the CTA in AiMarketAnalystHero
+const ctaButtonStyles =
+  "rounded-lg bg-slate-900 px-6 py-2 text-base font-semibold text-white shadow-md transition-shadow duration-200 ease-in-out hover:bg-slate-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 
 export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false)
@@ -34,9 +37,9 @@ export const HeroHeader = () => {
       >
         <div
           className={cn(
-            "mx-auto mt-4 max-w-6xl px-6 transition-all duration-300 lg:px-12",
+            "mx-auto mt-4 max-w-7xl px-6 transition-all duration-300 lg:px-12",
             isScrolled &&
-              "max-w-7xl rounded-2xl border bg-white/95 shadow-lg backdrop-blur-lg lg:px-8"
+              "max-w-6xl rounded-2xl border bg-white/95 shadow-lg backdrop-blur-lg lg:px-8"
           )}
         >
           <div className="relative flex items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
@@ -84,23 +87,47 @@ export const HeroHeader = () => {
               </ul>
             </div>
 
+            {/* Desktop Buttons (Hidden on mobile) */}
+            <div className="hidden lg:flex lg:items-center lg:space-x-3">
+              {!isScrolled ? (
+                <>
+                  <button
+                    className={cn(
+                      ctaButtonStyles,
+                      "bg-transparent text-slate-900 shadow-none hover:bg-slate-100",
+                      "border border-slate-300"
+                    )}
+                  >
+                    <span>Login</span>
+                  </button>
+                  <button className={ctaButtonStyles}>
+                    <span>Get Started</span>
+                  </button>
+                </>
+              ) : (
+                <button className={ctaButtonStyles}>
+                  <span>Start Validating</span>
+                </button>
+              )}
+            </div>
+
             {/* Mobile Menu Overlay & Content */}
             <div
               className={cn(
-                "lg:flex lg:w-auto lg:items-center", // Base styles for large screens
-                menuState ? "flex" : "hidden lg:flex", // Control visibility based on menu state
-                "absolute inset-x-0 top-full lg:relative lg:inset-x-auto lg:top-auto",
-                "w-full lg:w-auto",
-                "mt-2 lg:mt-0",
-                "flex-col items-center lg:flex-row",
-                "rounded-lg border lg:border-none",
-                "bg-white lg:bg-transparent",
-                "p-6 lg:p-0",
-                "shadow-lg lg:shadow-none"
+                "lg:hidden", // Only visible on mobile
+                menuState ? "flex" : "hidden", // Control visibility based on menu state
+                "absolute inset-x-0 top-full",
+                "w-full",
+                "mt-2",
+                "flex-col items-center",
+                "rounded-lg border",
+                "bg-white",
+                "p-6",
+                "shadow-lg"
               )}
             >
-              {/* Mobile Menu Items (Hidden on LG) */}
-              <div className="mb-6 w-full lg:hidden">
+              {/* Mobile Menu Items */}
+              <div className="mb-6 w-full">
                 <ul className="space-y-6 text-base">
                   {menuItems.map((item, index) => (
                     <li key={index}>
@@ -115,14 +142,21 @@ export const HeroHeader = () => {
                   ))}
                 </ul>
               </div>
-              {/* Action Buttons Container */}
-              <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 lg:w-auto">
-                <Button variant="outline" size="sm">
+
+              {/* Mobile Action Buttons Container */}
+              <div className="flex w-full flex-col space-y-3">
+                <button
+                  className={cn(
+                    ctaButtonStyles,
+                    "bg-transparent text-slate-900 shadow-none hover:bg-slate-100",
+                    "border border-slate-300"
+                  )}
+                >
                   <span>Login</span>
-                </Button>
-                <Button size="sm">
-                  <span>Get Started</span>
-                </Button>
+                </button>
+                <button className={ctaButtonStyles}>
+                  <span>{isScrolled ? "Start Validating" : "Get Started"}</span>
+                </button>
               </div>
             </div>
           </div>

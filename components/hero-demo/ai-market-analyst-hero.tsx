@@ -159,15 +159,14 @@ export default function AiMarketAnalystHero() {
             unlock reddit's insights. 100x faster.
           </span>
           <span className="relative top-[-0.05em] ml-2 inline-block size-10 rotate-[3deg] align-middle md:ml-3 md:size-12 lg:size-14">
-            {/* Using a div for gradient background on a simple shape for now, replace with actual SVG/Image later */}
-            <span
-              className="inline-block size-full rounded-[20%] transition-transform duration-200 ease-in-out group-hover:scale-110"
-              style={{
-                backgroundImage: `linear-gradient(to bottom right, ${accentColorFrom}, ${accentColorTo})`,
-                boxShadow: "0px 4px 10px -2px rgba(79, 70, 229, 0.4)" // Softer shadow for the icon
-              }}
-              aria-label="Productivity Boost Icon"
-            ></span>
+            <Image
+              src="/lightning-icon.png"
+              alt="Lightning Bolt"
+              width={56}
+              height={56}
+              className="transition-transform duration-200 ease-in-out hover:scale-110"
+              priority
+            />
           </span>
         </h1>
 
