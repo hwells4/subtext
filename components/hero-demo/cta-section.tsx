@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Calendar } from "lucide-react"
 
 export default function CtaSection() {
   return (
@@ -10,12 +10,12 @@ export default function CtaSection() {
         <div className="rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 px-8 py-12 shadow-xl md:px-12 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-4 text-3xl font-extrabold text-white md:text-4xl">
-              Ready to unlock Reddit's hidden insights?
+              Start Creating Copy That Actually Converts
             </h2>
 
             <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-300">
-              Start extracting authentic user language and validating your
-              product decisions with real data today.
+              Extract authentic customer language and transform it into
+              messaging that resonates and drives action.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
@@ -23,20 +23,23 @@ export default function CtaSection() {
                 href="#"
                 className="w-full rounded-lg bg-white px-8 py-3 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 md:w-auto"
               >
-                Start Free Trial
+                Start $1 Trial
               </a>
 
               <a
                 href="#"
-                className="flex w-full items-center justify-center text-lg font-medium text-white transition-all hover:text-slate-200 md:w-auto"
+                className="w-full rounded-lg border border-white bg-transparent px-8 py-3 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-white/10 md:w-auto"
               >
-                <span>Watch Demo</span>
-                <ArrowRight className="ml-2 size-4" />
+                <span className="flex items-center justify-center">
+                  <Calendar className="mr-2 size-4" />
+                  Book a Demo
+                </span>
               </a>
             </div>
 
             <p className="mt-6 text-sm text-slate-400">
-              No credit card required. Cancel anytime.
+              $1 trial requires credit card and includes full access for 14
+              days. No credit card required for demo.
             </p>
           </div>
         </div>

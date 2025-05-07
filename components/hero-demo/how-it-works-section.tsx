@@ -7,25 +7,25 @@ import { motion } from "framer-motion"
 const steps = [
   {
     icon: Search,
-    title: "Search Reddit",
+    title: "Search topics or audiences",
     description:
-      "Enter topics, product names, or problems to discover what real users are saying.",
+      "Target specific communities where your audience speaks candidly about their needs.",
     iconColor: "text-blue-500",
     bgColor: "bg-blue-100"
   },
   {
     icon: BarChart3,
-    title: "Analyze Conversations",
+    title: "Extract authentic language patterns",
     description:
-      "Our AI examines thousands of discussions to identify patterns, pain points, and feature requests.",
+      "Our AI identifies exactly how your audience describes their problems and pain points.",
     iconColor: "text-purple-500",
     bgColor: "bg-purple-100"
   },
   {
     icon: Lightbulb,
-    title: "Extract Insights",
+    title: "Create copy that connects and converts",
     description:
-      "Get organized insights with actual user language and direct links to source conversations.",
+      "Transform real customer language into messaging frameworks that drive action.",
     iconColor: "text-amber-500",
     bgColor: "bg-amber-100"
   }
@@ -37,11 +37,8 @@ export default function HowItWorksSection() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
-            How It Works
+            Turn Real Conversations Into Conversion Copy in Minutes
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">
-            From Reddit search to actionable insights in minutes, not weeks
-          </p>
         </div>
 
         <div className="relative">

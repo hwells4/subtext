@@ -2,6 +2,7 @@
 
 import React, { useState } from "react"
 import Image from "next/image"
+import { Calendar } from "lucide-react"
 import {
   motion,
   useTransform,
@@ -190,7 +191,7 @@ export default function AiMarketAnalystHero() {
         </div>
 
         {/* Headline with Accent Icon - PRD 5.4 */}
-        <h1 className="mb-6 text-5xl font-extrabold lowercase tracking-tight md:text-6xl lg:text-7xl ">
+        <h1 className="mb-6 text-5xl font-extrabold capitalize tracking-tight md:text-6xl lg:text-7xl ">
           <span className="bg-gradient-to-r from-slate-800 to-slate-950 bg-clip-text text-transparent">
             Capture real customer language 100x faster
           </span>
@@ -213,10 +214,30 @@ export default function AiMarketAnalystHero() {
           messaging that resonates and drives conversions.
         </p>
 
-        {/* CTA Button - PRD 5.6 */}
-        <button className="rounded-lg bg-slate-900 px-8 py-3 text-lg font-semibold text-white shadow-md transition-shadow duration-200 ease-in-out hover:bg-slate-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:px-10 md:py-4">
-          Start Validating for Free
-        </button>
+        {/* CTA Buttons */}
+        <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
+          <a
+            href="#"
+            className="w-full rounded-lg bg-slate-900 px-8 py-3 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 md:w-auto md:px-10 md:py-4"
+          >
+            Start $1 Trial
+          </a>
+
+          <a
+            href="#"
+            className="w-full rounded-lg border border-slate-900 bg-transparent px-8 py-3 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 md:w-auto md:px-10 md:py-4"
+          >
+            <span className="flex items-center justify-center">
+              <Calendar className="mr-2 size-4" />
+              Book a Demo
+            </span>
+          </a>
+        </div>
+
+        <p className="mt-6 text-sm text-slate-500">
+          $1 trial requires credit card and includes full access for 14 days. No
+          credit card required for demo.
+        </p>
       </div>
     </div>
   )

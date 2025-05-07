@@ -10,26 +10,23 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 const testimonials = [
   {
     quote:
-      "We've seen a 43% increase in customer engagement since implementing this voice communication solution. Our team now spends less time transcribing and more time connecting with clients.",
-    author: "Sarah Johnson",
-    title: "Customer Success Manager",
-    company: "TechGrowth Solutions",
+      "When you speak to someone specific, they feel seen. Subtext helps us make every customer feel like we're talking directly to them because we ARE using their exact language.",
+    author: "Jordan Lee",
+    title: "CMO at GrowthTech",
     avatar: "/placeholders/avatar-1.jpg"
   },
   {
     quote:
-      "The accuracy of the voice analytics helps us identify customer sentiment in real-time. This has transformed how we approach our support calls and improved our response strategies.",
-    author: "Michael Chen",
-    title: "VP of Customer Experience",
-    company: "Innovate Inc.",
+      "We've reduced our research time by 95% while delivering more authentic messaging that drives real results for our clients.",
+    author: "Taylor Smith",
+    title: "Agency Director at ConvertAgency",
     avatar: "/placeholders/avatar-2.jpg"
   },
   {
     quote:
-      "Implementation was seamless, and the ROI was immediate. Within three months, we reduced call handle times by 27% while improving our satisfaction scores. This platform pays for itself.",
-    author: "Jessica Williams",
-    title: "Operations Director",
-    company: "Global Services",
+      "The difference between generic AI content and Subtext's extracted language is night and day. One sounds like a chatbot, the other sounds like our actual customers.",
+    author: "Alex Rivera",
+    title: "Content Director at SaaSGrowth",
     avatar: "/placeholders/avatar-3.jpg"
   }
 ]
@@ -102,8 +99,7 @@ export function TestimonialsCarousel() {
             What Our Customers Say
           </h2>
           <p className="text-muted-foreground mt-4 max-w-3xl text-lg">
-            Discover how organizations are transforming their communication with
-            our voice solution
+            Hear from marketers who've transformed their messaging with Subtext
           </p>
         </AnimatedGroup>
 
@@ -147,8 +143,7 @@ export function TestimonialsCarousel() {
                       {testimonials[activeIndex].author}
                     </h4>
                     <p className="text-muted-foreground text-sm">
-                      {testimonials[activeIndex].title},{" "}
-                      {testimonials[activeIndex].company}
+                      {testimonials[activeIndex].title}
                     </p>
                   </div>
                 </div>

@@ -5,38 +5,42 @@ import { motion } from "framer-motion"
 import { AnimatedGroup } from "@/components/ui/animated-group"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, BarChart4, LineChart, TrendingUp } from "lucide-react"
+import { ArrowRight, BarChart4, LineChart, Clock } from "lucide-react"
 
 const resultCases = [
   {
-    title: "Acme Corp",
-    category: "Customer Engagement",
+    title: "Conversion Rate",
+    category: "+86% increase in free trial conversions",
     results: [
-      { label: "Response Rate", value: "78%", change: "+43%" },
-      { label: "Client Satisfaction", value: "92%", change: "+35%" },
-      { label: "Retention Rate", value: "88%", change: "+27%" }
+      { label: "Before", value: "2.1%", change: "" },
+      { label: "After", value: "3.9%", change: "+86%" },
+      { label: "Based On", value: "Landing Pages", change: "" }
     ],
+    explanation: "Based on implementing authentic language in landing pages",
     icon: <BarChart4 className="text-primary size-8" />
   },
   {
-    title: "TechFlow Inc",
-    category: "Support Optimization",
+    title: "Click-Through Rate",
+    category: "+127% increase in email open rates",
     results: [
-      { label: "Resolution Time", value: "1.2 days", change: "-65%" },
-      { label: "First Call Resolution", value: "82%", change: "+42%" },
-      { label: "Support Costs", value: "$12k/mo", change: "-38%" }
+      { label: "Before", value: "12%", change: "" },
+      { label: "After", value: "27%", change: "+127%" },
+      { label: "Based On", value: "Subject Lines", change: "" }
     ],
+    explanation: "Based on using extracted pain points in subject lines",
     icon: <LineChart className="text-primary size-8" />
   },
   {
-    title: "GrowthGen",
-    category: "Business Impact",
+    title: "Research Time",
+    category: "95% reduction in research time",
     results: [
-      { label: "Lead Conversion", value: "32%", change: "+56%" },
-      { label: "Customer LTV", value: "$4,200", change: "+73%" },
-      { label: "Annual Growth", value: "41%", change: "+29%" }
+      { label: "Before", value: "3-4 days", change: "" },
+      { label: "After", value: "20 min", change: "-95%" },
+      { label: "Based On", value: "Time Tracking", change: "" }
     ],
-    icon: <TrendingUp className="text-primary size-8" />
+    explanation:
+      "From days of manual thread reading to minutes of AI-powered extraction",
+    icon: <Clock className="text-primary size-8" />
   }
 ]
 
@@ -73,11 +77,10 @@ export function ResultsShowcase() {
           }}
         >
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Real Results, Real Impact
+            Real Results, Measurable Impact
           </h2>
           <p className="text-muted-foreground mt-4 max-w-3xl text-lg">
-            See how our platform transforms voice communication into measurable
-            outcomes across industries and use cases.
+            See how authentic customer language transforms marketing performance
           </p>
         </AnimatedGroup>
 
@@ -96,17 +99,12 @@ export function ResultsShowcase() {
                   <div className="space-y-1">
                     <h3 className="text-lg font-semibold">{caseItem.title}</h3>
                     <p className="text-muted-foreground text-sm">
-                      {caseItem.category}
+                      {caseItem.explanation}
                     </p>
                   </div>
                 </div>
               </Card>
             ))}
-
-            <Button className="group w-full" variant="outline">
-              View All Case Studies
-              <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-            </Button>
           </div>
 
           <div className="lg:col-span-8">
@@ -148,19 +146,28 @@ export function ResultsShowcase() {
                   </p>
                   <div className="mt-2 space-y-1">
                     <p className="text-3xl font-bold">{result.value}</p>
-                    <p
-                      className={`text-sm font-medium ${
-                        result.change.startsWith("+")
-                          ? "text-green-500"
-                          : "text-red-500"
-                      }`}
-                    >
-                      {result.change}
-                    </p>
+                    {result.change && (
+                      <p
+                        className={`text-sm font-medium ${
+                          result.change.startsWith("+")
+                            ? "text-green-500"
+                            : result.change.startsWith("-")
+                              ? "text-red-500"
+                              : "text-slate-500"
+                        }`}
+                      >
+                        {result.change}
+                      </p>
+                    )}
                   </div>
                 </Card>
               ))}
             </AnimatedGroup>
+            <div className="mt-4 text-center">
+              <h3 className="text-xl font-bold">
+                {resultCases[activeCase].category}
+              </h3>
+            </div>
           </div>
         </div>
       </div>

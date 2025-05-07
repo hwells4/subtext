@@ -1,26 +1,32 @@
 "use client"
 
 import React from "react"
-import { BarChart3, SearchCode, Users } from "lucide-react" // Example icons
+import { BarChart3, SearchCode, Users, Layers } from "lucide-react" // Example icons
 
 const features = [
   {
     icon: SearchCode,
-    title: "Deep Reddit Analysis",
+    title: "Deep Conversation Analysis",
     description:
-      "Go beyond surface-level searches. Our AI delves into thousands of posts and comments to extract meaningful patterns and pain points."
+      "Go beyond surface-level searching. Our AI analyzes thousands of discussions to extract meaningful patterns in how people talk about their problems and needs."
   },
   {
     icon: Users,
-    title: "Authentic User Language",
+    title: "Authentic Language Extraction",
     description:
-      "Understand exactly how your target audience describes their problems, using their own words for your messaging and product development."
+      "Capture the exact words, phrases, and emotional triggers your audience uses when they're speaking candidly, not responding to surveys."
+  },
+  {
+    icon: Layers,
+    title: "Audience Segmentation",
+    description:
+      "Discover how different segments of your audience describe the same problems differently, allowing you to create targeted messaging for each."
   },
   {
     icon: BarChart3,
-    title: "Actionable Insights, Fast",
+    title: "Pain Point Categorization",
     description:
-      "Transform raw data into clear, validated insights with source links in minutes, not days, so you can build with confidence."
+      "Automatically organize and prioritize customer pain points by frequency, intensity, and type (functional, emotional, financial)."
   }
 ]
 
@@ -29,14 +35,13 @@ export default function KeyFeaturesSection() {
     <div className="w-full bg-slate-50 py-16 md:py-24">
       <div className="container mx-auto px-4 text-center md:px-6">
         <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
-          How Our AI Supercharges Your Research
+          How Subtext Supercharges Your Marketing Research
         </h2>
         <p className="mx-auto mb-12 max-w-2xl text-lg text-slate-600 md:mb-16">
-          Our platform is engineered to provide deep, reliable insights from
-          Reddit, helping you validate ideas and understand your market like
-          never before.
+          Transform how you understand your audience's needs and craft messaging
+          that resonates
         </p>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:grid-cols-4">
           {features.map((feature, index) => (
             <div
               key={index}
