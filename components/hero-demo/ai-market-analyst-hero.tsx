@@ -192,7 +192,7 @@ export default function AiMarketAnalystHero() {
         {/* Headline with Accent Icon - PRD 5.4 */}
         <h1 className="mb-6 text-5xl font-extrabold lowercase tracking-tight md:text-6xl lg:text-7xl ">
           <span className="bg-gradient-to-r from-slate-800 to-slate-950 bg-clip-text text-transparent">
-            unlock reddit's insights. 100x faster.
+            Capture real customer language 100x faster
           </span>
           <span className="relative top-[-0.05em] ml-2 inline-block size-10 rotate-[3deg] align-middle md:ml-3 md:size-12 lg:size-14">
             <Image
@@ -208,9 +208,9 @@ export default function AiMarketAnalystHero() {
 
         {/* Sub-headline - PRD 5.5 */}
         <p className="mx-auto mb-10 max-w-2xl text-lg font-light leading-relaxed text-slate-600 md:text-xl lg:max-w-3xl">
-          Stop guessing. Start validating. Our AI analyzes thousands of Reddit
-          conversations, extracting authentic user language to give you
-          trustworthy product insights in minutes, not weeks.
+          Subtext extracts and analyzes authentic language from thousands of
+          real conversations at once, turning your audience's actual words into
+          messaging that resonates and drives conversions.
         </p>
 
         {/* CTA Button - PRD 5.6 */}

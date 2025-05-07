@@ -8,6 +8,9 @@ import AppScreenshotSection from "@/components/hero-demo/app-screenshot-section"
 import UserInsightsSection from "@/components/hero-demo/user-insights-section"
 import HowItWorksSection from "@/components/hero-demo/how-it-works-section"
 import CtaSection from "@/components/hero-demo/cta-section"
+import { ResultsShowcase } from "@/app/landing/_components/results-showcase"
+import { TestimonialsCarousel } from "@/app/landing/_components/testimonials-carousel"
+import { LottieHowItWorks } from "@/app/landing/_components/lottie-how-it-works"
 import React from "react"
 
 export default function HomePage() {
@@ -18,8 +21,11 @@ export default function HomePage() {
         <AiMarketAnalystHero />
         <AppScreenshotSection />
         <UserInsightsSection />
+        <ResultsShowcase />
         <HowItWorksSection />
+        <LottieHowItWorks />
         <KeyFeaturesSection />
+        <TestimonialsCarousel />
         <CompanyLogosSection />
         <CtaSection />
       </div>
