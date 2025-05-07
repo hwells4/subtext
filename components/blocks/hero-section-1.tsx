@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { AnimatedGroup } from "@/components/ui/animated-group"
 import { cn } from "@/lib/utils"
 import { Navbar } from "@/components/navigation"
+import Image from "next/image"
 
 const transitionVariants = {
   item: {
@@ -39,7 +40,23 @@ export function HeroSection() {
           <div className="absolute left-0 top-0 h-[80rem] w-56 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
           <div className="absolute left-0 top-0 h-[80rem] w-56 -translate-y-[350px] -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
         </div>
-        <section>
+
+        <section className="relative">
+          {/* Rocket SVG */}
+          <div className="pointer-events-none absolute right-0 top-24 z-[5] w-32 opacity-50 mix-blend-luminosity lg:block">
+            <Image src="/rocket.svg" alt="" width={150} height={150} />
+          </div>
+
+          {/* Chain SVG */}
+          <div className="pointer-events-none absolute left-12 top-96 z-[5] w-40 opacity-40 mix-blend-luminosity lg:block">
+            <Image src="/chain.svg" alt="" width={200} height={200} />
+          </div>
+
+          {/* Gear SVG */}
+          <div className="animate-spin-slow pointer-events-none absolute bottom-20 right-20 z-[5] w-36 opacity-40 mix-blend-luminosity lg:block">
+            <Image src="/gear.svg" alt="" width={160} height={160} />
+          </div>
+
           <div className="relative pt-24 md:pt-36">
             <AnimatedGroup
               variants={{

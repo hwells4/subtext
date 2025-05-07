@@ -146,8 +146,44 @@ export default function AiMarketAnalystHero() {
   const accentColorTo = "#818CF8" // Tailwind indigo-400 (for a subtle gradient on icon)
 
   return (
-    <div className="w-full bg-white px-4 pb-16 pt-20 text-center md:pb-24 md:pt-28">
-      <div className="mx-auto w-full max-w-4xl">
+    <div className="relative w-full overflow-hidden bg-white px-4 pb-16 pt-20 text-center md:pb-24 md:pt-28">
+      {/* Background SVG elements - using divs with background images for better SSR compatibility */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Rocket SVG */}
+        <div className="absolute -right-16 top-16 size-48 opacity-10 md:right-4 md:top-20 md:size-64 lg:opacity-15">
+          <div
+            className="size-full rotate-12 bg-contain bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/rocket.svg)" }}
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Chain SVG */}
+        <div className="absolute -left-16 bottom-16 size-48 opacity-10 md:bottom-24 md:left-4 md:size-64 lg:opacity-15">
+          <div
+            className="size-full -rotate-12 bg-contain bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/chain.svg)" }}
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Gear SVG */}
+        <div className="opacity-8 absolute -left-24 top-24 size-48 md:-left-12 md:top-12 md:size-56 lg:opacity-10">
+          <motion.div
+            className="size-full bg-contain bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/gear.svg)" }}
+            animate={{ rotate: 360 }}
+            transition={{
+              repeat: Infinity,
+              duration: 15,
+              ease: "linear"
+            }}
+            aria-hidden="true"
+          />
+        </div>
+      </div>
+
+      <div className="relative mx-auto w-full max-w-4xl">
         {/* Testimonial Avatars with AnimatedTooltip */}
         <div className="mb-8 flex justify-center">
           <AnimatedTooltip items={people} />
