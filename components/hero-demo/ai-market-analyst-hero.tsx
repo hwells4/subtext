@@ -144,11 +144,11 @@ const AnimatedTooltip = ({
 
 export default function AiMarketAnalystHero() {
   return (
-    <div className="relative w-full overflow-x-hidden bg-white px-4 py-12 text-center sm:py-16 md:px-6 md:py-20 lg:py-24">
+    <div className="relative w-full overflow-x-hidden bg-white px-4 pb-36 pt-20 text-center sm:pb-48 sm:pt-24 md:px-6 md:pb-60 md:pt-28 lg:pb-72 lg:pt-32">
       {/* Subtle Background SVG elements */}
       <div className="pointer-events-none absolute inset-0 z-0">
         {/* Rocket SVG - Adjusted for subtlety and responsiveness */}
-        <div className="absolute -right-20 top-10 size-32 opacity-[0.03] sm:-right-16 sm:top-16 sm:size-48 sm:opacity-[0.04] md:right-4 md:top-20 md:size-56 lg:opacity-[0.05]">
+        <div className="absolute -right-20 top-20 size-40 opacity-[0.03] sm:-right-16 sm:top-32 sm:size-64 sm:opacity-[0.04] md:right-8 md:top-40 md:size-80 lg:opacity-[0.05]">
           <div
             className="size-full rotate-12 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/rocket.svg)" }}
@@ -157,7 +157,7 @@ export default function AiMarketAnalystHero() {
         </div>
 
         {/* Chain SVG - Adjusted for subtlety and responsiveness */}
-        <div className="absolute -left-20 bottom-10 size-32 opacity-[0.03] sm:-left-16 sm:bottom-16 sm:size-48 sm:opacity-[0.04] md:bottom-24 md:left-4 md:size-56 lg:opacity-[0.05]">
+        <div className="absolute -left-20 bottom-20 size-40 opacity-[0.03] sm:-left-16 sm:bottom-32 sm:size-64 sm:opacity-[0.04] md:bottom-40 md:left-8 md:size-80 lg:opacity-[0.05]">
           <div
             className="size-full -rotate-12 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/chain.svg)" }}
@@ -166,7 +166,7 @@ export default function AiMarketAnalystHero() {
         </div>
 
         {/* Gear SVG - Adjusted for subtlety and responsiveness */}
-        <div className="absolute -left-24 top-20 size-32 opacity-[0.02] sm:-left-20 sm:top-24 sm:size-48 sm:opacity-[0.03] md:-left-12 md:top-12 md:size-56 lg:opacity-[0.04]">
+        <div className="absolute -left-24 top-40 size-40 opacity-[0.02] sm:-left-20 sm:top-48 sm:size-64 sm:opacity-[0.03] md:-left-12 md:top-24 md:size-80 lg:opacity-[0.04]">
           <motion.div
             className="size-full bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/gear.svg)" }}
@@ -181,16 +181,18 @@ export default function AiMarketAnalystHero() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-4xl">
-        <div className="mb-6 flex justify-center sm:mb-8">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px]">
+        <div className="mb-14 flex justify-center sm:mb-16">
           <AnimatedTooltip items={people} />
         </div>
 
-        <h1 className="mb-5 text-center text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl">
-          <span className="block">Capture real customer</span>
-          <span className="block">
+        <h1 className="mb-12 text-center leading-tight tracking-tight text-slate-900">
+          <span className="block text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
+            Capture real customer
+          </span>
+          <span className="mt-2 block text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
             language 100x faster
-            <span className="[-top_0.08em] relative ml-1.5 inline-block size-7 rotate-[3deg] align-middle sm:ml-2 sm:size-8 md:size-10 lg:ml-3 lg:size-12">
+            <span className="[-top_0.08em] relative ml-3 inline-block size-10 rotate-[3deg] align-middle sm:ml-4 sm:size-14 md:size-16 lg:ml-5 lg:size-20">
               <Image
                 src="/lightning-icon.png"
                 alt="Lightning Bolt"
@@ -202,32 +204,32 @@ export default function AiMarketAnalystHero() {
           </span>
         </h1>
 
-        <p className="xs:max-w-xs mx-auto mb-8 max-w-[280px] text-base font-light leading-relaxed text-slate-600 sm:max-w-md sm:text-lg md:mb-10 md:max-w-xl md:text-xl lg:max-w-2xl">
+        <p className="xs:max-w-xs mx-auto mb-16 max-w-[480px] text-xl font-light leading-relaxed text-slate-600 sm:max-w-lg sm:text-2xl md:mb-20 md:max-w-3xl md:text-3xl lg:max-w-4xl lg:leading-relaxed">
           Subtext extracts and analyzes authentic language from thousands of
           real conversations at once, turning your audience's actual words into
           messaging that resonates and drives conversions.
         </p>
 
-        <div className="mx-auto flex max-w-[320px] flex-col items-center justify-center gap-4 sm:max-w-none sm:flex-row">
+        <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center gap-8 sm:max-w-none sm:flex-row">
           <a
             href="/waitlist"
-            className="w-full rounded-lg bg-slate-900 px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 sm:w-auto sm:px-8 sm:py-3.5 sm:text-lg md:px-10"
+            className="w-full rounded-lg bg-slate-900 px-10 py-5 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 sm:w-auto sm:px-12 sm:py-6 sm:text-xl md:px-16 md:text-2xl"
           >
             Join Waitlist
           </a>
 
           <a
             href="/waitlist"
-            className="w-full rounded-lg border border-slate-900 bg-transparent px-6 py-3 text-center text-base font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 sm:w-auto sm:px-8 sm:py-3.5 sm:text-lg md:px-10"
+            className="w-full rounded-lg border border-slate-900 bg-transparent px-10 py-5 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 sm:w-auto sm:px-12 sm:py-6 sm:text-xl md:px-16 md:text-2xl"
           >
             <span className="flex items-center justify-center">
-              <Calendar className="mr-2 size-4 sm:size-5" />
+              <Calendar className="mr-4 size-6 sm:size-7 md:size-8" />
               Book a Demo
             </span>
           </a>
         </div>
 
-        <p className="mt-6 text-xs text-slate-500 sm:text-sm">
+        <p className="mt-10 text-base text-slate-500 sm:text-lg md:text-xl">
           Join the waitlist to be notified when we launch. No credit card
           required for demo.
         </p>

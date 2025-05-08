@@ -14,6 +14,7 @@ import VisualDemonstration from "@/components/hero-demo/visual-demonstration"
 import UseCasesSection from "@/components/hero-demo/use-cases-section"
 import DifferentiationSection from "@/components/hero-demo/differentiation-section"
 import React from "react"
+import { HeroScrollDemo } from "@/components/hero-demo/hero-scroll-demo"
 
 export default function HomePage() {
   return (
@@ -22,6 +23,9 @@ export default function HomePage() {
       <div className="w-full pt-24 md:pt-32">
         {/* Hero Section */}
         <AiMarketAnalystHero />
+
+        {/* Scrolling Animation Section */}
+        <HeroScrollDemo />
 
         {/* Pain Point Recognition Section */}
         <UserInsightsSection />
