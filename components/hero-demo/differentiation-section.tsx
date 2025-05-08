@@ -10,7 +10,7 @@ export default function DifferentiationSection() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="mb-12 text-center">
           <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
-            Not Just Another AI Writing Tool
+            The Subtext.ai Difference: Research-First, Not Opinion-Based.
           </h2>
         </div>
 

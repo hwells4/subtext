@@ -61,8 +61,8 @@ export default function AiMarketAnalystHero() {
 
         <p className="xs:max-w-xs mx-auto mb-12 max-w-[460px] text-lg font-light leading-relaxed text-slate-600 sm:max-w-md sm:text-xl md:mb-16 md:max-w-2xl md:text-2xl lg:max-w-3xl lg:leading-relaxed">
           Subtext extracts and analyzes authentic language from thousands of
-          real conversations at once, turning your audience's actual words into
-          messaging that resonates and drives conversions.
+          real conversations at once, so you can turn your audience's actual
+          words into high-converting copy in minutes, not days.
         </p>
 
         <div className="mx-auto flex max-w-[400px] flex-col items-center justify-center gap-6 sm:max-w-none sm:flex-row">

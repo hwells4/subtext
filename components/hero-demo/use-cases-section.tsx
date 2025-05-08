@@ -35,10 +35,10 @@ interface UseCaseItem {
 
 const useCases: UseCaseItem[] = [
   {
-    role: "Marketing Agencies",
+    role: "For Marketing Agencies",
     icon: Building2,
     description:
-      "Scale authentic research across multiple clients without multiplying your workload. Create client-ready reports that demonstrate the value of your messaging strategy.",
+      "Scale authentic research across multiple clients without multiplying your workload. Deliver client-ready insights and demonstrate undeniable value, faster.",
     quote:
       "We cut our research time from days to minutes while delivering deeper audience insights to clients.",
     author: "Sarah Johnson, Marketing Director at GrowthAgency",

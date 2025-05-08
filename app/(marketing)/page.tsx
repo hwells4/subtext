@@ -12,6 +12,11 @@ import CtaSection from "@/components/hero-demo/cta-section"
 import VisualDemonstration from "@/components/hero-demo/visual-demonstration"
 import UseCasesSection from "@/components/hero-demo/use-cases-section"
 import DifferentiationSection from "@/components/hero-demo/differentiation-section"
+import {
+  FaqSection,
+  ModernSplitFaqSection
+} from "@/components/marketing/faq-section"
+import FooterExample from "@/components/marketing/footer"
 import React from "react"
 import { HeroScrollDemo } from "@/components/hero-demo/hero-scroll-demo"
 import { motion } from "framer-motion"
@@ -77,6 +82,9 @@ export default function HomePage() {
         {/* Differentiation Section */}
         <DifferentiationSection />
 
+        {/* FAQ Section - Updated to use modern variant */}
+        <ModernSplitFaqSection />
+
         {/* ROI Demonstration */}
         {/* <ResultsShowcase /> */}
 
@@ -88,6 +96,9 @@ export default function HomePage() {
 
         {/* Call to Action Section */}
         <CtaSection />
+
+        {/* Footer */}
+        <FooterExample />
       </div>
     </main>
   )
