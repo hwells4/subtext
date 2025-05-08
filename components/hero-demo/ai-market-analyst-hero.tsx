@@ -147,26 +147,17 @@ export default function AiMarketAnalystHero() {
     <div className="relative w-full overflow-x-hidden bg-white px-4 pb-36 pt-20 text-center sm:pb-48 sm:pt-24 md:px-6 md:pb-60 md:pt-28 lg:pb-72 lg:pt-32">
       {/* Subtle Background SVG elements */}
       <div className="pointer-events-none absolute inset-0 z-0">
-        {/* Rocket SVG - Adjusted for subtlety and responsiveness */}
-        <div className="absolute -right-20 top-20 size-40 opacity-[0.03] sm:-right-16 sm:top-32 sm:size-64 sm:opacity-[0.04] md:right-8 md:top-40 md:size-80 lg:opacity-[0.05]">
+        {/* Rocket SVG - Adjusted for better spacing and responsiveness */}
+        <div className="absolute bottom-16 right-4 size-32 opacity-[0.04] sm:bottom-20 sm:right-8 sm:size-48 sm:opacity-[0.05] md:bottom-24 md:right-16 md:size-64 md:opacity-[0.06] lg:bottom-28 lg:right-24 lg:size-80 lg:opacity-[0.07]">
           <div
-            className="size-full rotate-12 bg-contain bg-center bg-no-repeat"
+            className="size-full rotate-45 bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/rocket.svg)" }}
             aria-hidden="true"
           />
         </div>
 
-        {/* Chain SVG - Adjusted for subtlety and responsiveness */}
-        <div className="absolute -left-20 bottom-20 size-40 opacity-[0.03] sm:-left-16 sm:bottom-32 sm:size-64 sm:opacity-[0.04] md:bottom-40 md:left-8 md:size-80 lg:opacity-[0.05]">
-          <div
-            className="size-full -rotate-12 bg-contain bg-center bg-no-repeat"
-            style={{ backgroundImage: "url(/chain.svg)" }}
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* Gear SVG - Adjusted for subtlety and responsiveness */}
-        <div className="absolute -left-24 top-40 size-40 opacity-[0.02] sm:-left-20 sm:top-48 sm:size-64 sm:opacity-[0.03] md:-left-12 md:top-24 md:size-80 lg:opacity-[0.04]">
+        {/* Gear SVG - Adjusted for better spacing, responsiveness, and fixed typo */}
+        <div className="absolute left-2 top-32 size-32 opacity-[0.04] sm:left-4 sm:top-36 sm:size-48 sm:opacity-[0.04] md:left-8 md:top-20 md:size-64 md:opacity-[0.05] lg:left-12 lg:top-16 lg:size-80 lg:opacity-[0.07]">
           <motion.div
             className="size-full bg-contain bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/gear.svg)" }}

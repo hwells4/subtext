@@ -15,6 +15,7 @@ import UseCasesSection from "@/components/hero-demo/use-cases-section"
 import DifferentiationSection from "@/components/hero-demo/differentiation-section"
 import React from "react"
 import { HeroScrollDemo } from "@/components/hero-demo/hero-scroll-demo"
+import { motion } from "framer-motion"
 
 export default function HomePage() {
   return (
@@ -23,6 +24,24 @@ export default function HomePage() {
       <div className="w-full pt-24 md:pt-32">
         {/* Hero Section */}
         <AiMarketAnalystHero />
+
+        {/* SVG Decoration Section - connecting the Hero and the Scroll Demo */}
+        <div className="relative w-full">
+          {/* Spinning Gear SVG */}
+          <div className="pointer-events-none absolute -right-20 bottom-0 z-0 w-40 translate-y-1/4 opacity-[0.04] sm:-right-10 sm:w-48 sm:opacity-[0.05] md:right-10 md:w-56 lg:right-20 lg:w-64 lg:opacity-[0.06]">
+            <motion.div
+              className="size-full bg-contain bg-center bg-no-repeat"
+              style={{ backgroundImage: "url(/gear.svg)" }}
+              animate={{ rotate: 360 }}
+              transition={{
+                repeat: Infinity,
+                duration: 25,
+                ease: "linear"
+              }}
+              aria-hidden="true"
+            />
+          </div>
+        </div>
 
         {/* Scrolling Animation Section */}
         <HeroScrollDemo />
