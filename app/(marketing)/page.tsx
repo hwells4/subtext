@@ -6,7 +6,6 @@ import { Navbar } from "@/components/navigation"
 // import CompanyLogosSection from "@/components/hero-demo/company-logos-section" <ai_context>This line is being commented out as per user request to hide the company logos section.</ai_context>
 import AppScreenshotSection from "@/components/hero-demo/app-screenshot-section"
 import UserInsightsSection from "@/components/hero-demo/user-insights-section"
-import HowItWorksSection from "@/components/hero-demo/how-it-works-section"
 import CtaSection from "@/components/hero-demo/cta-section"
 // import { ResultsShowcase } from "@/app/landing/_components/results-showcase" <ai_context>This line is being commented out as per user request to hide the results showcase section.</ai_context>
 // import { TestimonialsCarousel } from "@/app/landing/_components/testimonials-carousel" <ai_context>This line is being commented out as per user request to hide the testimonials carousel section.</ai_context>
@@ -49,16 +48,30 @@ export default function HomePage() {
         {/* Pain Point Recognition Section */}
         <UserInsightsSection />
 
-        {/* How It Works Section */}
-        <HowItWorksSection />
+        {/* Section formerly How It Works - Now Features */}
+        <section className="w-full bg-slate-50 py-20 md:py-28">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-5xl">
+                Get your customers words delivered to you with a single
+                question. At Scale.
+              </h2>
+              <p className="mx-auto max-w-3xl text-lg text-slate-600 md:text-xl">
+                Subtext analyzes thousands of conversations in real time,
+                surfacing core insights, trends, messaging and pain points your
+                users talk about when no one is asking.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Visual Demonstration */}
-        <VisualDemonstration />
+        {/* <VisualDemonstration /> */}
 
         {/* Key Features Section */}
         <KeyFeaturesSection />
 
-        {/* Use Cases Section */}
+        {/* Use Cases Section - Reinstated */}
         <UseCasesSection />
 
         {/* Differentiation Section */}

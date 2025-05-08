@@ -39,13 +39,19 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "mx-auto mt-4 max-w-7xl px-6 transition-all duration-300 lg:px-12",
-            "rounded-2xl border border-transparent bg-white/5 backdrop-blur-md",
-            isScrolled &&
-              "max-w-6xl border-slate-200 bg-white/95 shadow-lg backdrop-blur-lg lg:px-8"
+            "mx-auto mt-4 max-w-7xl px-6 transition-all duration-300 ease-in-out lg:px-12",
+            "rounded-2xl border border-transparent bg-white/10 backdrop-blur-md",
+            isScrolled
+              ? "mt-2 max-w-6xl border-slate-200/20 bg-white/25 py-1 shadow-lg backdrop-blur-xl lg:px-8"
+              : "py-3"
           )}
         >
-          <div className="relative flex items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
+          <div
+            className={cn(
+              "relative flex items-center justify-between gap-6 lg:gap-0",
+              isScrolled ? "py-2" : "py-3 lg:py-4"
+            )}
+          >
             <div className="flex items-center lg:w-auto">
               <Link
                 href="/"
@@ -119,7 +125,7 @@ export function Navbar() {
                 "mt-2",
                 "flex-col items-center",
                 "rounded-lg border",
-                "bg-white",
+                "bg-white/90 backdrop-blur-sm",
                 "p-6",
                 "shadow-lg"
               )}
