@@ -1,12 +1,15 @@
-"use client" // Top-level page might need client interactivity for smooth scroll or future state
+"use client" // Retaining client for smooth scroll, can be optimized if not strictly needed
 
-import AgencyHero from "./_components/agency-hero"
+import AgencyHero from "./_components/agency-hero" // Assuming this path is correct
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 import {
   ArrowRight,
   BarChartBig,
+  CheckCircle,
   DollarSign,
+  Feather,
   HeartHandshake,
   Lightbulb,
   PenLine,
@@ -14,113 +17,172 @@ import {
   Sparkles,
   Target,
   TrendingUp,
-  UsersRound,
-  CheckCircle
+  Users,
+  Zap
 } from "lucide-react"
 import React from "react"
 
 const transformFeatures = [
   {
-    icon: <Target className="text-primary size-8" />,
-    title: "Rapid Onboarding for New Clients",
+    icon: <Target className="size-8" />,
+    title: "Rapid Client Onboarding",
     description:
-      "Quickly understand any new client's target audience and market landscape."
+      "Instantly grasp new client landscapes and audience nuances with AI-driven analysis.",
+    bgColor: "bg-sky-500/10",
+    textColor: "text-sky-600"
   },
   {
-    icon: <BarChartBig className="text-primary size-8" />,
-    title: "Scale Research Across Your Roster",
+    icon: <BarChartBig className="size-8" />,
+    title: "Scalable Research Power",
     description:
-      "Conduct deep, authentic audience research for all your clients simultaneously, without a linear increase in effort."
+      "Conduct deep, authentic research across your entire client roster simultaneously.",
+    bgColor: "bg-lime-500/10",
+    textColor: "text-lime-600"
   },
   {
-    icon: <Lightbulb className="text-primary size-8" />,
-    title: "Uncover Unique Angles & Differentiators",
+    icon: <Lightbulb className="size-8" />,
+    title: "Unique Angle Discovery",
     description:
-      "Find fresh insights to build compelling campaigns that stand out."
+      "Uncover fresh insights and compelling differentiators for standout campaigns.",
+    bgColor: "bg-amber-500/10",
+    textColor: "text-amber-600"
   },
   {
-    icon: <PenLine className="text-primary size-8" />,
-    title: "Craft Client-Winning Copy",
+    icon: <PenLine className="size-8" />,
+    title: "Client-Winning Copy",
     description:
-      "Use your audience's exact language to create copy that resonates and converts, proving your value."
+      "Craft resonant, high-converting copy using your audience's exact language.",
+    bgColor: "bg-rose-500/10",
+    textColor: "text-rose-600"
   },
   {
-    icon: <Settings2 className="text-primary size-8" />,
-    title: "Streamline Workflows",
+    icon: <Settings2 className="size-8" />,
+    title: "Streamlined Workflows",
     description:
-      "Integrate authentic research directly into your content creation and campaign management processes. (Future: white-label reporting)"
+      "Integrate authentic research directly into your content and campaign pipelines.",
+    bgColor: "bg-violet-500/10",
+    textColor: "text-violet-600"
+  },
+  {
+    icon: <Zap className="size-8" />,
+    title: "Future-Proof Strategy",
+    description:
+      "Stay ahead with continuous insights and (Future) white-label reporting.",
+    bgColor: "bg-teal-500/10",
+    textColor: "text-teal-600"
   }
 ]
 
 const agencyBenefits = [
   {
-    icon: <TrendingUp className="text-primary size-8" />,
-    title: "Increased Efficiency",
-    description: "Save hundreds of hours on research."
+    icon: <TrendingUp className="text-primary size-10" />,
+    title: "Skyrocket Efficiency",
+    description:
+      "Slash research hours, multiply output. Focus on strategy, not grunt work."
   },
   {
-    icon: <Sparkles className="text-primary size-8" />,
-    title: "Improved Client Results",
-    description: "Deliver campaigns that perform better."
+    icon: <Sparkles className="text-primary size-10" />,
+    title: "Amplify Client Results",
+    description:
+      "Deliver data-backed campaigns that consistently outperform expectations."
   },
   {
-    icon: <HeartHandshake className="text-primary size-8" />,
-    title: "Enhanced Client Retention",
-    description: "Demonstrate clear ROI and strategic insight."
+    icon: <HeartHandshake className="text-primary size-10" />,
+    title: "Boost Client Retention",
+    description:
+      "Showcase undeniable ROI and strategic mastery that clients won't leave."
   },
   {
-    icon: <DollarSign className="text-primary size-8" />,
-    title: "Greater Profitability",
-    description: "Scale your services without proportionally increasing costs."
+    icon: <DollarSign className="text-primary size-10" />,
+    title: "Maximize Profitability",
+    description:
+      "Scale your services and impact without proportionally increasing overhead."
   }
 ]
+
+const testimonial = {
+  quote:
+    "VoiceScape AI cut our new client research dashboard build time from several hours down to about 20 minutes per account. It's a game-changer for scaling our initial analysis.",
+  author: "Sarah Chen, COO",
+  company: "Momentum Digital Agency",
+  avatarQuery:
+    "abstract_female_portrait_professional_profile_picture_warm_tones"
+}
 
 export default function VoiceScapeAgencyPage() {
   const pricingRef = React.useRef<null | HTMLDivElement>(null)
 
   const handleScrollToPricing = () => {
-    pricingRef.current?.scrollIntoView({ behavior: "smooth" })
+    pricingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-background text-foreground min-h-screen antialiased">
       <AgencyHero scrollToPricing={handleScrollToPricing} />
 
-      <main className="container mx-auto px-4 py-16 md:px-6 md:py-24">
+      <main className="container mx-auto space-y-24 px-4 py-16 md:space-y-32 md:px-6 md:py-24">
         {/* The Agency Challenge */}
-        <section className="mx-auto max-w-3xl text-center">
-          <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-            The Agency Challenge
+        <section className="relative mx-auto max-w-4xl text-center">
+          <Feather className="text-primary/10 absolute -top-8 left-1/2 size-16 -translate-x-1/2 opacity-50" />
+          <h2 className="text-primary text-sm font-semibold uppercase tracking-wider">
+            The Core Problem
           </h2>
-          <p className="text-muted-foreground mt-4 text-lg">
-            Juggling multiple clients, each with unique audiences and market
-            challenges. You need to quickly grasp their customers' true voice,
-            pain points, and motivations to deliver differentiated strategies
-            and compelling copy that gets results. Manual research doesn't
-            scale, and generic tools don't cut it.
+          <p className="text-foreground mt-3 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+            Juggling Diverse Clients, Demanding Results.
+          </p>
+          <p className="text-muted-foreground mt-6 text-lg leading-relaxed md:text-xl">
+            Your agency thrives on delivering unique strategies for multiple
+            clients. But manually unearthing authentic audience insights for
+            each one? That's a bottleneck. Generic tools fall short, and time
+            spent on deep research doesn't scale linearly with your client load.
+            You need a smarter way to understand every customer's true voice,
+            pain points, and motivations to craft campaigns that truly connect
+            and convert.
           </p>
         </section>
 
-        {/* How VoiceScape AI Transforms Your Agency */}
-        <section className="mt-16 md:mt-24">
-          <h2 className="text-foreground text-center text-3xl font-semibold md:text-4xl">
-            How VoiceScape AI Transforms Your Agency
-          </h2>
-          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {transformFeatures.map(feature => (
+        {/* How VoiceScape AI Transforms */}
+        <section>
+          <div className="text-center">
+            <h2 className="text-primary text-sm font-semibold uppercase tracking-wider">
+              Our Solution
+            </h2>
+            <p className="text-foreground mt-3 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+              Transform Your Agency with AI-Powered Insight
+            </p>
+            <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg md:text-xl">
+              VoiceScape AI isn't just another tool. It's your agency's new
+              research engine, designed to amplify your team's strategic
+              capabilities.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+            {transformFeatures.map((feature, index) => (
               <Card
                 key={feature.title}
-                className="bg-muted/50 border-border/50 transition-shadow duration-300 hover:shadow-xl"
+                className={cn(
+                  "border-border/70 bg-card hover:shadow-primary/10 flex flex-col overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02]",
+                  `hover:border-${feature.textColor.split("-")[1]}-500/50`
+                )}
               >
-                <CardHeader className="flex flex-row items-start gap-4 space-y-0 pb-3">
-                  <div className="bg-primary/10 rounded-md p-2">
-                    {feature.icon}
+                <CardHeader className="flex flex-row items-start gap-4 space-y-0 p-6">
+                  <div
+                    className={cn(
+                      "mt-1 rounded-lg p-3",
+                      feature.bgColor,
+                      feature.textColor
+                    )}
+                  >
+                    {React.cloneElement(feature.icon, {
+                      className: cn(feature.icon.props.className, "size-6")
+                    })}
                   </div>
-                  <CardTitle className="text-foreground pt-1 text-xl font-semibold">
+                  <CardTitle className="text-foreground text-xl font-semibold leading-snug">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="grow p-6 pt-0">
                   <p className="text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
@@ -129,73 +191,116 @@ export default function VoiceScapeAgencyPage() {
         </section>
 
         {/* Testimonial Section */}
-        <section className="from-primary/5 via-background to-primary/5 mt-16 bg-gradient-to-r py-12 md:mt-24">
-          <div className="mx-auto max-w-3xl px-4 text-center">
-            <blockquote className="text-foreground text-xl font-medium italic md:text-2xl">
-              "Cut dashboard build time from hours to 20 minutes across client
-              accounts"
-              <span className="text-muted-foreground mt-2 block text-sm not-italic">
-                - Early Adopter Digital Marketing Agency
-                (digital_marketing-2cd8b3)
-              </span>
+        <section className="from-primary/90 via-primary relative overflow-hidden rounded-xl bg-gradient-to-br to-sky-500 py-16 shadow-2xl md:py-24">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 z-0 opacity-10"
+            style={{
+              backgroundImage:
+                "url('/placeholder.svg?width=1200&height=400&query=subtle_soundwave_pattern_white_on_blue')",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              backgroundSize: "cover"
+            }}
+          />
+          <div className="container relative z-10 mx-auto max-w-3xl px-4 text-center">
+            <img
+              src={`/placeholder.svg?width=80&height=80&query=${testimonial.avatarQuery}`}
+              alt={`${testimonial.author} avatar`}
+              className="mx-auto mb-6 size-20 rounded-full border-4 border-white/50 object-cover shadow-lg"
+            />
+            <blockquote className="text-primary-foreground text-xl font-medium italic md:text-2xl lg:text-3xl">
+              "{testimonial.quote}"
             </blockquote>
-            <p className="text-muted-foreground mt-4 text-lg">
-              Imagine this level of efficiency for your research!
+            <p className="mt-6 text-lg font-semibold text-sky-100">
+              {testimonial.author}
             </p>
+            <p className="text-sm text-sky-200">{testimonial.company}</p>
           </div>
         </section>
 
         {/* Benefits for Your Agency */}
-        <section className="mt-16 md:mt-24">
-          <h2 className="text-foreground text-center text-3xl font-semibold md:text-4xl">
-            Benefits for Your Agency
-          </h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <section>
+          <div className="text-center">
+            <h2 className="text-primary text-sm font-semibold uppercase tracking-wider">
+              Tangible Advantages
+            </h2>
+            <p className="text-foreground mt-3 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+              Reap the Rewards of Smarter Research
+            </p>
+            <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg md:text-xl">
+              Integrating Subtext AI translates directly into measurable
+              improvements for your agency's bottom line and client
+              satisfaction.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {agencyBenefits.map(benefit => (
-              <Card
+              <div
                 key={benefit.title}
-                className="bg-muted/50 border-border/50 text-center transition-shadow duration-300 hover:shadow-xl"
+                className="flex flex-col items-center text-center"
               >
-                <CardHeader>
-                  <div className="bg-primary/10 mx-auto mb-4 flex size-12 items-center justify-center rounded-full">
-                    {benefit.icon}
-                  </div>
-                  <CardTitle className="text-foreground text-xl font-semibold">
-                    {benefit.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </CardContent>
-              </Card>
+                <div className="bg-primary/10 mb-5 flex size-16 items-center justify-center rounded-full p-3">
+                  {React.cloneElement(benefit.icon, {
+                    className: "h-8 w-8 text-primary"
+                  })}
+                </div>
+                <h3 className="text-foreground text-xl font-semibold">
+                  {benefit.title}
+                </h3>
+                <p className="text-muted-foreground mt-2">
+                  {benefit.description}
+                </p>
+              </div>
             ))}
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA Section - Pricing */}
         <section
           ref={pricingRef}
-          className="bg-muted/70 mt-16 rounded-lg py-16 md:mt-24 md:py-24"
+          className="bg-muted/70 overflow-hidden rounded-xl py-16 shadow-inner md:py-24"
         >
-          <div className="mx-auto max-w-2xl px-4 text-center">
-            <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-              Supercharge Your Agency Today
+          <div className="container mx-auto max-w-3xl px-4 text-center">
+            <div className="border-primary/30 bg-primary/10 text-primary mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-semibold">
+              <CheckCircle className="size-4" />
+              <span>Ready to Elevate Your Agency?</span>
+            </div>
+            <h2 className="text-foreground text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+              Unlock Your Agency's Full Potential
             </h2>
-            <p className="text-muted-foreground mt-4 text-lg">
-              Ready to transform your client research and deliver unparalleled
-              results? Get started with VoiceScape AI and experience the
-              difference.
+            <p className="text-muted-foreground mx-auto mt-6 max-w-xl text-lg md:text-xl">
+              Stop leaving insights on the table. Start delivering exceptional,
+              data-driven results for every client. Explore VoiceScape AI's
+              plans and transform your agency today.
             </p>
             <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground mt-8 shadow-lg transition-transform duration-200 ease-in-out hover:scale-105"
+              size="lg" // Custom size or use lg
+              className="from-primary text-primary-foreground hover:shadow-primary/40 group mt-10 bg-gradient-to-r to-sky-500 px-8 py-4 text-lg font-semibold shadow-xl transition-all duration-300 ease-in-out hover:scale-105"
+              onClick={() => console.log("Navigate to pricing or open modal")} // Replace with actual navigation or modal
             >
               Explore Plans & Get Started
-              <ArrowRight className="ml-2 size-5" />
+              <ArrowRight className="ml-3 size-6 transition-transform duration-300 group-hover:translate-x-1.5" />
             </Button>
+            <p className="text-muted-foreground mt-4 text-xs">
+              Simple setup. Immediate impact.
+            </p>
           </div>
         </section>
       </main>
+
+      <footer className="border-border/50 bg-background border-t py-12 text-center">
+        <div className="container mx-auto px-4 md:px-6">
+          <Users className="text-muted-foreground mx-auto mb-4 size-8" />
+          <p className="text-muted-foreground text-sm">
+            &copy; {new Date().getFullYear()} Subtext AI. All rights reserved.
+          </p>
+          <p className="text-muted-foreground mt-1 text-xs">
+            Empowering agencies to understand audiences like never before.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }

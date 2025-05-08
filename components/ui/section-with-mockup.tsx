@@ -44,7 +44,7 @@ const SectionWithMockup: React.FC<SectionWithMockupProps> = ({
   const imageOrderClass = reverseLayout ? "md:col-start-1" : ""
 
   return (
-    <section className="relative overflow-hidden bg-black py-24 md:py-48">
+    <section className="relative overflow-hidden py-24 md:py-48">
       <div className="container relative z-10 mx-auto w-full max-w-[1220px] px-6 md:px-10">
         <motion.div
           className={`grid w-full grid-cols-1 items-center gap-16 md:gap-8 ${layoutClasses}`}
@@ -59,7 +59,7 @@ const SectionWithMockup: React.FC<SectionWithMockupProps> = ({
             variants={itemVariants}
           >
             <div className="space-y-2 md:space-y-1">
-              <h2 className="text-3xl font-semibold leading-tight text-white md:text-[40px] md:leading-[53px]">
+              <h2 className="text-3xl font-semibold leading-tight md:text-[40px] md:leading-[53px]">
                 {title}
               </h2>
             </div>
@@ -79,38 +79,33 @@ const SectionWithMockup: React.FC<SectionWithMockupProps> = ({
             variants={itemVariants}
           >
             {/* Decorative Background Element */}
-            <motion.div
-              className={`absolute z-0 h-[317px] w-[300px] rounded-[32px] bg-[#090909] md:h-[500px] md:w-[472px]`}
+            <div
+              className="absolute z-0 h-[317px] w-[300px] rounded-[32px] border-[3px] border-white/20 md:h-[500px] md:w-[472px]"
               style={{
                 top: reverseLayout ? "auto" : "10%",
                 bottom: reverseLayout ? "10%" : "auto",
                 left: reverseLayout ? "auto" : "-20%",
                 right: reverseLayout ? "-20%" : "auto",
-                transform: reverseLayout
-                  ? "translate(0, 0)"
-                  : "translateY(10%)",
-                filter: "blur(2px)"
+                filter: "blur(1.5px)",
+                boxShadow:
+                  "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003"
               }}
-              initial={{ y: reverseLayout ? 0 : 0 }}
-              whileInView={{ y: reverseLayout ? -20 : -30 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.5 }}
             >
               <div
-                className="relative size-full rounded-[32px] bg-cover bg-center"
+                className="relative size-full rounded-[28px] bg-cover bg-center"
                 style={{
-                  backgroundImage: `url(${secondaryImageSrc})`
+                  backgroundImage: `url(/panel.svg)`
                 }}
               />
-            </motion.div>
+            </div>
 
             {/* Main Mockup Card */}
-            <motion.div
-              className="relative z-10 h-[405px] w-full overflow-hidden rounded-[32px] border-0 bg-[#ffffff0a] backdrop-blur-[15px] backdrop-brightness-[100%] md:h-[637px]"
-              initial={{ y: reverseLayout ? 0 : 0 }}
-              whileInView={{ y: reverseLayout ? 20 : 30 }}
-              transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
-              viewport={{ once: true, amount: 0.5 }}
+            <div
+              className="relative z-10 h-[405px] w-full overflow-hidden rounded-[32px] border-[3px] border-white/30 bg-[#ffffff15] backdrop-blur-[15px] backdrop-brightness-[100%] md:h-[637px]"
+              style={{
+                boxShadow:
+                  "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003, inset 0 0 20px rgba(255,255,255,0.05)"
+              }}
             >
               <div className="h-full p-0">
                 <div
@@ -123,12 +118,12 @@ const SectionWithMockup: React.FC<SectionWithMockupProps> = ({
                   <div
                     className="size-full bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${primaryImageSrc})`
+                      backgroundImage: `url(/panel.svg)`
                     }}
                   />
                 </div>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       </div>

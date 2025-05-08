@@ -23,11 +23,9 @@ const exampleData = {
       and earnings for the week ahead.
     </>
   ),
-  // Using Unsplash images as replacements
-  primaryImageSrc:
-    "https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?q=80&w=1769&auto=format&fit=crop",
-  secondaryImageSrc:
-    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1770&auto=format&fit=crop"
+  // Images are now replaced with panel.svg directly in the component
+  primaryImageSrc: "/panel.svg",
+  secondaryImageSrc: "/panel.svg"
 }
 
 export function SectionMockupDemo() {
