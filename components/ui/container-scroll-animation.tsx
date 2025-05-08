@@ -4,10 +4,12 @@ import { useScroll, useTransform, motion, MotionValue } from "framer-motion"
 
 export const ContainerScroll = ({
   titleComponent,
-  children
+  children,
+  pauseAtFlatThreshold = true
 }: {
   titleComponent: string | React.ReactNode | null
   children: React.ReactNode
+  pauseAtFlatThreshold?: boolean
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -31,14 +33,18 @@ export const ContainerScroll = ({
     return isMobile ? [0.8, 1] : [0.95, 1.05]
   }
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0])
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions())
-  const translate = useTransform(scrollYProgress, [0, 1], [-50, 0])
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 1], [0.6, 0.8, 1])
+  const rotate = useTransform(scrollYProgress, [0, 0.7], [20, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.7], scaleDimensions())
+  const translate = useTransform(scrollYProgress, [0, 0.7], [-50, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.7], [0.6, 0.9, 1])
 
   return (
     <div
-      className="relative flex h-[55rem] items-center justify-center p-2 md:h-[70rem] md:p-8"
+      className={`relative flex items-center justify-center p-2 md:p-8 ${
+        pauseAtFlatThreshold
+          ? "h-[60rem] md:h-[75rem]"
+          : "h-[55rem] md:h-[70rem]"
+      }`}
       ref={containerRef}
     >
       <div
@@ -59,6 +65,10 @@ export const ContainerScroll = ({
           {children}
         </Card>
       </div>
+
+      {pauseAtFlatThreshold && (
+        <div className="absolute bottom-0 h-[250px] w-full"></div>
+      )}
     </div>
   )
 }
