@@ -49,14 +49,14 @@ export default function UserInsightsSection() {
           <h2 className="mb-3 w-full text-pretty text-2xl font-extrabold text-slate-900 sm:mb-4 sm:text-3xl md:text-4xl lg:text-5xl">
             Stop Guessing What Your Audience Thinks
           </h2>
-          <p className="mx-auto w-full text-pretty text-base text-slate-600 sm:max-w-3xl sm:text-lg md:max-w-4xl md:text-xl">
+          <p className="mx-auto w-full text-pretty text-base text-slate-600 sm:max-w-2xl sm:text-lg md:max-w-3xl md:text-xl lg:max-w-4xl">
             Marketing without research is just expensive guessing. But who has
             time to manually comb through thousands of conversations?
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-5">
-          <div className="flex w-full flex-col justify-center space-y-4 px-0 sm:space-y-5 md:col-span-2">
+          <div className="flex w-full flex-col justify-center space-y-4 sm:space-y-6 md:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function UserInsightsSection() {
                 stiffness: 30,
                 damping: 10
               }}
-              className="w-full space-y-4 sm:space-y-5"
+              className="w-full space-y-4 sm:space-y-6"
             >
               <ul className="w-full space-y-3 text-slate-600 sm:space-y-4">
                 <li className="flex items-start gap-2 sm:gap-3">

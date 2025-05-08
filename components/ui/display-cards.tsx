@@ -38,7 +38,7 @@ function DisplayCard({
         </p>
       </div>
 
-      <p className="text-wrap break-words leading-tight sm:text-lg">
+      <p className="text-wrap break-words text-sm leading-tight sm:text-lg">
         {description}
       </p>
 

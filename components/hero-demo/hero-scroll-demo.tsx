@@ -4,7 +4,7 @@ import { ContainerScroll } from "@/components/ui/container-scroll-animation"
 
 export function HeroScrollDemo() {
   return (
-    <div className="-mt-40 flex flex-col overflow-hidden pb-[200px] md:-mt-64 lg:-mt-80">
+    <div className="-mt-40 flex flex-col overflow-hidden pb-[200px] sm:-mt-52 md:-mt-64 lg:-mt-80">
       <ContainerScroll titleComponent={null}>
         <div className="size-full">
           <iframe

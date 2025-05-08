@@ -112,7 +112,7 @@ export default function VisualDemonstration() {
               <Card className="h-full transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                 <CardHeader className="flex flex-row items-start gap-4 space-y-0 pb-4">
                   <div
-                    className={`mt-1 rounded-full bg-slate-100 p-2.5 ${stage.color}`}
+                    className={`mt-1 rounded-full bg-slate-100 p-3 ${stage.color}`}
                   >
                     <stage.icon className="size-6" aria-hidden="true" />
                   </div>

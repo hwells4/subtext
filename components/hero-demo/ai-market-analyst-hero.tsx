@@ -187,10 +187,10 @@ export default function AiMarketAnalystHero() {
         </div>
 
         <h1 className="mb-12 text-center leading-tight tracking-tight text-slate-900">
-          <span className="block text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
+          <span className="block text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-8xl">
             Capture real customer
           </span>
-          <span className="mt-2 block text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl">
+          <span className="mt-2 block text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-8xl">
             language 100x faster
             <span className="[-top_0.08em] relative ml-3 inline-block size-10 rotate-[3deg] align-middle sm:ml-4 sm:size-14 md:size-16 lg:ml-5 lg:size-20">
               <Image
@@ -213,14 +213,14 @@ export default function AiMarketAnalystHero() {
         <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center gap-8 sm:max-w-none sm:flex-row">
           <a
             href="/waitlist"
-            className="w-full rounded-lg bg-slate-900 px-10 py-5 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 sm:w-auto sm:px-12 sm:py-6 sm:text-xl md:px-16 md:text-2xl"
+            className="w-full rounded-lg bg-slate-900 px-10 py-5 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-slate-800 sm:w-auto sm:px-12 sm:py-6 sm:text-xl md:px-16 md:py-6 md:text-2xl"
           >
             Join Waitlist
           </a>
 
           <a
             href="/waitlist"
-            className="w-full rounded-lg border border-slate-900 bg-transparent px-10 py-5 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 sm:w-auto sm:px-12 sm:py-6 sm:text-xl md:px-16 md:text-2xl"
+            className="w-full rounded-lg border border-slate-900 bg-transparent px-10 py-5 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 sm:w-auto sm:px-12 sm:py-6 sm:text-xl md:px-16 md:py-6 md:text-2xl"
           >
             <span className="flex items-center justify-center">
               <Calendar className="mr-4 size-6 sm:size-7 md:size-8" />

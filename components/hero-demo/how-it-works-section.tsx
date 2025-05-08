@@ -73,7 +73,7 @@ export default function HowItWorksSection() {
                 </div>
 
                 <div
-                  className={`mb-5 flex size-14 items-center justify-center rounded-full ${step.bgColor} ring-8 ring-white`}
+                  className={`mb-6 flex size-14 items-center justify-center rounded-full ${step.bgColor} ring-8 ring-white`}
                 >
                   <step.icon className={`size-7 ${step.iconColor}`} />
                 </div>
@@ -101,7 +101,7 @@ export default function HowItWorksSection() {
             className="inline-flex items-center rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-blue-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             See It In Action (Join Waitlist)
-            <ArrowRight className="ml-2.5 size-5" />
+            <ArrowRight className="ml-3 size-5" />
           </a>
         </div>
       </div>

@@ -131,7 +131,7 @@ export default function UseCasesSection() {
 
               {/* Content Area */}
               <div className="flex grow flex-col p-6 md:p-8">
-                <div className="mb-5 flex items-center space-x-3">
+                <div className="mb-6 flex items-center space-x-3">
                   <div
                     className={`flex size-12 items-center justify-center rounded-full ${useCase.bgColorClass}`}
                   >
@@ -151,15 +151,17 @@ export default function UseCasesSection() {
                 </p>
 
                 {/* Quote Section */}
-                <div className="mt-auto rounded-lg border border-slate-200 bg-white p-5 shadow-inner">
+                <div className="mt-auto rounded-lg border border-slate-200 bg-white p-6 shadow-inner">
                   <QuoteIcon
                     className={`mb-2 size-7 ${useCase.accentColorClass} opacity-50`}
                   />
                   <blockquote className="relative">
-                    <p className="text-md font-medium italic leading-relaxed text-slate-700">
+                    <p className="text-lg font-medium italic leading-relaxed text-slate-700">
                       &ldquo;{useCase.quote}&rdquo;
                     </p>
-                    <footer className="mt-4 text-right text-sm font-semibold ${useCase.textColorClass}">
+                    <footer
+                      className={`mt-4 text-right text-sm font-semibold ${useCase.textColorClass}`}
+                    >
                       — {useCase.author}
                     </footer>
                   </blockquote>
