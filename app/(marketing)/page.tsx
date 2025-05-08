@@ -3,13 +3,13 @@
 import AiMarketAnalystHero from "@/components/hero-demo/ai-market-analyst-hero"
 import KeyFeaturesSection from "@/components/hero-demo/key-features-section"
 import { Navbar } from "@/components/navigation"
-import CompanyLogosSection from "@/components/hero-demo/company-logos-section"
+// import CompanyLogosSection from "@/components/hero-demo/company-logos-section" <ai_context>This line is being commented out as per user request to hide the company logos section.</ai_context>
 import AppScreenshotSection from "@/components/hero-demo/app-screenshot-section"
 import UserInsightsSection from "@/components/hero-demo/user-insights-section"
 import HowItWorksSection from "@/components/hero-demo/how-it-works-section"
 import CtaSection from "@/components/hero-demo/cta-section"
-import { ResultsShowcase } from "@/app/landing/_components/results-showcase"
-import { TestimonialsCarousel } from "@/app/landing/_components/testimonials-carousel"
+// import { ResultsShowcase } from "@/app/landing/_components/results-showcase" <ai_context>This line is being commented out as per user request to hide the results showcase section.</ai_context>
+// import { TestimonialsCarousel } from "@/app/landing/_components/testimonials-carousel" <ai_context>This line is being commented out as per user request to hide the testimonials carousel section.</ai_context>
 import VisualDemonstration from "@/components/hero-demo/visual-demonstration"
 import UseCasesSection from "@/components/hero-demo/use-cases-section"
 import DifferentiationSection from "@/components/hero-demo/differentiation-section"
@@ -42,13 +42,13 @@ export default function HomePage() {
         <DifferentiationSection />
 
         {/* ROI Demonstration */}
-        <ResultsShowcase />
+        {/* <ResultsShowcase /> */}
 
         {/* Social Proof Section */}
-        <TestimonialsCarousel />
+        {/* <TestimonialsCarousel /> */}
 
         {/* Company Logos */}
-        <CompanyLogosSection />
+        {/* <CompanyLogosSection /> */}
 
         {/* Call to Action Section */}
         <CtaSection />

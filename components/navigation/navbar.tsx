@@ -2,10 +2,10 @@
 
 import React from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/layout/logo"
 import { useRouter } from "next/navigation"
+import { HamburgerButton } from "@/components/ui/hamburger-button"
 
 const menuItems = [
   { name: "Features", href: "#link" },
@@ -56,24 +56,13 @@ export function Navbar() {
               </Link>
             </div>
 
-            <button
-              onClick={() => setMenuState(!menuState)}
-              aria-label={menuState ? "Close Menu" : "Open Menu"}
-              className="relative z-20 block cursor-pointer p-2 lg:hidden"
-            >
-              <Menu
-                className={cn(
-                  "text-foreground size-6 transition-all duration-300",
-                  !menuState ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                )}
+            <div className="relative z-20 block lg:hidden">
+              <HamburgerButton
+                open={menuState}
+                setOpen={setMenuState}
+                className="relative z-20"
               />
-              <X
-                className={cn(
-                  "text-foreground absolute inset-0 m-auto size-6 transition-all duration-300",
-                  menuState ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                )}
-              />
-            </button>
+            </div>
 
             <div className="hidden lg:flex lg:items-center lg:justify-center">
               <ul className="flex gap-8 text-sm">
