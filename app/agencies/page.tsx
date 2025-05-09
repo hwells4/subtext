@@ -148,7 +148,7 @@ export default function VoiceScapeAgencyPage() {
               Our Solution
             </h2>
             <p className="text-foreground mt-3 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-              Transform Your Agency with AI-Powered Insight
+              Transform Your Agency with Real Customer Language. At Scale.
             </p>
             <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg md:text-xl">
               VoiceScape AI isn't just another tool. It's your agency's new
