@@ -1,28 +1,28 @@
 "use client"
 
-import { HeroSection } from "@/components/ui/hero-section"
-import KeyFeaturesSection from "@/components/hero-demo/key-features-section"
+import { HeroSection } from "@/components/landing/hero-section"
+import KeyFeaturesSection from "@/components/landing/key-features-section"
 import { Navbar } from "@/components/navigation"
-// import CompanyLogosSection from "@/components/hero-demo/company-logos-section" <ai_context>This line is being commented out as per user request to hide the company logos section.</ai_context>
-import AppScreenshotSection from "@/components/hero-demo/app-screenshot-section"
-import UserInsightsSection from "@/components/hero-demo/user-insights-section"
-import CtaSection from "@/components/hero-demo/cta-section"
+// import CompanyLogosSection from "@/components/landing/company-logos-section" <ai_context>This line is being commented out as per user request to hide the company logos section.</ai_context>
+import AppScreenshotSection from "@/components/landing/app-screenshot-section"
+import UserInsightsSection from "@/components/landing/user-insights-section"
+import CtaSection from "@/components/landing/cta-section"
 // import { ResultsShowcase } from "@/app/landing/_components/results-showcase" <ai_context>This line is being commented out as per user request to hide the results showcase section.</ai_context>
 // import { TestimonialsCarousel } from "@/app/landing/_components/testimonials-carousel" <ai_context>This line is being commented out as per user request to hide the testimonials carousel section.</ai_context>
-import VisualDemonstration from "@/components/hero-demo/visual-demonstration"
-import UseCasesSection from "@/components/hero-demo/use-cases-section"
-import DifferentiationSection from "@/components/hero-demo/differentiation-section"
+import VisualDemonstration from "@/components/landing/visual-demonstration"
+import UseCasesSection from "@/components/landing/use-cases-section"
+import DifferentiationSection from "@/components/landing/differentiation-section"
 import {
   FaqSection,
   ModernSplitFaqSection
 } from "@/components/marketing/faq-section"
 import FooterExample from "@/components/marketing/footer"
 import React from "react"
-import { HeroScrollDemo } from "@/components/hero-demo/hero-scroll-demo"
+import { HeroScrollDemo } from "@/components/landing/hero-scroll-demo"
 import { motion } from "framer-motion"
 import BenefitsSection from "@/components/benefits-section"
 import FeaturesHighlights from "@/components/features-highlights"
-import VoiceToConversionSection from "@/components/hero-demo/voice-to-conversion-section"
+import VoiceToConversionSection from "@/components/landing/voice-to-conversion-section"
 
 export default function HomePage() {
   return (
@@ -67,6 +67,12 @@ export default function HomePage() {
 
         {/* Use Cases Section - Role Specific */}
         <UseCasesSection />
+
+        {/* Results Showcase Section */}
+        {/* <ResultsShowcase /> */}
+
+        {/* Testimonials Section */}
+        {/* <TestimonialsCarousel /> */}
 
         {/* Benefits Section - Shows tangible advantages */}
         <BenefitsSection />

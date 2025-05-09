@@ -12,7 +12,7 @@ const VoiceToConversionSection = () => {
         {/* Section Header */}
         <div className="mb-16 text-center">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
-            SEAMLESS WORKFLOW
+            THE SOLUTION
           </h3>
           <h2 className="mb-4 mt-2 text-4xl font-extrabold text-slate-900 md:text-5xl">
             Get Your Customers' Words Delivered to You
