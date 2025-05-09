@@ -10,24 +10,25 @@ export default function CtaSection() {
         <div className="rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 px-8 py-12 shadow-xl md:px-12 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-4 text-3xl font-extrabold text-white md:text-4xl">
-              Start Creating Copy That Actually Converts
+              Start Creating Copy That Actually Converts.
             </h2>
 
             <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-300">
-              Extract authentic customer language and transform it into
-              messaging that resonates and drives action.
+              Stop guessing. Extract authentic customer language with Subtext
+              and transform it into messaging that resonates deeply and drives
+              powerful action.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
               <a
-                href="/waitlist"
+                href="/early-access"
                 className="w-full rounded-lg bg-white px-8 py-3 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 md:w-auto"
               >
-                Join Waitlist
+                Join Waitlist & Get Early Access
               </a>
 
               <a
-                href="/waitlist"
+                href="/demo"
                 className="w-full rounded-lg border border-white bg-transparent px-8 py-3 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-white/10 md:w-auto"
               >
                 <span className="flex items-center justify-center">
@@ -38,8 +39,8 @@ export default function CtaSection() {
             </div>
 
             <p className="mt-6 text-sm text-slate-400">
-              Join the waitlist to be notified when we launch. No credit card
-              required for demo.
+              Join the waitlist to be notified when we launch. Help us build the
+              tool you've always needed. No credit card required for demo.
             </p>
           </div>
         </div>

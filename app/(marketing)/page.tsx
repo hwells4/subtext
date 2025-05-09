@@ -1,6 +1,6 @@
 "use client"
 
-import AiMarketAnalystHero from "@/components/hero-demo/ai-market-analyst-hero"
+import { HeroSection } from "@/components/ui/hero-section"
 import KeyFeaturesSection from "@/components/hero-demo/key-features-section"
 import { Navbar } from "@/components/navigation"
 // import CompanyLogosSection from "@/components/hero-demo/company-logos-section" <ai_context>This line is being commented out as per user request to hide the company logos section.</ai_context>
@@ -27,7 +27,7 @@ export default function HomePage() {
       <Navbar />
       <div className="w-full pt-24 md:pt-32">
         {/* Hero Section */}
-        <AiMarketAnalystHero />
+        <HeroSection />
 
         {/* SVG Decoration Section - connecting the Hero and the Scroll Demo */}
         <div className="relative w-full">
@@ -50,49 +50,20 @@ export default function HomePage() {
         {/* Scrolling Animation Section */}
         <HeroScrollDemo />
 
-        {/* Pain Point Recognition Section */}
+        {/* User Insights Section - With Pain Points and Solution */}
         <UserInsightsSection />
-
-        {/* Section formerly How It Works - Now Features */}
-        <section className="w-full bg-slate-50 py-20 md:py-28">
-          <div className="container mx-auto max-w-7xl px-4">
-            <div className="mb-16 text-center">
-              <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-5xl">
-                Get your customers words delivered to you with a single
-                question. At Scale.
-              </h2>
-              <p className="mx-auto max-w-3xl text-lg text-slate-600 md:text-xl">
-                Subtext analyzes thousands of conversations in real time,
-                surfacing core insights, trends, messaging and pain points your
-                users talk about when no one is asking.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Visual Demonstration */}
-        {/* <VisualDemonstration /> */}
 
         {/* Key Features Section */}
         <KeyFeaturesSection />
 
-        {/* Use Cases Section - Reinstated */}
-        <UseCasesSection />
-
         {/* Differentiation Section */}
         <DifferentiationSection />
 
-        {/* FAQ Section - Updated to use modern variant */}
+        {/* Use Cases Section - Role Specific */}
+        <UseCasesSection />
+
+        {/* FAQ Section */}
         <ModernSplitFaqSection />
-
-        {/* ROI Demonstration */}
-        {/* <ResultsShowcase /> */}
-
-        {/* Social Proof Section */}
-        {/* <TestimonialsCarousel /> */}
-
-        {/* Company Logos */}
-        {/* <CompanyLogosSection /> */}
 
         {/* Call to Action Section */}
         <CtaSection />

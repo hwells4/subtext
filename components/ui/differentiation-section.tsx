@@ -2,36 +2,9 @@
 
 import React from "react"
 import { motion } from "framer-motion"
-import { Link2, Clock, Target, ShieldCheck } from "lucide-react"
+import { Link2, Clock, Target, Shield } from "lucide-react"
 
-const differentiators = [
-  {
-    icon: <Link2 className="size-6" />,
-    title: "100% Real, Source-Linked Insights",
-    description:
-      "Every quote, pattern, and pain point links directly back to the original Reddit conversation. No black boxes. Full transparency. Absolute trust in your data."
-  },
-  {
-    icon: <Clock className="size-6" />,
-    title: "Research in Minutes, Not Days",
-    description:
-      "Transform hours (or even days!) of soul-crushing manual thread-reading into organized, actionable insights from thousands of relevant conversations. Get back to strategy, faster."
-  },
-  {
-    icon: <Target className="size-6" />,
-    title: "Authentic Language, Not AI Guesses",
-    description:
-      "We extract the *exact phrases, slang, and emotional triggers* your audience uses candidly – the gold dust for high-converting copy that generic AI simply can't replicate."
-  },
-  {
-    icon: <ShieldCheck className="size-6" />,
-    title: "Risk-Free Messaging Validation",
-    description:
-      "Understand what resonates *before* you invest heavily in campaigns. Build all your marketing on a powerful foundation of truth, not assumptions."
-  }
-]
-
-export default function DifferentiationSection() {
+export function DifferentiationSection() {
   const containerVariants = {
     hidden: {},
     visible: {
@@ -50,18 +23,45 @@ export default function DifferentiationSection() {
     }
   }
 
+  const differentiators = [
+    {
+      icon: <Link2 className="size-6" />,
+      title: "100% Real, Source-Linked Insights",
+      description:
+        "Every quote, pattern, and pain point links directly back to the original Reddit conversation. No black boxes. Full transparency. Absolute trust in your data."
+    },
+    {
+      icon: <Clock className="size-6" />,
+      title: "Research in Minutes, Not Days",
+      description:
+        "Transform hours (or even days!) of soul-crushing manual thread-reading into organized, actionable insights from thousands of relevant conversations. Get back to strategy, faster."
+    },
+    {
+      icon: <Target className="size-6" />,
+      title: "Authentic Language, Not AI Guesses",
+      description:
+        "We extract the *exact phrases, slang, and emotional triggers* your audience uses candidly – the gold dust for high-converting copy that generic AI simply can't replicate."
+    },
+    {
+      icon: <Shield className="size-6" />,
+      title: "Risk-Free Messaging Validation",
+      description:
+        "Understand what resonates *before* you invest heavily in campaigns. Build all your marketing on a powerful foundation of truth, not assumptions."
+    }
+  ]
+
   return (
-    <section className="w-full bg-slate-50 py-20">
-      <div className="container mx-auto max-w-6xl px-4">
+    <section className="relative overflow-hidden bg-white py-16 md:py-24">
+      <div className="container mx-auto w-full max-w-[1220px] px-6 md:px-10">
         <motion.div
           className="flex flex-col items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
+            <h2 className="text-3xl font-bold leading-tight tracking-tight text-slate-900 md:text-4xl">
               This Isn't AI Fluff. This is Your Audience's{" "}
               <span className="italic">Verifiable Truth</span>.
             </h2>
@@ -80,10 +80,9 @@ export default function DifferentiationSection() {
             variants={itemVariants}
           >
             {differentiators.map((differentiator, index) => (
-              <motion.div
+              <div
                 key={index}
-                variants={itemVariants}
-                className="flex rounded-xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-7"
+                className="flex rounded-xl bg-slate-50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md md:p-7"
               >
                 <div className="mr-5 flex size-12 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
                   {differentiator.icon}
@@ -94,7 +93,7 @@ export default function DifferentiationSection() {
                   </h3>
                   <p className="text-slate-600">{differentiator.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
 
@@ -110,3 +109,5 @@ export default function DifferentiationSection() {
     </section>
   )
 }
+
+export default DifferentiationSection

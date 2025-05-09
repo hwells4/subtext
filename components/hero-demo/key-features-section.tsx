@@ -1,64 +1,105 @@
 "use client"
 
 import React from "react"
-import { BarChart3, SearchCode, Users, Layers } from "lucide-react" // Example icons
+import { SearchCode, FileText, Users, Target } from "lucide-react" // Example icons
+import { motion } from "framer-motion"
 
 const features = [
   {
     icon: SearchCode,
     title: "Deep Conversation Analysis",
+    subtitle: "Unlock True Understanding",
     description:
-      "Go beyond surface-level searching. Our AI analyzes thousands of discussions to extract meaningful patterns in how people talk about their problems and needs."
+      "Go far beyond surface-level keyword searching. Our proprietary AI analyzes thousands of discussions to extract meaningful patterns, context, and sentiment in how people *actually* talk about their problems and needs."
+  },
+  {
+    icon: FileText,
+    title: "Authentic Language Extraction",
+    subtitle: "Capture Their Exact Voice",
+    description:
+      "No more guessing what language to use. Subtext captures the precise words, phrases, slang, and emotional triggers your audience uses when they're speaking candidly, not just responding to bland surveys."
   },
   {
     icon: Users,
-    title: "Authentic Language Extraction",
-    description:
-      "Capture the exact words, phrases, and emotional triggers your audience uses when they're speaking candidly, not responding to surveys."
-  },
-  {
-    icon: Layers,
     title: "Audience Segmentation",
+    subtitle: "Speak Directly to Each Niche",
     description:
-      "Discover how different segments of your audience describe the same problems differently, allowing you to create targeted messaging for each."
+      'Discover how different segments of your audience describe the same problems in unique ways. This allows you to instantly create targeted, highly relevant messaging for each specific group, making them "feel seen."'
   },
   {
-    icon: BarChart3,
+    icon: Target,
     title: "Pain Point Categorization",
+    subtitle: "Know What Really Hurts",
     description:
-      "Automatically organize and prioritize customer pain points by frequency, intensity, and type (functional, emotional, financial)."
+      "Stop assuming you know their pain. Subtext automatically organizes and prioritizes customer pain points by frequency, intensity, and type (functional, emotional, financial), so you can address what truly matters to them."
   }
 ]
 
 export default function KeyFeaturesSection() {
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  }
+
   return (
     <div className="w-full bg-slate-50 py-16 md:py-24">
-      <div className="container mx-auto px-4 text-center md:px-6">
-        <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
-          How Subtext Supercharges Your Marketing Research
-        </h2>
-        <p className="mx-auto mb-12 max-w-2xl text-lg text-slate-600 md:mb-16">
-          Transform how you understand your audience's needs and craft messaging
-          that resonates
-        </p>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:grid-cols-4">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="rounded-xl bg-white p-6 text-left shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl"
-            >
-              <div className="mb-6 flex size-12 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                <feature.icon className="size-6" />
-              </div>
-              <h3 className="mb-3 text-xl font-semibold text-slate-900">
-                {feature.title}
-              </h3>
-              <p className="leading-relaxed text-slate-600">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          className="flex flex-col items-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div className="mb-12 text-center" variants={itemVariants}>
+            <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
+              Get Your Customers' Words Delivered to You. <br /> At Scale. In
+              Minutes.
+            </h2>
+            <p className="mx-auto mb-12 max-w-3xl text-lg text-slate-600">
+              Subtext analyzes thousands of real-time conversations, surfacing
+              the core insights, trends, exact phrasing, and critical pain
+              points your audience talks about when no one is asking. Here's how
+              it supercharges your marketing research:
+            </p>
+          </motion.div>
+
+          <motion.div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="rounded-xl bg-white p-6 text-left shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+                  <feature.icon className="size-6" />
+                </div>
+                <h3 className="mb-1 text-xl font-semibold text-slate-900">
+                  {feature.title}
+                </h3>
+                <p className="mb-3 text-sm font-medium text-blue-600">
+                  {feature.subtitle}
+                </p>
+                <p className="leading-relaxed text-slate-600">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   )

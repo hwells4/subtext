@@ -97,6 +97,60 @@ const faqSectionsData = [
   }
 ]
 
+// New FAQ data from the client
+const clientFaqData = [
+  {
+    id: "what-is",
+    question: "What is Subtext.ai?",
+    answer:
+      "Subtext.ai is an audience intelligence platform that analyzes millions of Reddit conversations to extract authentic customer language, pain points, and trends, empowering marketers to create high-converting copy and content."
+  },
+  {
+    id: "who-for",
+    question: "Who is Subtext.ai for?",
+    answer:
+      "Subtext is for any marketer serious about understanding their audience and writing more effective copy – including content marketers, copywriters, performance marketers, marketing agencies, and SaaS product marketers."
+  },
+  {
+    id: "how-works",
+    question: "How does Subtext.ai work?",
+    answer:
+      "You provide an audience, product, or question. Subtext scrapes and analyzes relevant Reddit discussions using proprietary AI models, then presents categorized insights, language patterns, and pain points – all linked back to original sources for 100% verification."
+  },
+  {
+    id: "insights-outputs",
+    question: "What kind of insights or outputs can I expect from Subtext.ai?",
+    answer:
+      "You'll get exact quotes, common phrases, identified pain points (categorized by type/intensity), emotional language, emerging trends, and even potential audience segments, all based on real user conversations – not AI guesswork."
+  },
+  {
+    id: "uncover-pain-points",
+    question: "How does Subtext.ai uncover deep customer pain points?",
+    answer:
+      "Our AI analyzes not just keywords but the context and sentiment of discussions to identify the underlying problems, frustrations, and desires users express, often revealing crucial pain points you wouldn't find through surveys or superficial analysis."
+  },
+  {
+    id: "different-from-ai",
+    question:
+      "How is Subtext AI different from generic AI writing tools (like ChatGPT)?",
+    answer:
+      'Generic AI generates copy, often based on broad patterns and sometimes producing "AI slop." Subtext reveals authentic language from real, verifiable conversations. We provide the truthful raw material so your copy (whether human or AI-assisted) is deeply resonant and trustworthy.'
+  },
+  {
+    id: "social-listening",
+    question:
+      "I already use social listening tools. Why would I need SubtextAI?",
+    answer:
+      "Social listening tools often focus on brand mentions and broad sentiment. Subtext is specifically designed for deep audience understanding for copy creation, extracting nuanced language patterns, pain points, and emotional triggers from unprompted conversations – the fuel for high-converting messaging."
+  },
+  {
+    id: "not-survey",
+    question: "Is this just another survey platform or a basic web scraper?",
+    answer:
+      "Absolutely not. Surveys capture what people say when asked directly. Subtext captures what they say organically and candidly when talking to peers. It's far more than a scraper; our proprietary AI performs deep analysis, categorization, and pattern recognition at scale to deliver actionable insights."
+  }
+]
+
 interface FaqItemProps {
   question: string
   answer: string
@@ -227,18 +281,16 @@ export function ModernSplitFaqSection() {
           </div>
           <div>
             <Accordion type="single" collapsible className="w-full">
-              {faqSectionsData.flatMap(section =>
-                section.questions.map((faq, index) => (
-                  <AccordionItem key={faq.id} value={faq.id}>
-                    <AccordionTrigger className="text-base font-medium">
-                      {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {faq.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))
-              )}
+              {clientFaqData.map((faq, index) => (
+                <AccordionItem key={faq.id} value={faq.id}>
+                  <AccordionTrigger className="text-base font-medium">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </div>
         </div>

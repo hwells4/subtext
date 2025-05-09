@@ -47,11 +47,13 @@ export default function UserInsightsSection() {
       <div className="container mx-auto max-w-7xl">
         <div className="mb-6 w-full text-center sm:mb-8 md:mb-10">
           <h2 className="mb-3 w-full text-pretty text-2xl font-extrabold text-slate-900 sm:mb-4 sm:text-3xl md:text-4xl lg:text-5xl">
-            Stop Guessing What Your Audience Thinks
+            Stop Guessing What Your Audience{" "}
+            <span className="italic">Really</span> Thinks (And Says!)
           </h2>
           <p className="mx-auto w-full text-pretty text-base text-slate-600 sm:max-w-2xl sm:text-lg md:max-w-3xl md:text-xl lg:max-w-4xl">
-            Marketing without research is just expensive guessing. But who has
-            time to manually comb through thousands of conversations?
+            Marketing without deep audience insight is just expensive guessing.
+            But who has days to manually comb through thousands of conversations
+            for those golden nuggets?
           </p>
         </div>
 
@@ -76,8 +78,9 @@ export default function UserInsightsSection() {
                     ✕
                   </span>
                   <span className="w-full flex-1 text-pretty text-base text-slate-700 sm:text-lg">
-                    Time-consuming manual research wastes days scanning threads
-                    for insights
+                    Wasting precious days manually scanning endless threads for
+                    usable insights, feeling like you're searching for a needle
+                    in a haystack.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -85,8 +88,9 @@ export default function UserInsightsSection() {
                     ✕
                   </span>
                   <span className="w-full flex-1 text-pretty text-base text-slate-700 sm:text-lg">
-                    Generic AI writing tools produce fluffy copy that doesn't
-                    connect
+                    Relying on generic AI writing tools that produce "fluffy"
+                    copy that sounds plausible but utterly fails to connect or
+                    convert.
                   </span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
@@ -94,19 +98,24 @@ export default function UserInsightsSection() {
                     ✕
                   </span>
                   <span className="w-full flex-1 text-pretty text-base text-slate-700 sm:text-lg">
-                    Scattered insights make it impossible to find clear patterns
-                    in what customers actually want
+                    Drowning in scattered comments and data, making it
+                    impossible to find clear patterns or understand what your
+                    customers *actually* want and the deep pain points they
+                    feel.
                   </span>
                 </li>
               </ul>
 
               <h3 className="mt-6 w-full text-pretty text-xl font-semibold text-slate-900 sm:mt-8 sm:text-2xl md:text-3xl">
-                From scattered comments to actionable messaging
+                From Scattered Comments to Actionable Messaging – In Their Exact
+                Words.
               </h3>
               <p className="w-full text-pretty text-base text-slate-600 sm:text-lg">
-                Subtext automatically identifies and organizes how real people
-                describe their problems, needs, and desires—in their exact
-                words.
+                Subtext automatically dives deep into authentic, unprompted
+                conversations, identifying and organizing how real people
+                describe their problems, needs, and desires. We surface the core
+                insights you need – in their exact words – to build messaging
+                that resonates.
               </p>
             </motion.div>
           </div>
