@@ -45,12 +45,15 @@ export default function UserInsightsSection() {
   return (
     <section className="relative w-full overflow-hidden bg-slate-50 px-4 py-12 sm:py-16 md:px-6 md:py-20 lg:py-24">
       <div className="container mx-auto max-w-7xl">
-        <div className="mb-6 w-full text-center sm:mb-8 md:mb-10">
-          <h2 className="mb-3 w-full text-pretty text-2xl font-extrabold text-slate-900 sm:mb-4 sm:text-3xl md:text-4xl lg:text-5xl">
+        <div className="mb-12 text-center">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
+            AUDIENCE INTELLIGENCE
+          </h3>
+          <h2 className="mb-4 mt-2 text-4xl font-extrabold text-slate-900 md:text-5xl">
             Stop Guessing What Your Audience{" "}
-            <span className="italic">Really</span> Thinks (And Says!)
+            <span className="italic">Really</span> Thinks
           </h2>
-          <p className="mx-auto w-full text-pretty text-base text-slate-600 sm:max-w-2xl sm:text-lg md:max-w-3xl md:text-xl lg:max-w-4xl">
+          <p className="mx-auto max-w-3xl text-lg text-slate-600">
             Marketing without deep audience insight is just expensive guessing.
             But who has days to manually comb through thousands of conversations
             for those golden nuggets?

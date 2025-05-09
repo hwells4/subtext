@@ -6,8 +6,8 @@ import {
   Building2,
   Edit,
   LineChart,
-  Quote as QuoteIcon,
-  CheckCircle
+  CheckCircle,
+  ArrowRight
 } from "lucide-react"
 import { motion } from "framer-motion"
 import dynamic from "next/dynamic"
@@ -20,13 +20,11 @@ const DotLottieReact = dynamic(
 )
 
 interface UseCaseItem {
-  role: string
+  headline: string
+  subheadline: string
   icon: React.ElementType
-  description: string
-  quote: string
-  author: string
+  benefits: string[]
   cta: string
-  imageQuery?: string
   lottieUrl?: string
   useLottie?: boolean
   bgColorClass: string
@@ -37,49 +35,52 @@ interface UseCaseItem {
 
 const useCases: UseCaseItem[] = [
   {
-    role: "Marketing Agencies",
+    headline: "Agency Power-Up: Scale Research, Wow Clients",
+    subheadline: "Juggling multiple clients and endless research cycles?",
     icon: Building2,
-    description:
-      "Tired of the research bottleneck when onboarding new clients or finding fresh angles for existing ones? Subtext helps you uncover authentic audience language and pain points across your entire client roster, delivering undeniable value and high-performing campaigns, faster.",
-    quote:
-      "We cut our research time from days to minutes while delivering deeper audience insights to clients.",
-    author: "Sarah Johnson, Marketing Director at GrowthAgency",
-    cta: "See How Agencies Win More with Subtext",
-    imageQuery:
-      "abstract_network_of_connected_clients_and_data_streams_blue_teal_gradients_professional_agency_feel_light_background_modern_lines",
+    benefits: [
+      "**Slash research time** across all client accounts.",
+      "Deliver **data-backed strategies** that get results.",
+      "Uncover **unique angles** that make clients shine."
+    ],
+    cta: "Deliver Better Results, Faster with Subtext",
+    useLottie: true,
+    lottieUrl: "", // Will be filled in by user
     bgColorClass: "bg-sky-50", // Lighter, more airy blue
     textColorClass: "text-sky-700",
     accentColorClass: "text-sky-500",
     buttonColorClass: "bg-sky-500 hover:bg-sky-600"
   },
   {
-    role: "Content Marketers & Copywriters",
+    headline: "Copywriter's Edge: Write Words That Truly Convert",
+    subheadline: "Staring at a blank page, searching for that perfect angle?",
     icon: Edit,
-    description:
-      "Stop staring at a blank page or relying on generic AI prompts. Subtext arms you with the *exact words, phrases, and emotional triggers* your audience uses when describing their problems and desires. Craft copy that feels authentic, builds trust, and drives action because it truly speaks their language.",
-    quote:
-      "I've seen conversion rates double after implementing messaging based on the actual words customers use.",
-    author: "Michael Chen, Content Lead at TechFlow",
+    benefits: [
+      "Craft copy with **authentic audience language**.",
+      "Generate **compelling hooks & H1s** effortlessly.",
+      "Write with confidence, knowing your message **will resonate**."
+    ],
     cta: "Learn to Craft Resonant Copy with Subtext",
-    imageQuery:
-      "stylized_quill_pen_morphing_into_glowing_text_bubble_emerald_green_and_gold_accents_creative_flow_light_background_organic_curves",
+    useLottie: true,
+    lottieUrl: "", // Will be filled in by user
     bgColorClass: "bg-emerald-50", // Lighter, organic green
     textColorClass: "text-emerald-700",
     accentColorClass: "text-emerald-500",
     buttonColorClass: "bg-emerald-500 hover:bg-emerald-600"
   },
   {
-    role: "Performance Marketers",
+    headline: "Performance Boost: Turn Insights Into ROI",
+    subheadline: "Watching ad spend climb but conversions lag?",
     icon: LineChart,
-    description:
-      "Are your ads not hitting the mark? Is your landing page conversion rate disappointing? Subtext helps you diagnose why by revealing the *actual needs and language patterns* of your target audience. Align your messaging with genuine customer insights and watch your metrics soar.",
-    quote:
-      "We increased click-through rates by 43% after rewriting our ads with language extracted directly from our audience.",
-    author: "Rachel Patel, PPC Specialist at ConversionPro",
+    benefits: [
+      "Pinpoint **why campaigns underperform** with real insights.",
+      "Optimize ad copy using **verified customer vocabulary**.",
+      "**Increase CTR & conversions** by aligning with true needs."
+    ],
     cta: "Discover How to Boost Campaign Performance",
+    useLottie: true,
     lottieUrl:
       "https://lottie.host/a4af23b2-c9ae-4343-aecf-bc54c2c32330/Pehdj5rvjg.lottie",
-    useLottie: true,
     bgColorClass: "bg-purple-50", // Lighter, techy purple
     textColorClass: "text-purple-700",
     accentColorClass: "text-purple-500",
@@ -91,11 +92,14 @@ export default function UseCasesSection() {
   return (
     <section className="w-full bg-slate-100 py-20 md:py-28">
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="mb-16 text-center md:mb-20">
-          <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-5xl">
+        <div className="mb-16 text-center">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
+            TAILORED SOLUTIONS
+          </h3>
+          <h2 className="mb-4 mt-2 text-4xl font-extrabold text-slate-900 md:text-5xl">
             See How Subtext Works For <span className="italic">You</span>
           </h2>
-          <p className="mx-auto max-w-3xl text-lg text-slate-600 md:text-xl">
+          <p className="mx-auto max-w-3xl text-lg text-slate-600">
             Whether you're scaling client work, crafting compelling content, or
             optimizing campaigns, Subtext delivers the authentic audience
             language you need to win.
@@ -105,7 +109,7 @@ export default function UseCasesSection() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8">
           {useCases.map((useCase, index) => (
             <motion.div
-              key={useCase.role}
+              key={useCase.headline}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -117,66 +121,71 @@ export default function UseCasesSection() {
               viewport={{ once: true }}
               className={`flex flex-col overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl`}
             >
-              {/* Top Visual Area */}
+              {/* Top Visual Area with Lottie */}
               <div
                 className={`relative h-56 w-full ${useCase.bgColorClass} flex items-center justify-center p-4 md:h-64`}
               >
                 {useCase.useLottie && useCase.lottieUrl ? (
                   <LottieAnimation lottieUrl={useCase.lottieUrl} />
                 ) : (
-                  <img
-                    src={`/placeholder.svg?width=400&height=220&query=${useCase.imageQuery}`}
-                    alt={`${useCase.role} abstract visual theme`}
-                    className="max-h-full w-auto rounded-lg object-contain mix-blend-multiply" // mix-blend can be cool if bg isn't white
-                  />
+                  <div className="flex size-full items-center justify-center">
+                    <div className="relative size-32">
+                      <div
+                        className={`absolute inset-0 animate-pulse rounded-full ${useCase.accentColorClass} opacity-20`}
+                      ></div>
+                      <useCase.icon
+                        className={`absolute inset-0 m-auto size-16 ${useCase.textColorClass}`}
+                      />
+                      <p className="absolute -bottom-8 text-center text-sm text-slate-500">
+                        Lottie placeholder
+                      </p>
+                    </div>
+                  </div>
                 )}
               </div>
 
               {/* Content Area */}
               <div className="flex grow flex-col p-6 md:p-8">
-                <div className="mb-6 flex items-center space-x-3">
-                  <div
-                    className={`flex size-12 items-center justify-center rounded-full ${useCase.bgColorClass}`}
-                  >
-                    <useCase.icon
-                      className={`size-7 ${useCase.accentColorClass}`}
-                    />
-                  </div>
-                  <h3
-                    className={`text-2xl font-semibold ${useCase.textColorClass}`}
-                  >
-                    For {useCase.role}
-                  </h3>
-                </div>
+                {/* Headline */}
+                <h3
+                  className={`mb-2 text-2xl font-bold ${useCase.textColorClass}`}
+                >
+                  {useCase.headline}
+                </h3>
 
-                <p className="mb-6 grow text-base text-slate-600">
-                  {useCase.description}
+                {/* Subheadline */}
+                <p className="mb-6 text-base italic text-slate-700">
+                  {useCase.subheadline}
                 </p>
 
-                {/* Quote Section */}
-                <div className="mt-auto rounded-lg border border-slate-200 bg-white p-6 shadow-inner">
-                  <QuoteIcon
-                    className={`mb-2 size-7 ${useCase.accentColorClass} opacity-50`}
-                  />
-                  <blockquote className="relative">
-                    <p className="text-lg font-medium italic leading-relaxed text-slate-700">
-                      &ldquo;{useCase.quote}&rdquo;
-                    </p>
-                    <footer
-                      className={`mt-4 text-right text-sm font-semibold ${useCase.textColorClass}`}
-                    >
-                      — {useCase.author}
-                    </footer>
-                  </blockquote>
-                </div>
+                {/* Benefits List */}
+                <ul className="mb-8 space-y-4">
+                  {useCase.benefits.map((benefit, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <CheckCircle
+                        className={`mr-2 mt-0.5 size-5 ${useCase.accentColorClass} shrink-0`}
+                      />
+                      <span
+                        className="text-slate-700"
+                        dangerouslySetInnerHTML={{
+                          __html: benefit.replace(
+                            /\*\*(.*?)\*\*/g,
+                            '<span class="font-semibold">$1</span>'
+                          )
+                        }}
+                      />
+                    </li>
+                  ))}
+                </ul>
 
                 {/* CTA Button */}
-                <div className="mt-6">
+                <div className="mt-auto pt-4">
                   <Link
                     href="/early-access"
-                    className={`flex w-full items-center justify-center rounded-lg ${useCase.buttonColorClass} px-4 py-3 text-center font-medium text-white transition-all duration-200`}
+                    className={`flex w-full items-center justify-center rounded-lg ${useCase.buttonColorClass} group px-4 py-3.5 text-center font-medium text-white transition-all duration-200`}
                   >
-                    {useCase.cta}
+                    <span>{useCase.cta}</span>
+                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
               </div>

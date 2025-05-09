@@ -20,6 +20,9 @@ import FooterExample from "@/components/marketing/footer"
 import React from "react"
 import { HeroScrollDemo } from "@/components/hero-demo/hero-scroll-demo"
 import { motion } from "framer-motion"
+import BenefitsSection from "@/components/benefits-section"
+import FeaturesHighlights from "@/components/features-highlights"
+import VoiceToConversionSection from "@/components/hero-demo/voice-to-conversion-section"
 
 export default function HomePage() {
   return (
@@ -53,14 +56,20 @@ export default function HomePage() {
         {/* User Insights Section - With Pain Points and Solution */}
         <UserInsightsSection />
 
-        {/* Key Features Section */}
-        <KeyFeaturesSection />
+        {/* Voice to Conversion Section - Shows the 4-step process */}
+        <VoiceToConversionSection />
+
+        {/* Features Highlights Section - Replaces Key Features with better visuals */}
+        {/* <FeaturesHighlights /> */}
 
         {/* Differentiation Section */}
-        <DifferentiationSection />
+        {/* <DifferentiationSection /> */}
 
         {/* Use Cases Section - Role Specific */}
         <UseCasesSection />
+
+        {/* Benefits Section - Shows tangible advantages */}
+        <BenefitsSection />
 
         {/* FAQ Section */}
         <ModernSplitFaqSection />
