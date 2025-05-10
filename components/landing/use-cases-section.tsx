@@ -1,231 +1,219 @@
 "use client"
 
-import React, { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import {
-  Building2,
-  Edit,
-  LineChart,
-  CheckCircle,
-  ArrowRight
-} from "lucide-react"
+import React from "react"
 import { motion } from "framer-motion"
-import dynamic from "next/dynamic"
 import Link from "next/link"
-
-// Dynamically import DotLottieReact to prevent SSR issues
-const DotLottieReact = dynamic(
-  () => import("@lottiefiles/dotlottie-react").then(mod => mod.DotLottieReact),
-  { ssr: false }
-)
+import { ArrowRight, CheckCircle } from "lucide-react"
+import Image from "next/image"
 
 interface UseCaseItem {
   headline: string
   subheadline: string
-  icon: React.ElementType
   benefits: string[]
   cta: string
-  lottieUrl?: string
-  useLottie?: boolean
-  bgColorClass: string
-  textColorClass: string
-  accentColorClass: string
-  buttonColorClass: string
+  iconColor: string
+  accentGradient: string
+  svgIcon: string
 }
 
 const useCases: UseCaseItem[] = [
   {
-    headline: "Agency Power-Up: Scale Research, Wow Clients",
-    subheadline: "Juggling multiple clients and endless research cycles?",
-    icon: Building2,
+    headline: "Agency Power-Up",
+    subheadline: "Scale Research, Wow Clients",
     benefits: [
       "**Slash research time** across all client accounts.",
       "Deliver **data-backed strategies** that get results.",
       "Uncover **unique angles** that make clients shine."
     ],
-    cta: "Deliver Better Results, Faster with Subtext",
-    useLottie: true,
-    lottieUrl: "", // Will be filled in by user
-    bgColorClass: "bg-sky-50", // Lighter, more airy blue
-    textColorClass: "text-sky-700",
-    accentColorClass: "text-sky-500",
-    buttonColorClass: "bg-sky-500 hover:bg-sky-600"
+    cta: "Deliver Better Results, Faster",
+    iconColor: "text-blue-500",
+    accentGradient: "from-blue-50 to-transparent",
+    svgIcon: "/rocket.svg"
   },
   {
-    headline: "Copywriter's Edge: Write Words That Truly Convert",
-    subheadline: "Staring at a blank page, searching for that perfect angle?",
-    icon: Edit,
+    headline: "Copywriter's Edge",
+    subheadline: "Write Words That Truly Convert",
     benefits: [
       "Craft copy with **authentic audience language**.",
       "Generate **compelling hooks & H1s** effortlessly.",
       "Write with confidence, knowing your message **will resonate**."
     ],
-    cta: "Learn to Craft Resonant Copy with Subtext",
-    useLottie: true,
-    lottieUrl: "", // Will be filled in by user
-    bgColorClass: "bg-emerald-50", // Lighter, organic green
-    textColorClass: "text-emerald-700",
-    accentColorClass: "text-emerald-500",
-    buttonColorClass: "bg-emerald-500 hover:bg-emerald-600"
+    cta: "Craft Resonant Copy",
+    iconColor: "text-emerald-500",
+    accentGradient: "from-emerald-50 to-transparent",
+    svgIcon: "/shield.svg"
   },
   {
-    headline: "Performance Boost: Turn Insights Into ROI",
-    subheadline: "Watching ad spend climb but conversions lag?",
-    icon: LineChart,
+    headline: "Performance Boost",
+    subheadline: "Turn Insights Into ROI",
     benefits: [
       "Pinpoint **why campaigns underperform** with real insights.",
       "Optimize ad copy using **verified customer vocabulary**.",
       "**Increase CTR & conversions** by aligning with true needs."
     ],
-    cta: "Discover How to Boost Campaign Performance",
-    useLottie: true,
-    lottieUrl:
-      "https://lottie.host/a4af23b2-c9ae-4343-aecf-bc54c2c32330/Pehdj5rvjg.lottie",
-    bgColorClass: "bg-purple-50", // Lighter, techy purple
-    textColorClass: "text-purple-700",
-    accentColorClass: "text-purple-500",
-    buttonColorClass: "bg-purple-500 hover:bg-purple-600"
+    cta: "Boost Campaign Performance",
+    iconColor: "text-purple-500",
+    accentGradient: "from-purple-50 to-transparent",
+    svgIcon: "/gear.svg"
   }
 ]
 
 export default function UseCasesSection() {
-  return (
-    <section className="w-full bg-slate-100 py-20 md:py-28">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="mb-16 text-center">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
-            TAILORED SOLUTIONS
-          </h3>
-          <h2 className="mb-4 mt-2 text-4xl font-extrabold text-slate-900 md:text-5xl">
-            See How Subtext Works For <span className="italic">You</span>
-          </h2>
-          <p className="mx-auto max-w-3xl text-lg text-slate-600">
-            Whether you're scaling client work, crafting compelling content, or
-            optimizing campaigns, Subtext delivers the authentic audience
-            language you need to win.
-          </p>
-        </div>
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  }
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-8">
-          {useCases.map((useCase, index) => (
-            <motion.div
-              key={useCase.headline}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: index * 0.2,
-                duration: 0.7,
-                type: "spring",
-                stiffness: 35
-              }}
-              viewport={{ once: true }}
-              className={`flex flex-col overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl`}
-            >
-              {/* Top Visual Area with Lottie */}
-              <div
-                className={`relative h-56 w-full ${useCase.bgColorClass} flex items-center justify-center p-4 md:h-64`}
-              >
-                {useCase.useLottie && useCase.lottieUrl ? (
-                  <LottieAnimation lottieUrl={useCase.lottieUrl} />
-                ) : (
-                  <div className="flex size-full items-center justify-center">
-                    <div className="relative size-32">
-                      <div
-                        className={`absolute inset-0 animate-pulse rounded-full ${useCase.accentColorClass} opacity-20`}
-                      ></div>
-                      <useCase.icon
-                        className={`absolute inset-0 m-auto size-16 ${useCase.textColorClass}`}
-                      />
-                      <p className="absolute -bottom-8 text-center text-sm text-slate-500">
-                        Lottie placeholder
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Content Area */}
-              <div className="flex grow flex-col p-6 md:p-8">
-                {/* Headline */}
-                <h3
-                  className={`mb-2 text-2xl font-bold ${useCase.textColorClass}`}
-                >
-                  {useCase.headline}
-                </h3>
-
-                {/* Subheadline */}
-                <p className="mb-6 text-base italic text-slate-700">
-                  {useCase.subheadline}
-                </p>
-
-                {/* Benefits List */}
-                <ul className="mb-8 space-y-4">
-                  {useCase.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <CheckCircle
-                        className={`mr-2 mt-0.5 size-5 ${useCase.accentColorClass} shrink-0`}
-                      />
-                      <span
-                        className="text-slate-700"
-                        dangerouslySetInnerHTML={{
-                          __html: benefit.replace(
-                            /\*\*(.*?)\*\*/g,
-                            '<span class="font-semibold">$1</span>'
-                          )
-                        }}
-                      />
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA Button */}
-                <div className="mt-auto pt-4">
-                  <Link
-                    href="/early-access"
-                    className={`flex w-full items-center justify-center rounded-lg ${useCase.buttonColorClass} group px-4 py-3.5 text-center font-medium text-white transition-all duration-200`}
-                  >
-                    <span>{useCase.cta}</span>
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Simplified Lottie component using the hosted solution
-interface LottieAnimationProps {
-  lottieUrl: string
-}
-
-function LottieAnimation({ lottieUrl }: LottieAnimationProps) {
-  const [error, setError] = useState(false)
-
-  if (error) {
-    // Fallback animation if the Lottie fails to load
-    return (
-      <div className="flex size-full items-center justify-center">
-        <div className="relative size-32">
-          <div className="absolute inset-0 animate-pulse rounded-full bg-purple-300 opacity-75"></div>
-          <LineChart className="absolute inset-0 m-auto size-16 animate-bounce text-purple-700" />
-        </div>
-      </div>
-    )
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
   }
 
   return (
-    <div className="size-full">
-      <DotLottieReact
-        src={lottieUrl}
-        loop
-        autoplay
-        style={{ width: "100%", height: "100%" }}
-        onError={() => setError(true)}
+    <section className="relative w-full overflow-hidden bg-white py-24 md:py-32">
+      {/* Decorative elements */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <div className="bg-gradient-radial absolute -right-[30%] top-[5%] size-[500px] rounded-full from-slate-50 to-transparent opacity-70 blur-3xl" />
+        <div className="bg-gradient-radial absolute -left-[20%] top-[60%] size-[600px] rounded-full from-slate-50 to-transparent opacity-70 blur-3xl" />
+      </div>
+
+      <div className="container relative z-10 mx-auto max-w-[1220px] px-6 md:px-10">
+        <motion.div
+          className="flex flex-col items-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {/* Section Header */}
+          <motion.div className="mb-20 text-center" variants={itemVariants}>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
+              TAILORED SOLUTIONS
+            </h3>
+            <h2 className="mb-4 mt-2 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-5xl">
+              See How Subtext Works For <span className="italic">You</span>
+            </h2>
+            <p className="mx-auto max-w-3xl text-base leading-relaxed text-slate-600 md:text-lg">
+              Whether you're handling more client work, writing content, or
+              improving campaigns, Subtext gives you the real audience language
+              you need to get better results.
+            </p>
+          </motion.div>
+
+          {/* Use Cases */}
+          <div className="relative grid w-full grid-cols-1 gap-8 md:grid-cols-3">
+            {useCases.map((useCase, index) => (
+              <motion.div
+                key={useCase.headline}
+                variants={itemVariants}
+                className="group relative size-full"
+              >
+                {/* Glass card with subtle border */}
+                <div
+                  className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+                  style={{
+                    background:
+                      "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",
+                    backdropFilter: "blur(10px)"
+                  }}
+                >
+                  {/* Subtle gradient accent in corner */}
+                  <div
+                    className={`bg-gradient-radial absolute -right-20 -top-20 size-48 rounded-full ${useCase.accentGradient} opacity-60`}
+                  />
+
+                  {/* Content Section */}
+                  <div className="relative z-10 p-8">
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="size-[52px]">
+                        <div className="relative size-full">
+                          <Image
+                            src={useCase.svgIcon}
+                            alt={useCase.headline}
+                            width={52}
+                            height={52}
+                            className={`size-[52px] ${useCase.iconColor} transition-transform duration-300 group-hover:scale-110`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-slate-900">
+                      {useCase.headline}
+                    </h3>
+                    <p className="mt-1 text-base font-medium text-slate-700">
+                      {useCase.subheadline}
+                    </p>
+
+                    <div className="mt-2 h-px w-16 bg-gradient-to-r from-slate-300 to-transparent" />
+
+                    {/* Benefits List */}
+                    <div className="mt-6 space-y-4">
+                      {useCase.benefits.map((benefit, idx) => (
+                        <div key={idx} className="flex items-start">
+                          <CheckCircle className="mr-3 mt-0.5 size-5 shrink-0 text-slate-500" />
+                          <span
+                            className="text-slate-700"
+                            dangerouslySetInnerHTML={{
+                              __html: benefit.replace(
+                                /\*\*(.*?)\*\*/g,
+                                '<span class="font-semibold">$1</span>'
+                              )
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Bottom CTA Section - Full width black background on hover */}
+                  <div className="relative mt-auto">
+                    {/* Dividing line */}
+                    <div className="h-px w-full bg-slate-100" />
+
+                    {/* Black overlay that appears on hover */}
+                    <div className="absolute inset-0 z-0 bg-slate-900 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                    {/* CTA Button Area */}
+                    <Link
+                      href="/early-access"
+                      className="relative z-10 block py-5"
+                    >
+                      <div className="group/button flex items-center justify-center transition-all duration-300">
+                        <span className="font-medium text-slate-800 transition-colors duration-300 group-hover:text-white">
+                          {useCase.cta}
+                        </span>
+                        <ArrowRight
+                          className="ml-2 size-4 text-slate-800 transition-all duration-300 
+                                    group-hover/button:translate-x-2 group-hover:translate-x-1
+                                    group-hover:text-white"
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Decorative bottom gradient */}
+      <div
+        className="absolute bottom-0 left-0 z-0 h-px w-full"
+        style={{
+          background:
+            "radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%)"
+        }}
       />
-    </div>
+    </section>
   )
 }

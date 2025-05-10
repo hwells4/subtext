@@ -33,7 +33,7 @@ export default function UserInsightsSection() {
       icon: <Lightbulb className="size-5 text-amber-300" />,
       title: "Pain Point Identified",
       description:
-        "I'm spending way too much time reading massive threads trying to pull out useful info",
+        '"I\'m spending way too much time reading massive threads trying to pull out useful info"',
       date: "High frequency pattern",
       iconClassName: "text-amber-500",
       titleClassName: "text-amber-500",
@@ -84,7 +84,8 @@ export default function UserInsightsSection() {
                     ✕
                   </span>
                   <span className="text-pretty text-base text-slate-700 sm:text-lg">
-                    Wasting days manually scanning endless threads for insights
+                    Wasting days manually reading endless online discussions for
+                    useful takeaways.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -92,8 +93,8 @@ export default function UserInsightsSection() {
                     ✕
                   </span>
                   <span className="text-pretty text-base text-slate-700 sm:text-lg">
-                    Generic AI tools producing "fluffy" copy that fails to
-                    convert
+                    Generic AI tools producing "fluffy" copy that doesn't get
+                    results.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -101,7 +102,8 @@ export default function UserInsightsSection() {
                     ✕
                   </span>
                   <span className="text-pretty text-base text-slate-700 sm:text-lg">
-                    Drowning in scattered data without clear patterns
+                    Drowning in scattered information without seeing what your
+                    audience really means.
                   </span>
                 </li>
               </ul>
@@ -117,8 +119,8 @@ export default function UserInsightsSection() {
                     <CheckCircle2 className="size-3 sm:size-4" />
                   </span>
                   <span className="text-pretty text-base text-slate-700 sm:text-lg">
-                    Automatically extract key insights from thousands of
-                    conversations
+                    Find the important points from thousands of real online
+                    discussions automatically.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -126,7 +128,7 @@ export default function UserInsightsSection() {
                     <CheckCircle2 className="size-3 sm:size-4" />
                   </span>
                   <span className="text-pretty text-base text-slate-700 sm:text-lg">
-                    Identify exact language patterns your audience uses
+                    Pinpoint the exact words and phrases your audience uses.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
@@ -134,7 +136,7 @@ export default function UserInsightsSection() {
                     <CheckCircle2 className="size-3 sm:size-4" />
                   </span>
                   <span className="text-pretty text-base text-slate-700 sm:text-lg">
-                    Transform real customer words into high-converting copy
+                    Turn their actual words into copy that converts.
                   </span>
                 </li>
               </ul>
@@ -158,28 +160,6 @@ export default function UserInsightsSection() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.8,
-            delay: 0.6,
-            ease: "easeOut"
-          }}
-          className="mt-16 rounded-xl bg-white p-8 shadow-lg"
-        >
-          <h3 className="mb-4 text-center text-2xl font-bold text-slate-900 md:text-3xl">
-            From Scattered Comments to Actionable Messaging
-          </h3>
-          <p className="mx-auto max-w-3xl text-center text-lg text-slate-600">
-            Our platform automatically dives deep into authentic, unprompted
-            conversations, identifying how real people describe their problems
-            and desires. We surface the core insights you need – in their exact
-            words – to build messaging that resonates and converts.
-          </p>
-        </motion.div>
       </div>
     </section>
   )
