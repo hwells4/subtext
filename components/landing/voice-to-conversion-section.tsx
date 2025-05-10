@@ -1,237 +1,230 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { motion } from "framer-motion"
-import { Check, LineChart } from "lucide-react"
+import {
+  ArrowRight,
+  Check,
+  Search,
+  MessageSquareText,
+  BarChart3,
+  FileText
+} from "lucide-react"
 import Image from "next/image"
-import dynamic from "next/dynamic"
+import Link from "next/link"
 
-// Dynamically import DotLottieReact to prevent SSR issues
-const DotLottieReact = dynamic(
-  () => import("@lottiefiles/dotlottie-react").then(mod => mod.DotLottieReact),
-  { ssr: false }
-)
+interface StepItem {
+  step: number
+  title: string
+  description: string
+  insight: string
+  insightText: string
+  icon: React.ReactNode
+  iconColor: string
+  accentColor: string
+  accentGradient: string
+}
+
+const steps: StepItem[] = [
+  {
+    step: 1,
+    title: "You Ask, We Analyze",
+    description:
+      "Input your keyword, question, or define your target audience. Subtext dives into Reddit – where millions of people talk openly. We analyze thousands of raw, unprompted discussions relevant to your specific query.",
+    insight: "Real Words, Not Guesswork:",
+    insightText:
+      "Every insight comes from what people actually said, verifiable and authentic.",
+    icon: <Search className="size-full" />,
+    iconColor: "text-blue-500",
+    accentColor: "bg-blue-500",
+    accentGradient: "from-blue-50 to-transparent"
+  },
+  {
+    step: 2,
+    title: "Extracting Verifiable Insights",
+    description:
+      "From these relevant discussions, Subtext accurately finds the real words, slang, common phrases, emotional triggers, and recurring themes. This isn't AI making things up; it's what they actually say and mean.",
+    insight: "Verifiably Sourced:",
+    insightText:
+      "Every key quote, pain point, and messaging angle is traceable to its origin, ensuring genuine audience intelligence.",
+    icon: <MessageSquareText className="size-full" />,
+    iconColor: "text-emerald-500",
+    accentColor: "bg-emerald-500",
+    accentGradient: "from-emerald-50 to-transparent"
+  },
+  {
+    step: 3,
+    title: "Consolidating Intelligence",
+    description:
+      "Our AI intelligently groups these extracted insights into clear patterns. Discover how distinct audience segments describe problems in their unique vernacular and identify real pain points voiced in actual user discussions.",
+    insight: "Evidence-Based Clarity:",
+    insightText:
+      "Go beyond generic personas. Get insights backed by real-world community analysis, tailored to your research, not AI guesswork.",
+    icon: <BarChart3 className="size-full" />,
+    iconColor: "text-amber-500",
+    accentColor: "bg-amber-500",
+    accentGradient: "from-amber-50 to-transparent"
+  },
+  {
+    step: 4,
+    title: "Your Audience's Voice",
+    description:
+      "Finally, Subtext transforms this complex analysis into clear, organized Top Insights, key Pain Points, resonant Messaging Angles, and the core Audience Questions your market is asking. Get actionable intelligence, ready to use.",
+    insight: "Risk-Free Validation:",
+    insightText:
+      "Build campaigns on a foundation of verifiable truth, knowing your messages are grounded in what your audience already says and feels.",
+    icon: <FileText className="size-full" />,
+    iconColor: "text-purple-500",
+    accentColor: "bg-purple-500",
+    accentGradient: "from-purple-50 to-transparent"
+  }
+]
 
 const VoiceToConversionSection = () => {
-  return (
-    <section className="relative w-full bg-white py-20">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-14 text-center">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
-            THE SOLUTION
-          </h3>
-          <h2 className="mb-4 mt-2 text-4xl font-extrabold text-slate-900 md:text-5xl">
-            Get Your Audience's Exact Words, Ready to Use
-          </h2>
-          <p className="mx-auto text-lg text-slate-600">
-            Subtext automatically analyzes real, everyday online discussions to
-            find how people describe their problems and what they want. We give
-            you the key information you need – in their exact words – to create
-            marketing messages that connect with your audience and get them to
-            act.
-          </p>
-        </div>
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
 
-        {/* 4-Step Process */}
-        <div className="mt-14 space-y-16">
-          {/* Step 1: Input & Deep Analysis */}
-          <motion.div
-            className="grid grid-cols-1 items-center gap-x-8 gap-y-10 md:grid-cols-5"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="order-2 md:order-1 md:col-span-3">
-              <span className="text-sm font-semibold tracking-wide text-blue-600">
-                STEP 1
-              </span>
-              <h3 className="mt-2 text-2xl font-bold text-gray-900">
-                Finding Real Conversations
-              </h3>
-              <p className="mt-4 leading-relaxed text-gray-600">
-                Subtext looks at Reddit – where millions of people talk openly.
-                We analyze thousands of{" "}
-                <strong>raw, unprompted discussions</strong> to understand what
-                they're saying, how they feel, and the common ways your audience{" "}
-                <em>actually</em> talks about their needs, problems, and
-                desires.
-              </p>
-              <div className="mt-5 flex items-start gap-2 rounded-lg bg-blue-50 p-3">
-                <Check className="mt-0.5 size-5 shrink-0 text-blue-600" />
-                <p className="text-sm font-medium text-blue-800">
-                  <span className="font-bold">Real Words, Not Guesswork:</span>{" "}
-                  Every piece of information comes from what people actually
-                  said, so you know it's genuine.
-                </p>
-              </div>
-            </div>
-            <div className="order-1 flex justify-center md:order-2 md:col-span-2">
-              <div className="relative h-72 w-full">
-                <LottieAnimation lottieUrl="/animation/reddit-analysis.lottie" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Step 2: Authentic Language Extraction */}
-          <motion.div
-            className="grid grid-cols-1 items-center gap-x-8 gap-y-10 md:grid-cols-5"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex justify-center md:col-span-2">
-              <div className="relative h-72 w-full">
-                <LottieAnimation lottieUrl="https://lottie.host/4722f81e-af73-4a24-90ad-d2fd87338093/C0UynIw9r2.lottie" />
-              </div>
-            </div>
-            <div className="md:col-span-3">
-              <span className="text-sm font-semibold tracking-wide text-blue-600">
-                STEP 2
-              </span>
-              <h3 className="mt-2 text-2xl font-bold text-gray-900">
-                Extracting Their <em>Exact</em> Words
-              </h3>
-              <p className="mt-4 leading-relaxed text-gray-600">
-                From these discussions, Subtext accurately finds the{" "}
-                <strong>
-                  real words, slang, common phrases, and emotional triggers
-                </strong>{" "}
-                your audience uses. This isn't AI making things up; it's what
-                they actually say.
-              </p>
-              <div className="mt-5 flex items-start gap-2 rounded-lg bg-blue-50 p-3">
-                <Check className="mt-0.5 size-5 shrink-0 text-blue-600" />
-                <p className="text-sm font-medium text-blue-800">
-                  <span className="font-bold">Verifiably Sourced:</span> Every
-                  key quote and way of phrasing is traceable to where it came
-                  from, so you can be sure it's real.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Step 3: Intelligent Analysis */}
-          <motion.div
-            className="grid grid-cols-1 items-center gap-x-8 gap-y-10 md:grid-cols-5"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="order-2 md:order-1 md:col-span-3">
-              <span className="text-sm font-semibold tracking-wide text-blue-600">
-                STEP 3
-              </span>
-              <h3 className="mt-2 text-2xl font-bold text-gray-900">
-                Seeing Groups & Real Problems
-              </h3>
-              <p className="mt-4 leading-relaxed text-gray-600">
-                Our AI intelligently groups these extracted insights. Discover
-                how distinct <strong>audience segments</strong> describe
-                problems in their unique vernacular. Simultaneously, Subtext
-                identifies, categorizes (e.g., Functional, Emotional, Pricing),
-                and helps prioritize the <strong>real pain points</strong>{" "}
-                voiced in actual user discussions.
-              </p>
-              <div className="mt-5 flex items-start gap-2 rounded-lg bg-blue-50 p-3">
-                <Check className="mt-0.5 size-5 shrink-0 text-blue-600" />
-                <p className="text-sm font-medium text-blue-800">
-                  <span className="font-bold">Evidence-Based Clarity:</span>{" "}
-                  Move beyond generic personas with insights backed by diverse,
-                  real-world community analysis, not AI guesswork.
-                </p>
-              </div>
-            </div>
-            <div className="order-1 flex justify-center md:order-2 md:col-span-2">
-              <div className="relative h-72 w-full">
-                <LottieAnimation lottieUrl="https://lottie.host/7fdf75da-fae6-4b10-b9a5-815de904edaa/nXXG4F37pF.lottie" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Step 4: Actionable Outputs */}
-          <motion.div
-            className="grid grid-cols-1 items-center gap-x-8 gap-y-10 md:grid-cols-5"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex justify-center md:col-span-2">
-              <div className="relative h-72 w-full">
-                <LottieAnimation lottieUrl="https://lottie.host/013f090d-d03f-4cb5-9f0c-08dcd2f9c876/M3pv0P4TYA.lottie" />
-              </div>
-            </div>
-            <div className="md:col-span-3">
-              <span className="text-sm font-semibold tracking-wide text-blue-600">
-                STEP 4
-              </span>
-              <h3 className="mt-2 text-2xl font-bold text-gray-900">
-                Clear Takeaways You Can Act On
-              </h3>
-              <p className="mt-4 leading-relaxed text-gray-600">
-                Finally, Subtext transforms this complex analysis into clear,
-                organized <strong>Top Insights</strong> and the key{" "}
-                <strong>Audience Questions</strong> your market is asking. Get
-                actionable takeaways, ready for you to craft high-converting
-                copy and content.
-              </p>
-              <div className="mt-5 flex items-start gap-2 rounded-lg bg-blue-50 p-3">
-                <Check className="mt-0.5 size-5 shrink-0 text-blue-600" />
-                <p className="text-sm font-medium text-blue-800">
-                  <span className="font-bold">Risk-Free Validation:</span> Build
-                  campaigns on a foundation of verifiable truth, knowing your
-                  messages are grounded in what your audience <em>already</em>{" "}
-                  says and feels.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -right-[10%] top-1/4 size-[500px] rounded-full bg-gradient-to-r from-blue-50 to-blue-100 opacity-60 blur-3xl" />
-        <div className="absolute left-[5%] top-3/4 size-[400px] rounded-full bg-gradient-to-r from-purple-50 to-purple-100 opacity-60 blur-3xl" />
-      </div>
-    </section>
-  )
-}
-
-// Simplified Lottie component using the hosted solution
-interface LottieAnimationProps {
-  lottieUrl: string
-}
-
-function LottieAnimation({ lottieUrl }: LottieAnimationProps) {
-  const [error, setError] = useState(false)
-
-  if (error) {
-    // Fallback animation if the Lottie fails to load
-    return (
-      <div className="flex size-full items-center justify-center">
-        <div className="relative size-32">
-          <div className="absolute inset-0 animate-pulse rounded-full bg-blue-300 opacity-75"></div>
-          <LineChart className="absolute inset-0 m-auto size-16 animate-bounce text-blue-700" />
-        </div>
-      </div>
-    )
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" }
+    }
   }
 
   return (
-    <div className="size-full">
-      <DotLottieReact
-        src={lottieUrl}
-        loop
-        autoplay
-        style={{ width: "100%", height: "100%" }}
-        onError={() => setError(true)}
+    <section className="relative w-full overflow-hidden bg-white py-24 md:py-32">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <div className="bg-gradient-radial absolute -right-[35%] top-[10%] size-[600px] rounded-full from-slate-50 to-transparent opacity-80 blur-3xl" />
+        <div className="bg-gradient-radial absolute -left-[25%] top-[60%] size-[600px] rounded-full from-slate-50 to-transparent opacity-80 blur-3xl" />
+      </div>
+
+      <div className="container relative z-10 mx-auto max-w-[1220px] px-6 md:px-10">
+        <motion.div
+          className="flex flex-col items-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {/* Section Header */}
+          <motion.div
+            className="mb-16 text-center md:mb-20"
+            variants={itemVariants}
+          >
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
+              THE PROCESS
+            </h3>
+            <h2 className="mb-4 mt-2 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-5xl">
+              Deep Audience Intelligence,{" "}
+              <span className="italic">On Demand</span>
+            </h2>
+            <p className="mx-auto max-w-3xl text-base leading-relaxed text-slate-600 md:text-lg">
+              Subtext gives you a direct line to what your audience is actually
+              saying. We analyze millions of real, unprompted discussions to
+              find how people describe their problems, what they desire, and the{" "}
+              <span className="font-semibold italic">exact language</span> they
+              use.
+            </p>
+          </motion.div>
+
+          {/* Process Steps */}
+          <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                variants={itemVariants}
+                className="group flex h-full"
+              >
+                <div
+                  className="relative flex size-full flex-col overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-md transition-all duration-300 hover:shadow-lg"
+                  style={{
+                    background:
+                      "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",
+                    backdropFilter: "blur(10px)"
+                  }}
+                >
+                  {/* Subtle gradient accent in corner */}
+                  <div
+                    className={`bg-gradient-radial absolute -right-20 -top-20 size-48 rounded-full ${step.accentGradient} opacity-60`}
+                  />
+
+                  {/* Content Section */}
+                  <div className="relative z-10 flex h-full flex-col p-8 md:p-8">
+                    <div className="mb-4 flex items-center justify-between">
+                      {/* Icon wrapper with number label */}
+                      <div className="relative">
+                        <div
+                          className={`size-12 ${step.iconColor} transition-transform duration-300 group-hover:scale-110`}
+                        >
+                          {step.icon}
+                        </div>
+                        <div className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-white shadow-sm">
+                          {step.step}
+                        </div>
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {step.title}
+                    </h3>
+
+                    <div className="my-4 h-px w-full bg-gradient-to-r from-slate-200 to-transparent" />
+
+                    <p className="grow text-base leading-relaxed text-slate-600">
+                      {step.description}
+                    </p>
+
+                    {/* Key Insight - inline with icon */}
+                    <p className="mt-4 text-sm text-slate-700">
+                      <span className="inline-flex items-center">
+                        <span
+                          className={`mr-2 inline-block size-2 rounded-full ${step.accentColor}`}
+                        ></span>
+                        <span className="font-semibold">{step.insight}</span>
+                      </span>{" "}
+                      {step.insightText}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div variants={itemVariants} className="mt-16 text-center">
+            <Link
+              href="/waitlist"
+              className="group inline-flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-all hover:bg-slate-800"
+            >
+              <span>Get Early Access Now</span>
+              <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <p className="mt-4 text-sm text-slate-500 sm:text-base">
+              Join the waitlist and be among the first to access these powerful
+              insights.
+            </p>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Decorative bottom gradient */}
+      <div
+        className="absolute bottom-0 left-0 z-0 h-px w-full"
+        style={{
+          background:
+            "radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%)"
+        }}
       />
-    </div>
+    </section>
   )
 }
 

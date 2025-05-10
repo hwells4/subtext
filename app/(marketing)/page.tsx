@@ -65,6 +65,9 @@ export default function HomePage() {
         {/* Differentiation Section */}
         {/* <DifferentiationSection /> */}
 
+        {/* Benefits Section - Shows tangible advantages */}
+        <BenefitsSection />
+
         {/* Use Cases Section - Role Specific */}
         <UseCasesSection />
 
@@ -73,9 +76,6 @@ export default function HomePage() {
 
         {/* Testimonials Section */}
         {/* <TestimonialsCarousel /> */}
-
-        {/* Benefits Section - Shows tangible advantages */}
-        <BenefitsSection />
 
         {/* FAQ Section */}
         <ModernSplitFaqSection />
