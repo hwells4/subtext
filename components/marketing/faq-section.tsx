@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const faqSectionsData = [
   {
@@ -257,15 +258,15 @@ export function FaqSection() {
 export function ModernSplitFaqSection() {
   return (
     <section className="bg-background w-full py-20 lg:py-32">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="grid gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10 text-left">
             <div className="flex flex-col gap-4">
               <div>
                 <Badge variant="outline">FAQ</Badge>
               </div>
               <div className="flex flex-col gap-2">
-                <h4 className="font-regular max-w-xl text-left text-3xl tracking-tighter md:text-5xl">
+                <h4 className="max-w-xl text-left text-3xl font-semibold tracking-tighter md:text-5xl">
                   Frequently Asked Questions
                 </h4>
                 <p className="text-muted-foreground max-w-xl text-left text-lg leading-relaxed tracking-tight lg:max-w-lg">
@@ -273,20 +274,26 @@ export function ModernSplitFaqSection() {
                 </p>
               </div>
               <div>
-                <Button className="gap-4" variant="outline">
-                  Any questions? Reach out <PhoneCall className="size-4" />
+                <Button
+                  asChild
+                  className="gap-4 text-base font-semibold"
+                  variant="outline"
+                >
+                  <Link href="/waitlist">
+                    Any questions? Reach out <PhoneCall className="size-4" />
+                  </Link>
                 </Button>
               </div>
             </div>
           </div>
           <div>
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion type="single" collapsible className="w-full text-left">
               {clientFaqData.map((faq, index) => (
                 <AccordionItem key={faq.id} value={faq.id}>
-                  <AccordionTrigger className="text-base font-medium">
+                  <AccordionTrigger className="py-4 text-left text-base font-semibold">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-muted-foreground text-left text-base">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>

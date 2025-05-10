@@ -76,7 +76,7 @@ export function ResultsShowcase() {
             }
           }}
         >
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             Real Results, Measurable Impact
           </h2>
           <p className="text-muted-foreground mt-4 max-w-3xl text-lg">
@@ -89,7 +89,7 @@ export function ResultsShowcase() {
             {resultCases.map((caseItem, index) => (
               <Card
                 key={index}
-                className={`cursor-pointer p-6 transition-all hover:shadow-md ${
+                className={`cursor-pointer p-6 shadow-md transition-all hover:shadow-lg ${
                   activeCase === index ? "border-primary bg-primary/5" : ""
                 }`}
                 onClick={() => setActiveCase(index)}
@@ -97,7 +97,9 @@ export function ResultsShowcase() {
                 <div className="flex items-start gap-4">
                   {caseItem.icon}
                   <div className="space-y-1">
-                    <h3 className="text-lg font-semibold">{caseItem.title}</h3>
+                    <h3 className="text-base font-semibold">
+                      {caseItem.title}
+                    </h3>
                     <p className="text-muted-foreground text-sm">
                       {caseItem.explanation}
                     </p>
@@ -141,14 +143,14 @@ export function ResultsShowcase() {
                   key={index}
                   className="flex h-full flex-col justify-between p-6"
                 >
-                  <p className="text-muted-foreground text-sm font-medium">
+                  <p className="text-muted-foreground text-sm font-semibold">
                     {result.label}
                   </p>
                   <div className="mt-2 space-y-1">
-                    <p className="text-3xl font-bold">{result.value}</p>
+                    <p className="text-3xl font-semibold">{result.value}</p>
                     {result.change && (
                       <p
-                        className={`text-sm font-medium ${
+                        className={`text-sm font-semibold ${
                           result.change.startsWith("+")
                             ? "text-green-500"
                             : result.change.startsWith("-")
@@ -164,7 +166,7 @@ export function ResultsShowcase() {
               ))}
             </AnimatedGroup>
             <div className="mt-4 text-center">
-              <h3 className="text-xl font-bold">
+              <h3 className="text-lg font-semibold">
                 {resultCases[activeCase].category}
               </h3>
             </div>

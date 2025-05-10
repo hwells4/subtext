@@ -6,9 +6,9 @@ import Image from "next/image"
 
 export function HeroScrollDemo() {
   return (
-    <div className="relative -mt-20 flex flex-col overflow-hidden pb-[150px] sm:-mt-32 md:-mt-40 lg:-mt-48">
+    <div className="relative -mt-20 flex flex-col overflow-hidden pb-[152px] sm:-mt-32 md:-mt-40 lg:-mt-48">
       {/* Spinning Gear SVG at bottom left - Adjusted z-index and positioning */}
-      <div className="pointer-events-none absolute bottom-32 left-5 z-0 w-28 opacity-5 sm:bottom-44 sm:left-12 sm:w-32 sm:opacity-15 md:bottom-52 md:left-20 md:w-40 lg:bottom-36 lg:left-16 lg:w-48 lg:opacity-10">
+      <div className="pointer-events-none absolute bottom-32 left-4 z-0 w-28 opacity-5 sm:bottom-44 sm:left-12 sm:w-32 sm:opacity-15 md:bottom-52 md:left-20 md:w-40 lg:bottom-36 lg:left-16 lg:w-48 lg:opacity-10">
         <motion.div
           className="size-full"
           animate={{ rotate: 360 }}

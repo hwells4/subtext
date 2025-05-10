@@ -98,7 +98,7 @@ export default function UseCasesSection() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
               TAILORED SOLUTIONS
             </h3>
-            <h2 className="mb-4 mt-2 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-5xl">
+            <h2 className="mb-4 mt-2 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-5xl">
               See How Subtext Works For <span className="italic">You</span>
             </h2>
             <p className="mx-auto max-w-3xl text-base leading-relaxed text-slate-600 md:text-lg">
@@ -118,7 +118,7 @@ export default function UseCasesSection() {
               >
                 {/* Glass card with subtle border */}
                 <div
-                  className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+                  className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-md transition-all duration-300 hover:shadow-lg"
                   style={{
                     background:
                       "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",
@@ -133,23 +133,23 @@ export default function UseCasesSection() {
                   {/* Content Section */}
                   <div className="relative z-10 p-8">
                     <div className="mb-4 flex items-center justify-between">
-                      <div className="size-[52px]">
+                      <div className="size-12">
                         <div className="relative size-full">
                           <Image
                             src={useCase.svgIcon}
                             alt={useCase.headline}
-                            width={52}
-                            height={52}
-                            className={`size-[52px] ${useCase.iconColor} transition-transform duration-300 group-hover:scale-110`}
+                            width={48}
+                            height={48}
+                            className={`size-12 transition-transform duration-300 group-hover:scale-110`}
                           />
                         </div>
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900">
+                    <h3 className="text-lg font-semibold text-slate-900">
                       {useCase.headline}
                     </h3>
-                    <p className="mt-1 text-base font-medium text-slate-700">
+                    <p className="mt-1 text-base font-semibold text-slate-700">
                       {useCase.subheadline}
                     </p>
 
@@ -159,7 +159,7 @@ export default function UseCasesSection() {
                     <div className="mt-6 space-y-4">
                       {useCase.benefits.map((benefit, idx) => (
                         <div key={idx} className="flex items-start">
-                          <CheckCircle className="mr-3 mt-0.5 size-5 shrink-0 text-slate-500" />
+                          <CheckCircle className="mr-2 mt-0.5 size-5 shrink-0 text-slate-500" />
                           <span
                             className="text-slate-700"
                             dangerouslySetInnerHTML={{
@@ -183,19 +183,12 @@ export default function UseCasesSection() {
                     <div className="absolute inset-0 z-0 bg-slate-900 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                     {/* CTA Button Area */}
-                    <Link
-                      href="/early-access"
-                      className="relative z-10 block py-5"
-                    >
+                    <Link href="/waitlist" className="relative z-10 block py-4">
                       <div className="group/button flex items-center justify-center transition-all duration-300">
-                        <span className="font-medium text-slate-800 transition-colors duration-300 group-hover:text-white">
+                        <span className="font-semibold text-slate-800 transition-colors duration-300 group-hover:text-white">
                           {useCase.cta}
                         </span>
-                        <ArrowRight
-                          className="ml-2 size-4 text-slate-800 transition-all duration-300 
-                                    group-hover/button:translate-x-2 group-hover:translate-x-1
-                                    group-hover:text-white"
-                        />
+                        <ArrowRight className="ml-2 size-4 text-slate-800 transition-all duration-300 group-hover/button:translate-x-2 group-hover:translate-x-1 group-hover:text-white" />
                       </div>
                     </Link>
                   </div>

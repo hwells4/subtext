@@ -65,7 +65,7 @@ export default function KeyFeaturesSection() {
           viewport={{ once: true }}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
+            <h2 className="mb-4 text-3xl font-semibold text-slate-900 md:text-4xl">
               Get Your Customers' Words Delivered to You. <br /> At Scale. In
               Minutes.
             </h2>
@@ -87,10 +87,10 @@ export default function KeyFeaturesSection() {
                 <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
                   <feature.icon className="size-6" />
                 </div>
-                <h3 className="mb-1 text-xl font-semibold text-slate-900">
+                <h3 className="mb-1 text-lg font-semibold text-slate-900">
                   {feature.title}
                 </h3>
-                <p className="mb-3 text-sm font-medium text-blue-600">
+                <p className="mb-4 text-sm font-semibold text-blue-600">
                   {feature.subtitle}
                 </p>
                 <p className="leading-relaxed text-slate-600">

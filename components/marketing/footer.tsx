@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 interface SocialLink {
   name: string
@@ -85,13 +86,15 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
             <div className="lg:col-span-4">
               <div className="mb-4 flex items-center gap-2">
                 {brand.logo ? (
-                  <img
+                  <Image
                     src={brand.logo}
                     alt={brand.name}
+                    width={32}
+                    height={32}
                     className="h-8 w-auto"
                   />
                 ) : (
-                  <span className="text-foreground text-xl font-bold">
+                  <span className="text-foreground text-lg font-semibold">
                     {brand.name}
                   </span>
                 )}
@@ -102,7 +105,7 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
 
               {newsletter && (
                 <div className="mb-8 mt-6">
-                  <h3 className="mb-3 text-sm font-semibold">
+                  <h3 className="mb-2 text-sm font-semibold">
                     Subscribe to our newsletter
                   </h3>
                   <form onSubmit={handleSubscribe} className="flex gap-2">
@@ -151,12 +154,12 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
               {columns.map(column => (
                 <div key={column.title}>
                   <h3 className="mb-4 text-sm font-semibold">{column.title}</h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-2">
                     {column.links.map(link => (
                       <li key={link.name}>
                         <a
                           href={link.href}
-                          className="text-muted-foreground hover:text-foreground flex items-center gap-1.5 text-sm transition-colors"
+                          className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm transition-colors"
                         >
                           {link.icon}
                           <span>{link.name}</span>

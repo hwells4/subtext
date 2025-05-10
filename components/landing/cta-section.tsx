@@ -2,6 +2,7 @@
 
 import React from "react"
 import { ArrowRight, Calendar } from "lucide-react"
+import Link from "next/link"
 
 export default function CtaSection() {
   return (
@@ -9,7 +10,7 @@ export default function CtaSection() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 px-8 py-12 shadow-xl md:px-12 md:py-16">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="mb-4 text-3xl font-extrabold text-white md:text-4xl">
+            <h2 className="mb-4 text-3xl font-semibold text-white md:text-4xl">
               Start Creating Copy That Actually Converts.
             </h2>
 
@@ -20,22 +21,22 @@ export default function CtaSection() {
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
-              <a
-                href="/early-access"
-                className="w-full rounded-lg bg-white px-8 py-3 text-center text-lg font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 md:w-auto"
+              <Link
+                href="/waitlist"
+                className="w-full rounded-lg bg-white px-6 py-3 text-center text-base font-semibold text-slate-900 shadow-md transition-all duration-200 hover:bg-slate-100 md:w-auto"
               >
                 Join Waitlist & Get Early Access
-              </a>
+              </Link>
 
-              <a
-                href="/demo"
-                className="w-full rounded-lg border border-white bg-transparent px-8 py-3 text-center text-lg font-semibold text-white shadow-md transition-all duration-200 hover:bg-white/10 md:w-auto"
+              <Link
+                href="/waitlist"
+                className="w-full rounded-lg border border-white bg-transparent px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-all duration-200 hover:bg-white/10 md:w-auto"
               >
                 <span className="flex items-center justify-center">
                   <Calendar className="mr-2 size-4" />
                   Book a Demo
                 </span>
-              </a>
+              </Link>
             </div>
 
             <p className="mt-6 text-sm text-slate-400">

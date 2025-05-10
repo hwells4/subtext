@@ -61,15 +61,16 @@ export default function DifferentiationSection() {
           viewport={{ once: true }}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-4xl">
+            <h2 className="mb-4 text-3xl font-semibold text-slate-900 md:text-4xl">
               This Isn't AI Fluff. This is Your Audience's{" "}
               <span className="italic">Verifiable Truth</span>.
             </h2>
             <p className="mx-auto mt-4 max-w-[800px] text-lg text-slate-600">
               Many AI tools <span className="italic">generate</span> copy.
               Subtext <span className="italic">reveals</span> the authentic
-              language your audience is <strong>already using</strong>. While
-              other tools produce plausible-sounding but ultimately generic
+              language your audience is{" "}
+              <span className="font-semibold">already using</span>. While other
+              tools produce plausible-sounding but ultimately generic
               "AI-generated slop," Subtext delivers 100% real, verifiable
               customer voice, backed by data.
             </p>
@@ -83,13 +84,13 @@ export default function DifferentiationSection() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="flex rounded-xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-7"
+                className="flex rounded-xl bg-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
-                <div className="mr-5 flex size-12 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+                <div className="mr-4 flex size-12 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
                   {differentiator.icon}
                 </div>
                 <div>
-                  <h3 className="mb-2 text-xl font-semibold text-slate-900">
+                  <h3 className="mb-2 text-lg font-semibold text-slate-900">
                     {differentiator.title}
                   </h3>
                   <p className="text-slate-600">{differentiator.description}</p>
@@ -99,7 +100,7 @@ export default function DifferentiationSection() {
           </motion.div>
 
           <motion.div className="mt-12 text-center" variants={itemVariants}>
-            <p className="text-lg font-medium text-slate-800">
+            <p className="text-lg font-semibold text-slate-800">
               Subtext empowers YOU to write better, more resonant copy – whether
               you craft it manually or use LLMs to assist. We provide the
               authentic, data-backed fuel.

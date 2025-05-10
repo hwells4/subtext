@@ -12,7 +12,7 @@ export default function BenefitsSection() {
           <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
             TANGIBLE ADVANTAGES
           </h3>
-          <h2 className="mb-4 mt-2 text-4xl font-extrabold text-slate-900 md:text-5xl">
+          <h2 className="mb-4 mt-2 text-4xl font-semibold text-slate-900 md:text-5xl">
             Reap the Rewards of Smarter Research
           </h2>
           <p className="mx-auto max-w-3xl text-lg text-slate-600">
@@ -37,7 +37,7 @@ export default function BenefitsSection() {
               <div className="mb-6 flex size-24 items-center justify-center rounded-full bg-slate-100">
                 <benefit.icon className="size-10 text-slate-800" />
               </div>
-              <h3 className="mb-3 text-xl font-bold text-slate-800">
+              <h3 className="mb-2 text-lg font-semibold text-slate-800">
                 {benefit.title}
               </h3>
               <p className="text-slate-600">{benefit.description}</p>

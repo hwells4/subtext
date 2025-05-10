@@ -44,7 +44,7 @@ export function TestimonialsCarousel() {
     }, 8000) // Change every 8 seconds
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying])
+  }, [isAutoPlaying, testimonials.length])
 
   // Pause auto-play on user interaction
   const handleManualNavigation = (index: number) => {
@@ -95,7 +95,7 @@ export function TestimonialsCarousel() {
             }
           }}
         >
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             What Our Customers Say
           </h2>
           <p className="text-muted-foreground mt-4 max-w-3xl text-lg">
@@ -134,7 +134,7 @@ export function TestimonialsCarousel() {
 
               <div className="flex flex-col items-center gap-8 md:flex-row">
                 <div className="w-full md:w-3/4">
-                  <blockquote className="mb-6 text-lg italic md:text-xl">
+                  <blockquote className="mb-6 text-lg italic">
                     "{testimonials[activeIndex].quote}"
                   </blockquote>
 
@@ -151,9 +151,19 @@ export function TestimonialsCarousel() {
                 <div className="relative size-32 shrink-0">
                   <div className="bg-muted relative mx-auto size-28 overflow-hidden rounded-full">
                     {/* Use Image component with placeholder or avatar */}
-                    <div className="text-primary/30 absolute inset-0 flex items-center justify-center text-2xl font-bold">
-                      {testimonials[activeIndex].author.charAt(0)}
-                    </div>
+                    <Image
+                      src={
+                        testimonials[activeIndex].avatar.startsWith(
+                          "/placeholder"
+                        )
+                          ? testimonials[activeIndex].avatar
+                          : `/placeholder.svg?width=112&height=112&query=abstract_user_avatar_${activeIndex + 1}`
+                      }
+                      alt={testimonials[activeIndex].author}
+                      width={112}
+                      height={112}
+                      className="size-full object-cover"
+                    />
                   </div>
                 </div>
               </div>

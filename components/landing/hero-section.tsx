@@ -28,7 +28,7 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-white pb-16 pt-8 md:pb-24 md:pt-16">
-      <div className="container relative z-10 mx-auto w-full max-w-[1220px] px-6 md:px-10">
+      <div className="container relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10">
         <motion.div
           className="grid w-full grid-cols-1 items-center gap-12 md:grid-cols-12 md:gap-10"
           variants={containerVariants}
@@ -46,7 +46,7 @@ export function HeroSection() {
               <AvatarsDemo />
             </div>
 
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
               Stop Writing Blindly.
               <br />
               Convert More with
@@ -66,22 +66,22 @@ export function HeroSection() {
             <p className="text-base leading-relaxed text-slate-600 md:text-lg">
               Subtext scours 16 billion+ Reddit posts to surface the verifiable,
               authentic language your audience uses daily. Turn their{" "}
-              <span className="font-medium italic">actual words</span> into
+              <span className="font-semibold italic">actual words</span> into
               high-converting copy and compelling content in minutes, not days –
               no AI-generated fluff, guaranteed.
             </p>
 
             <div className="mt-2 flex w-full flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
               <Link
-                href="/early-access"
-                className="group flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-all hover:bg-slate-800 sm:text-lg"
+                href="/waitlist"
+                className="group flex items-center justify-center rounded-lg bg-slate-900 px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-all hover:bg-slate-800"
               >
                 Join Waitlist & Get Early Access
                 <ChevronRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                href="/demo"
-                className="group flex items-center justify-center rounded-lg border border-slate-900 bg-transparent px-6 py-3 text-center text-base font-semibold text-slate-900 shadow-md transition-all hover:bg-slate-100 sm:text-lg"
+                href="/waitlist"
+                className="group flex items-center justify-center rounded-lg border border-slate-900 bg-transparent px-6 py-3 text-center text-base font-semibold text-slate-900 shadow-md transition-all hover:bg-slate-100"
               >
                 <Calendar className="mr-2 size-5" />
                 Book Demo
@@ -96,7 +96,7 @@ export function HeroSection() {
 
           {/* Glass Panes Mockup */}
           <motion.div
-            className="relative mx-auto w-full max-w-[380px] md:col-span-5 md:mx-0"
+            className="relative mx-auto w-full max-w-[384px] md:col-span-5 md:mx-0"
             variants={itemVariants}
           >
             {/* Background Glass Pane */}
@@ -121,7 +121,7 @@ export function HeroSection() {
 
             {/* Main Glass Pane */}
             <div
-              className="relative z-10 h-[350px] w-[280px] overflow-hidden rounded-[32px] border-[3px] border-white/20 bg-white/25 backdrop-blur-xl sm:w-[320px] md:h-[460px] md:w-full"
+              className="relative z-10 h-[352px] w-[280px] overflow-hidden rounded-[32px] border-[3px] border-white/20 bg-white/25 backdrop-blur-xl sm:w-[320px] md:h-[460px] md:w-full"
               style={{
                 boxShadow:
                   "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003, 0 4px 12px rgba(0,0,0,0.1)"

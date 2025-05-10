@@ -74,10 +74,10 @@ export default function VisualDemonstration() {
     <section className="w-full bg-white py-20 md:py-28">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mb-12 text-center md:mb-16">
-          <h2 className="mb-4 text-3xl font-extrabold text-slate-900 md:text-5xl">
+          <h2 className="mb-4 text-3xl font-semibold text-slate-900 md:text-5xl">
             From Research to Revenue: The Subtext Pathway
           </h2>
-          <p className="mx-auto max-w-3xl text-lg text-slate-600 md:text-xl">
+          <p className="mx-auto max-w-3xl text-lg text-slate-600">
             Visualize how Subtext directly connects deep audience understanding
             to your bottom line, transforming raw conversations into measurable
             marketing success.
@@ -109,7 +109,7 @@ export default function VisualDemonstration() {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <Card className="h-full shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl">
                 <CardHeader className="flex flex-row items-start gap-4 space-y-0 pb-4">
                   <div
                     className={`mt-1 rounded-full bg-slate-100 p-3 ${stage.color}`}
@@ -117,7 +117,7 @@ export default function VisualDemonstration() {
                     <stage.icon className="size-6" aria-hidden="true" />
                   </div>
                   <CardTitle
-                    className={`text-xl font-semibold leading-tight ${stage.color.replace("text-", "text-slate-")}`}
+                    className={`text-lg font-semibold leading-tight ${stage.color.replace("text-", "text-slate-")}`}
                   >
                     {stage.title}
                   </CardTitle>
