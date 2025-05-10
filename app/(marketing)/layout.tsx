@@ -17,9 +17,9 @@ const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: "VoiceScape - Unlock Reddit's Insights",
+  title: "Instant Audience Research for Better Copy - Subtext.ai",
   description:
-    "Stop guessing. Start validating. Our AI analyzes thousands of Reddit conversations, extracting authentic user language to give you trustworthy product insights in minutes, not weeks."
+    "Subtext provides instant audience research, mining real conversations for authentic language & pain points. Write better, faster with verifiable insights. Get early access!"
 }
 
 export default function MarketingLayout({

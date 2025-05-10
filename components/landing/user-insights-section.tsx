@@ -105,7 +105,7 @@ export default function UserInsightsSection() {
             </h2>
             <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
               Marketing without deep audience insight is just expensive
-              guessing. Our AI uncovers what's hiding in plain sight across
+              guessing. Subtext uncovers what's hiding in plain sight across
               thousands of conversations.
             </p>
           </motion.div>
@@ -146,7 +146,7 @@ export default function UserInsightsSection() {
             <div className="mt-8 border-t border-slate-700 pt-8 text-center">
               <p className="mx-auto max-w-2xl text-lg font-semibold text-slate-300">
                 That's why we built Subtext — to transform scattered
-                conversations into marketing intelligence.
+                conversations into verifiable marketing intelligence, fast.
               </p>
             </div>
           </motion.div>

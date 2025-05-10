@@ -30,10 +30,10 @@ const steps: StepItem[] = [
     step: 1,
     title: "You Ask, We Analyze",
     description:
-      "Input your keyword, question, or define your target audience. Subtext dives into Reddit – where millions of people talk openly. We analyze thousands of raw, unprompted discussions relevant to your specific query.",
+      "Input your keyword, question, or define your target audience. Subtext instantly dives into Reddit – where millions of people talk openly. We analyze thousands of raw, unprompted discussions relevant to your specific query.",
     insight: "Real Words, Not Guesswork:",
     insightText:
-      "Every insight comes from what people actually said, verifiable and authentic.",
+      "Every insight comes from what people actually said, verifiable and authentic. No AI making things up",
     icon: <Search className="size-full" />,
     iconColor: "text-blue-500",
     accentColor: "bg-blue-500",
@@ -43,10 +43,10 @@ const steps: StepItem[] = [
     step: 2,
     title: "Extracting Verifiable Insights",
     description:
-      "From these relevant discussions, Subtext accurately finds the real words, slang, common phrases, emotional triggers, and recurring themes. This isn't AI making things up; it's what they actually say and mean.",
+      "From these relevant discussions, Subtext accurately finds the real words, slang, common phrases, emotional triggers, and recurring themes. We pinpoint what they actually say and mean.",
     insight: "Verifiably Sourced:",
     insightText:
-      "Every key quote, pain point, and messaging angle is traceable to its origin, ensuring genuine audience intelligence.",
+      "Every key quote, pain point, and messaging angle is traceable to its origin, ensuring genuine evidence-backed audience intelligence.",
     icon: <MessageSquareText className="size-full" />,
     iconColor: "text-emerald-500",
     accentColor: "bg-emerald-500",
@@ -54,7 +54,7 @@ const steps: StepItem[] = [
   },
   {
     step: 3,
-    title: "Consolidating Intelligence",
+    title: "Consolidating Actionable Intelligence",
     description:
       "Our AI intelligently groups these extracted insights into clear patterns. Discover how distinct audience segments describe problems in their unique vernacular and identify real pain points voiced in actual user discussions.",
     insight: "Evidence-Based Clarity:",
@@ -67,9 +67,9 @@ const steps: StepItem[] = [
   },
   {
     step: 4,
-    title: "Your Audience's Voice",
+    title: "Your Audience's Voice, Ready to Use",
     description:
-      "Finally, Subtext transforms this complex analysis into clear, organized Top Insights, key Pain Points, resonant Messaging Angles, and the core Audience Questions your market is asking. Get actionable intelligence, ready to use.",
+      "Finally, Subtext transforms this complex analysis into clear, organized Insights, key pain points, resonant messaging angles, trends and core audience questions your market is asking. Get actionable intelligence, ready to use.",
     insight: "Risk-Free Validation:",
     insightText:
       "Build campaigns on a foundation of verifiable truth, knowing your messages are grounded in what your audience already says and feels.",
@@ -129,8 +129,9 @@ const VoiceToConversionSection = () => {
             </h2>
             <p className="mx-auto max-w-3xl text-base leading-relaxed text-slate-600 md:text-lg">
               Subtext gives you a direct line to what your audience is actually
-              saying. We analyze millions of real, unprompted discussions to
-              find how people describe their problems, what they desire, and the{" "}
+              saying. Input your query, and we analyze millions of real,
+              unprompted discussions to find how people describe their problems,
+              what they desire, and the{" "}
               <span className="font-semibold italic">exact language</span> they
               use.
             </p>

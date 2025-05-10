@@ -13,11 +13,12 @@ export default function BenefitsSection() {
             TANGIBLE ADVANTAGES
           </h3>
           <h2 className="mb-4 mt-2 text-4xl font-semibold text-slate-900 md:text-5xl">
-            Reap the Rewards of Smarter Research
+            Reap the Rewards of Smarter, Faster Research
           </h2>
           <p className="mx-auto max-w-3xl text-lg text-slate-600">
             Integrating Subtext AI translates directly into measurable
-            improvements for your marketing and client satisfaction.
+            improvements for your marketing and client satisfaction by
+            delivering what matters most:
           </p>
         </div>
 
@@ -53,25 +54,25 @@ const benefits = [
   {
     title: "Skyrocket Efficiency",
     description:
-      "Slash research hours, multiply output. Focus on strategy, not grunt work.",
+      "Slash research hours from days to minutes multiply output. Focus on strategy, not manual grunt work.",
     icon: TrendingUp
   },
   {
     title: "Amplify Results",
     description:
-      "Deliver data-backed campaigns that consistently outperform expectations.",
+      "Deliver data-backed campaigns using your audience's actual words to consistently outperform expectations.",
     icon: Sparkles
   },
   {
     title: "Boost Retention",
     description:
-      "Showcase undeniable ROI and strategic mastery that keeps customers loyal.",
+      "Showcase undeniable ROI and strategic mastery backed by verifiable evidence that keeps customers loyal.",
     icon: Heart
   },
   {
     title: "Maximize Profitability",
     description:
-      "Scale your services and impact without proportionally increasing overhead.",
+      "Scale your services and impact without proportionally increasing overhead by making smarter, faster decisions.",
     icon: DollarSign
   }
 ]

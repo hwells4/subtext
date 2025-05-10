@@ -32,19 +32,19 @@ const faqSectionsData = [
         id: "what-is",
         question: "What is Subtext.ai?",
         answer:
-          "Subtext.ai is a research platform that analyzes online discussions to find the real language, deep pain points, and motivations your customers use, helping you create high-converting marketing copy fast."
+          "Subtext.ai is an AI-powered audience intelligence platform where you input a research query, and we analyze millions of real online conversations to deliver authentic audience language, validated pain points, and verifiable messaging insights in minutes."
       },
       {
         id: "who-for",
         question: "Who is Subtext.ai for?",
         answer:
-          "It's for marketing agencies, content marketers, copywriters, performance marketers, and SaaS founders who need to create messaging that truly resonates with their audience and drives action."
+          "It's for marketers, copywriters, agencies, and founders who need to efficiently understand their audience deeply to create messaging that truly resonates and drives action."
       },
       {
         id: "how-works",
         question: "How does Subtext.ai work?",
         answer:
-          'Subtext.ai analyzes public communities and forums where your audience speaks freely and use proprietary models to extract relevant quotes, language, and context. This helps you create copy that connects deeply, improves conversions, and makes your audience "feel seen."'
+          "You provide a query (like a keyword or question), and Subtext scours real online discussions (initially Reddit) to extract, analyze, and consolidate the language, themes, and pain points into actionable, verifiable insights."
       }
     ]
   },
@@ -58,13 +58,13 @@ const faqSectionsData = [
         question:
           "What kind of insights or outputs can I expect from Subtext.ai?",
         answer:
-          "You'll get actionable insights like your audience's exact phrasing, key pain points, distinct audience segments, and powerful elements for crafting compelling value propositions."
+          "Expect your audience's actual language, validated pain points, emotional triggers, recurring themes, key questions, and resonant messaging angles—all traceable to their source."
       },
       {
         id: "uncover-pain-points",
         question: "How does Subtext.ai uncover deep customer pain points?",
         answer:
-          'Subtext.ai analyzes natural online conversations to identify your audience\'s real and often unstated pain points—the true "subtext"—going far beyond surface-level feedback.'
+          "Subtext.ai analyzes how people naturally describe their problems in their own words within real online discussions, identifying recurring issues and the emotional language tied to them."
       }
     ]
   },
@@ -85,14 +85,14 @@ const faqSectionsData = [
         question:
           "I already use social listening tools. Why would I need SubtextAI?",
         answer:
-          "Social listening primarily tracks brand mentions. Subtext AI digs deeper to uncover audience language patterns and pain points specifically to improve your marketing copy and strategy."
+          "While social listening monitors mentions, Subtext.ai answers your specific research questions by deeply analyzing discussion content to extract exact language, pain points, and motivations for crafting effective messaging."
       },
       {
         id: "not-survey",
         question:
           "Is this just another survey platform or a basic web scraper?",
         answer:
-          'No. We analyze natural, unprompted conversations for candid insights. Our "marketing-specific analysis engine" is far more sophisticated than basic scrapers or survey limitations.'
+          "No. We analyze natural, unprompted conversations for candid insights. Our marketing-specific analysis engine is far more sophisticated than basic scrapers or survey limitations."
       }
     ]
   }
@@ -219,7 +219,8 @@ export function FaqSection() {
             Frequently Asked Questions
           </h2>
           <p className="mt-4 text-lg text-slate-600 sm:text-xl">
-            Find answers to common questions about Subtext.ai.
+            Curious about what we do or how we genreatea results? Find answers
+            to common questions about Subtext.ai.
           </p>
         </div>
 

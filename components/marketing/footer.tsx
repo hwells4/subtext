@@ -88,7 +88,7 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                 {brand.logo ? (
                   <Image
                     src={brand.logo}
-                    alt={brand.name}
+                    alt="Subtext.ai Logo"
                     width={32}
                     height={32}
                     className="h-8 w-auto"
@@ -206,7 +206,8 @@ function FooterExample() {
       brand={{
         name: "Subtext.ai",
         description:
-          "Advanced AI-powered text analysis and content generation platform for businesses and creators."
+          "AI-powered audience intelligence and messaging insight platform.",
+        logo: "/subtext-logo.svg"
       }}
       socialLinks={[
         {

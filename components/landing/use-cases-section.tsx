@@ -19,11 +19,11 @@ interface UseCaseItem {
 const useCases: UseCaseItem[] = [
   {
     headline: "Agency Power-Up",
-    subheadline: "Scale Research, Wow Clients",
+    subheadline: "Fast, Verifiable Research for Every Client.",
     benefits: [
-      "**Slash research time** across all client accounts.",
-      "Deliver **data-backed strategies** that get results.",
-      "Uncover **unique angles** that make clients shine."
+      "Instantly **research diverse client audiences** & deliver better results",
+      "Deliver strategies backed by **verifiable audience language** and insights with receipts..",
+      "Justify recommendations confidently & position your agency as **a true strategic partner.**"
     ],
     cta: "Deliver Better Results, Faster",
     iconColor: "text-blue-500",
@@ -31,27 +31,27 @@ const useCases: UseCaseItem[] = [
     svgIcon: "/rocket.svg"
   },
   {
-    headline: "Copywriter's Edge",
-    subheadline: "Write Words That Truly Convert",
+    headline: "AI Writing Supercharger",
+    subheadline: "AI Copy That Actually Connects",
     benefits: [
-      "Craft copy with **authentic audience language**.",
-      "Generate **compelling hooks & H1s** effortlessly.",
-      "Write with confidence, knowing your message **will resonate**."
+      "**Ditch generic AI outputs.** Transform bland drafts into copy that converts.",
+      "**Fuel AI with real human insights.** Infuse prompts with your audience's actual words, pain points, & motivations.",
+      "Craft AI-assisted copy that **sounds authentically human and deeply resonates.**"
     ],
-    cta: "Craft Resonant Copy",
+    cta: "Supercharge Your AI Copy",
     iconColor: "text-emerald-500",
     accentGradient: "from-emerald-50 to-transparent",
     svgIcon: "/shield.svg"
   },
   {
-    headline: "Performance Boost",
-    subheadline: "Turn Insights Into ROI",
+    headline: "Founder & Builder Toolkit",
+    subheadline: "Validate Ideas, Craft Resonant Messaging",
     benefits: [
-      "Pinpoint **why campaigns underperform** with real insights.",
-      "Optimize ad copy using **verified customer vocabulary**.",
-      "**Increase CTR & conversions** by aligning with true needs."
+      "Stop wasting precious time; validate your ideas and messaging **in minutes**.",
+      "Craft initial marketing messages using your audience's authentic language.",
+      "**Increase CTR & conversions** by aligning with what users actually want."
     ],
-    cta: "Boost Campaign Performance",
+    cta: "Build & Launch with Confidence",
     iconColor: "text-purple-500",
     accentGradient: "from-purple-50 to-transparent",
     svgIcon: "/gear.svg"
@@ -109,12 +109,15 @@ export default function UseCasesSection() {
           </motion.div>
 
           {/* Use Cases */}
-          <div className="relative grid w-full grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="relative grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {useCases.map((useCase, index) => (
               <motion.div
                 key={useCase.headline}
                 variants={itemVariants}
-                className="group relative size-full"
+                className={
+                  `group relative size-full` +
+                  (index === 2 ? " md:col-span-2 lg:col-span-1" : "")
+                }
               >
                 {/* Glass card with subtle border */}
                 <div

@@ -47,11 +47,9 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
-              Stop Writing Blindly.
+              Instant Audience Research to Help You
               <br />
-              Convert More with
-              <br />
-              Your Audience's <span className="italic">Actual</span> Words
+              Write Better, Faster.
               <span className="[-top_0.08em] relative ml-2 inline-block size-8 rotate-[3deg] align-middle sm:ml-3 sm:size-10 md:size-12 lg:ml-4 lg:size-14">
                 <Image
                   src="/lightning-icon.png"
@@ -64,11 +62,11 @@ export function HeroSection() {
             </h1>
 
             <p className="text-base leading-relaxed text-slate-600 md:text-lg">
-              Subtext scours 16 billion+ Reddit posts to surface the verifiable,
-              authentic language your audience uses daily. Turn their{" "}
-              <span className="font-semibold italic">actual words</span> into
-              high-converting copy and compelling content in minutes, not days –
-              no AI-generated fluff, guaranteed.
+              Subtext is your instant audience intelligence tool, mining real
+              online conversations (starting with Reddit) for your audience's
+              actual voice. Simply ask your research question to get their
+              verifiable language, raw pain points, emerging trends, and true
+              motivations in minutes. Say goodbye to AI fluff.
             </p>
 
             <div className="mt-2 flex w-full flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
@@ -89,8 +87,8 @@ export function HeroSection() {
             </div>
 
             <p className="text-sm text-slate-500 sm:text-base">
-              Join the waitlist to be notified when we launch. Help us build the
-              tool you've always needed. No credit card required.
+              Join the waitlist for early access & help us build the audience
+              intelligence tool you've always needed.
             </p>
           </motion.div>
 
