@@ -42,11 +42,11 @@ export function HeroSection() {
             variants={itemVariants}
           >
             {/* Social Proof - AvatarsDemo */}
-            <div className="mb-2 flex justify-start">
+            <div className="mb-1 flex justify-start md:mb-2">
               <AvatarsDemo />
             </div>
 
-            <h1 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
+            <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:mt-0 md:text-5xl lg:text-6xl">
               Instant Audience Research to Help You
               <br />
               Write Better, Faster.

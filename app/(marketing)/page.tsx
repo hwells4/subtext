@@ -80,7 +80,9 @@ export default function HomePage() {
         </div>
 
         {/* Scrolling Animation Section */}
-        <HeroScrollDemo />
+        <div className="hidden md:block">
+          <HeroScrollDemo />
+        </div>
 
         {/* User Insights Section - With Pain Points and Solution */}
         <UserInsightsSection />
