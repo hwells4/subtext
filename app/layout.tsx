@@ -16,27 +16,35 @@ import { TailwindIndicator } from "@/components/utilities/tailwind-indicator"
 import { cn } from "@/lib/utils"
 import { ClerkProvider } from "@clerk/nextjs"
 import { auth } from "@clerk/nextjs/server"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.subtext.ai"),
-  title: "Instant Audience Research for Better Copy | Subtext.ai",
+  title: "Subtext.ai | Instant Audience Research",
   description:
     "Subtext provides instant audience research, mining real conversations for authentic language & pain points. Write better, faster with verifiable insights. Get early access!",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    shortcut: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
+    ],
+    shortcut: "/favicon.ico",
     apple: "/favicon.svg"
   },
   openGraph: {
     type: "website",
-    siteName: "Subtext.ai",
-    title:
-      "Instant Audience Research to Help You Write Better, Faster | Subtext.ai",
+    siteName: "subtext.ai",
+    title: "subtext.ai | Instant Audience Research",
     description:
       "Stop guessing & ditch AI fluff! Subtext delivers verifiable audience insights from real online conversations in minutes to help you write copy that truly converts.",
     url: "https://www.subtext.ai",
@@ -53,8 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@YourSubtextTwitterHandle", // Replace with actual Twitter handle
     creator: "@YourSubtextTwitterHandle", // Replace with actual Twitter handle
-    title:
-      "Instant Audience Research to Help You Write Better, Faster | Subtext.ai",
+    title: "subtext.ai | Instant Audience Research",
     description:
       "Stop guessing & ditch AI fluff! Subtext delivers verifiable audience insights from real online conversations in minutes to help you write copy that truly converts.",
     images: ["/subtext-twitter-image.png"]
@@ -107,10 +114,33 @@ export default async function RootLayout({
               })
             }}
           />
+          {/* Fix viewport rendering on mobile devices - only if needed */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              (function() {
+                // Only run on mobile devices
+                if (navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)) {
+                  const detectOverflow = function() {
+                    // Only modify viewport if there's actually overflow
+                    if (document.body.scrollWidth > window.innerWidth + 5) {
+                      document.querySelector('meta[name="viewport"]')?.setAttribute(
+                        'content',
+                        'width=device-width, initial-scale=1.0, maximum-scale=5.0'
+                      );
+                    }
+                  };
+                  // Run once after page is fully loaded
+                  window.addEventListener('load', detectOverflow);
+                }
+              })();
+            `
+            }}
+          />
         </head>
         <body
           className={cn(
-            "bg-background mx-auto min-h-screen w-full scroll-smooth antialiased",
+            "bg-background mx-auto min-h-screen w-full overflow-x-hidden scroll-smooth antialiased",
             inter.className
           )}
         >

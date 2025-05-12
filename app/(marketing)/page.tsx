@@ -17,7 +17,7 @@ import {
   ModernSplitFaqSection
 } from "@/components/marketing/faq-section"
 import FooterExample from "@/components/marketing/footer"
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { HeroScrollDemo } from "@/components/landing/hero-scroll-demo"
 import { motion } from "framer-motion"
 import BenefitsSection from "@/components/benefits-section"
@@ -25,6 +25,33 @@ import FeaturesHighlights from "@/components/features-highlights"
 import VoiceToConversionSection from "@/components/landing/voice-to-conversion-section"
 
 export default function HomePage() {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    // Mark that we're client-side
+    setIsClient(true)
+
+    // Prefetch critical assets
+    const prefetchAssets = () => {
+      const links = ["/panel.svg", "/lightning-icon.png", "/subtext-logo.svg"]
+
+      links.forEach(href => {
+        const link = document.createElement("link")
+        link.rel = "prefetch"
+        link.href = href
+        link.as = href.endsWith(".svg") ? "image" : "image"
+        document.head.appendChild(link)
+      })
+    }
+
+    // Defer non-critical initialization
+    if (window.requestIdleCallback) {
+      window.requestIdleCallback(prefetchAssets)
+    } else {
+      setTimeout(prefetchAssets, 1000)
+    }
+  }, [])
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-start bg-white">
       <Navbar />
@@ -36,17 +63,19 @@ export default function HomePage() {
         <div className="relative w-full">
           {/* Spinning Gear SVG */}
           <div className="pointer-events-none absolute -right-20 bottom-0 z-0 w-40 translate-y-1/4 opacity-[0.04] sm:-right-10 sm:w-48 sm:opacity-[0.05] md:right-10 md:w-56 lg:right-20 lg:w-64 lg:opacity-[0.06]">
-            <motion.div
-              className="size-full bg-contain bg-center bg-no-repeat"
-              style={{ backgroundImage: "url(/gear.svg)" }}
-              animate={{ rotate: 360 }}
-              transition={{
-                repeat: Infinity,
-                duration: 25,
-                ease: "linear"
-              }}
-              aria-hidden="true"
-            />
+            {isClient && (
+              <motion.div
+                className="size-full bg-contain bg-center bg-no-repeat"
+                style={{ backgroundImage: "url(/gear.svg)" }}
+                animate={{ rotate: 360 }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 25,
+                  ease: "linear"
+                }}
+                aria-hidden="true"
+              />
+            )}
           </div>
         </div>
 
@@ -59,23 +88,11 @@ export default function HomePage() {
         {/* Voice to Conversion Section - Shows the 4-step process */}
         <VoiceToConversionSection />
 
-        {/* Features Highlights Section - Replaces Key Features with better visuals */}
-        {/* <FeaturesHighlights /> */}
-
-        {/* Differentiation Section */}
-        {/* <DifferentiationSection /> */}
-
         {/* Benefits Section - Shows tangible advantages */}
         <BenefitsSection />
 
         {/* Use Cases Section - Role Specific */}
         <UseCasesSection />
-
-        {/* Results Showcase Section */}
-        {/* <ResultsShowcase /> */}
-
-        {/* Testimonials Section */}
-        {/* <TestimonialsCarousel /> */}
 
         {/* FAQ Section */}
         <ModernSplitFaqSection />

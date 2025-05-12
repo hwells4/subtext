@@ -133,11 +133,11 @@ export default function VoiceScapeAgencyPage() {
           <p className="text-muted-foreground mt-6 text-lg leading-relaxed md:text-xl">
             Your agency thrives on delivering unique strategies for multiple
             clients. But manually unearthing authentic audience insights for
-            each one? That's a bottleneck. Generic tools fall short, and time
-            spent on deep research doesn't scale linearly with your client load.
-            You need a smarter way to understand every customer's true voice,
-            pain points, and motivations to craft campaigns that truly connect
-            and convert.
+            each one? There's just not enough time in the day. Generic tools
+            fall short, and time spent on deep research doesn't scale linearly
+            with your client load. You need a smarter way to understand every
+            customer's true voice, pain points, and motivations to craft
+            campaigns that truly connect and convert.
           </p>
         </section>
 

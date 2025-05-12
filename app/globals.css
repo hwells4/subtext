@@ -85,7 +85,34 @@ Global styles for the app.
   * {
     @apply border-border;
   }
+  
+  html, body {
+    @apply overflow-x-hidden;
+  }
+  
   body {
     @apply bg-background text-foreground;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Fix for potential flex overflow issues on mobile */
+.flex, .grid {
+  min-width: 0;
+}
+
+/* Properly constrain containers */
+.container {
+  width: 100%;
+}
+
+/* Add better touch handling for mobile */
+@media (max-width: 768px) {
+  * {
+    touch-action: manipulation;
   }
 }

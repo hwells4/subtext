@@ -1,6 +1,7 @@
 ---
-description: Follow these rules when working on the backend.
-globs: 
+description: 
+globs: db/db.ts,db/**/*.ts,lib/*.ts,lib/**/*.ts,types/*.ts,actions/*.ts,actions/**/*.ts,app/api/**/*.ts,app/api/***/**/*.ts
+alwaysApply: false
 ---
 ### Backend Rules
 

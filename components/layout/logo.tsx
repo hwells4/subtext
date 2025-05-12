@@ -12,8 +12,8 @@ export const Logo = ({ className }: { className?: string }) => {
         className="size-12"
         priority
       />
-      <span className="select-none text-xl font-medium lowercase tracking-tight text-slate-900">
-        subtext
+      <span className="select-none text-xl font-bold tracking-tight text-slate-900">
+        Subtext
       </span>
     </span>
   )

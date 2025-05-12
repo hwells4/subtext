@@ -1,46 +1,142 @@
 ---
-description: Follow these rules when working on the frontend.
-globs: 
+description: 
+globs: app/**/*.tsx,app/**/*.ts,components/**/*.tsx,components/*.tsx,tailwind.config.ts,app/***/**/*.tsx,app/*.tsx,app/*.css
+alwaysApply: false
 ---
 ### Frontend Rules
 
-Follow these rules when working on the frontend.
+**File Globs:** These rules primarily apply to files matching the following patterns (adjust as needed for your project structure):
+- `src/**/*.{ts,tsx}`
+- `app/**/*.{ts,tsx}`
+- `src/styles/**/*.css` (if using separate CSS files for complex styles)
+- `tailwind.config.js` (for theme setup)
 
+Follow these rules when working on the frontend.
 It uses Next.js, Tailwind, Shadcn, and Framer Motion.
+
+#### Core Design Philosophy
+
+Create a clean, modern design with a premium feel that emphasizes clarity and professionalism. The design should blend subtle glass morphism effects, strategic whitespace, and thoughtful typography to create a cohesive, high-end experience. This design system emphasizes clarity, sophistication, and user engagement through thoughtful implementation of spacing, typography, color, and motion.
 
 #### General Rules
 
-- Use `lucide-react` for icons
-- useSidebar must be used within a SidebarProvider
+- Use `lucide-react` for icons.
+- `useSidebar` must be used within a `SidebarProvider`.
+
+#### Layout & Structure
+
+- **Whitespace:** Use generous whitespace (e.g., Tailwind's spacing scale like `p-4`, `m-8`) to create visual breathing room around elements and improve readability.
+- **Responsive Grids:** Implement responsive grid systems (e.g., CSS Grid, Flexbox with Tailwind's responsive prefixes) that adapt gracefully to different screen sizes.
+- **Visual Hierarchy:** Create a clear visual hierarchy through thoughtful element sizing, positioning, and styling (e.g., larger fonts for headings, distinct visual weight for primary actions).
+- **Rounding:** Consistently use `rounded-3xl` for cards, containers, and other key UI elements.
+- **Padding:** Maintain proper padding proportions within content containers (e.g., `p-7` or `p-8` for main content areas, adjust proportionally for smaller elements).
+
+#### Typography
+
+- **Hierarchy:** Establish a clear typographic hierarchy with distinct heading (H1-H6) and body text styles. Use Tailwind's font size utilities (e.g., `text-xl`, `text-2xl`, `text-base`).
+- **Font Weights:** Utilize font weight variations strategically:
+    - `font-extrabold` or `font-bold` for headings.
+    - `font-normal` or `font-medium` for body text and subheadings.
+- **Italics:** Implement selective use of italics (`italic`) for emphasis on key phrases, words, or pull quotes.
+- **Text Colors:**
+    - **Headings:** Use deep slate tones (e.g., `text-slate-800`, `text-slate-900`).
+    - **Body Text:** Use lighter slate tones for readability (e.g., `text-slate-600`, `text-slate-700`).
+- **Section Labels/Categories:** Use uppercase, wider-tracked text for section labels or category indicators (e.g., `uppercase tracking-wider text-sm text-slate-500`).
+
+#### Color Palette & Visual Styling
+
+- **Primary Palette:** Center the design around slate tones (e.g., `bg-slate-100`, `text-slate-700`, `border-slate-300`). Refer to Tailwind's `slate-50` through `slate-900` shades.
+- **Accent Colors:** Use strategic accent colors (e.g., blue, emerald, amber, purple from Tailwind's palette) sparingly for emphasis on CTAs, icons, or important highlights.
+- **Gradients:**
+    - Employ subtle gradient backgrounds to add depth without overwhelming (e.g., `bg-gradient-to-br from-slate-50 to-slate-100`).
+    - Use for thin separator lines (e.g., `h-px bg-gradient-to-r from-slate-200 via-slate-300 to-transparent`).
+- **Glass Morphism & Transparency:**
+    - Apply semi-transparent backgrounds (e.g., `bg-white/80`, `bg-slate-900/60`) with backdrop blur effects (e.g., `backdrop-blur-sm`, `backdrop-blur-md`) for a glass-like feel on overlays, cards, or sidebars.
+    - For more complex card background styles, consider CSS:
+      ```css
+      /* Example for a card */
+      .glass-card {
+        background: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%);
+        backdrop-filter: blur(10px);
+        /* Ensure border is also subtle if needed */
+        border: 1px solid rgba(203, 213, 225, 0.6); /* e.g., border-slate-300/60 */
+      }
+      ```
+- **Shadows:**
+    - Implement subtle shadows for depth (e.g., `shadow-sm` or `shadow-md`).
+    - Enhance shadows on hover for interactive elements (e.g., `hover:shadow-lg`).
+- **Visual Effects:**
+    - Consider subtle gradient accents in the corners of cards or key containers if it enhances the design without clutter.
+    - Use delicate background gradients with blur effects for atmospheric depth on larger sections or backgrounds.
 
 #### Components
 
-- Use divs instead of other html tags unless otherwise specified
-- Separate the main parts of a component's html with an extra blank line for visual spacing
-- Always tag a component with either `use server` or `use client` at the top, including layouts and pages
+- Use `divs` instead of other HTML tags for structural elements unless a more semantic tag (like `button`, `a`, `nav`, `article`, `section`) is appropriate for accessibility and meaning.
+- Separate the main parts of a component's JSX/HTML with an extra blank line for visual spacing and improved readability in the code.
+- Always tag a component with either `"use server"` or `"use client"` at the top, including layouts and pages.
 
 ##### Organization
 
-- All components be named using kebab case like `example-component.tsx` unless otherwise specified
-- Put components in `/_components` in the route if one-off components
-- Put components in `/components` from the root if shared components
+- All component filenames should use kebab-case (e.g., `example-component.tsx`) unless otherwise specified.
+- Place route-specific, one-off components in a `_components` directory within that route's folder (e.g., `app/dashboard/_components/my-widget.tsx`).
+- Place shared, reusable components in a global `components` directory at the root of `src` or `app` (e.g., `src/components/ui/button.tsx`).
 
 ##### Data Fetching
 
-- Fetch data in server components and pass the data down as props to client components.
-- Use server actions from `/actions` to mutate data.
+- Fetch data primarily in Server Components. Pass data down as props to Client Components.
+- Use Server Actions, typically defined in `/actions` files, for data mutations (create, update, delete).
+
+##### Specific Component Styling Patterns
+
+- **Cards & Containers:**
+    - Strive for a glass-like appearance where appropriate, using subtle borders (e.g., `border border-slate-200/60` or `border-slate-700/60` for dark mode compatibility) and transparency/blur effects.
+    - Apply consistent `rounded-3xl` corners.
+    - Use subtle shadow treatments (`shadow-sm`, `hover:shadow-md`).
+    - Ensure padding is consistent with overall layout rules (e.g., `p-7`, `p-8`).
+- **Icons (`lucide-react`):**
+    - Maintain a clean, minimal design. Use consistent sizing (e.g., `h-5 w-5` or `h-4 w-4`).
+    - Ensure strategic placement with appropriate spacing from text or other elements (e.g., `mr-2` for an icon before text).
+    - Icon colors should align with section themes or accent colors for emphasis.
+    - Implement subtle hover animations (e.g., scale transformation `hover:scale-110` or slight color change) using CSS or Framer Motion.
+- **Buttons & Interactive Elements:**
+    - Ensure clear, consistent styling with ample padding (e.g., `px-4 py-3`, `px-6 py-3`).
+    - **Primary Actions:** Use dark slate backgrounds with white text (e.g., `bg-slate-800 text-white hover:bg-slate-700`).
+    - Provide clear visual feedback on `hover`, `focus`, and `active` states.
+    - Strategically use icons within buttons, ensuring proper alignment and spacing. Consider subtle animations on icons within buttons on hover.
+    - Maintain consistent styling paradigms across different button types (primary, secondary, ghost, destructive).
+- **Imagery:**
+    - Use high-quality, optimized imagery. Ensure images are responsive and served in modern formats (e.g., WebP).
+
+##### Animation & Motion (using Framer Motion)
+
+- Implement subtle entrance animations (e.g., fade-in, slide-in) for components and sections to enhance user experience.
+    - Example: `initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: "easeOut" }}`
+- Utilize `staggerChildren` (e.g., `transition={{ staggerChildren: 0.2 }}`) for revealing lists or groups of elements sequentially.
+- Ensure smooth transitions with appropriate easing functions (e.g., `ease: "easeOut"`, `ease: "easeInOut"`) and duration (e.g., `duration: 0.5` to `duration: 0.7`).
+- Apply hover animations that enhance interactivity without being distracting (e.g., slight scale, shadow change, subtle movement).
+- Maintain consistent motion patterns across similar elements and interactions.
+
+##### Section Structuring (Page Level)
+
+- Begin each major page section with a clear, concise header sequence:
+    1.  **Category Label:** Small, uppercase, tracked-wider text (e.g., `p` tag styled with `text-xs uppercase tracking-wider text-slate-500 mb-2`).
+    2.  **Headline:** Bold, impactful headline (e.g., `h2` tag styled with `text-3xl md:text-4xl font-extrabold text-slate-800 mb-3`). Consider strategic use of italics within the headline for emphasis.
+    3.  **Subheading:** Supportive subheading that elaborates on the headline (e.g., `p` tag styled with `text-lg text-slate-600 mb-8`).
+- Maintain consistent vertical rhythm and spacing between sections.
+- Use thin separator lines with gradients (e.g., `hr` styled with `border-none h-px bg-gradient-to-r from-slate-200/0 via-slate-200/80 to-slate-200/0 my-12`) or ample whitespace for clear visual separation between content blocks.
+- Use decorative elements (lines, shapes, subtle background patterns) sparingly and with clear purpose.
+- Implement consistent padding patterns within and between sections (e.g., `py-16` or `py-24` for top/bottom section padding).
 
 ##### Server Components
 
 - Use `"use server"` at the top of the file.
 - Implement Suspense for asynchronous data fetching to show loading states while data is being fetched.
 - If no asynchronous logic is required for a given server component, you do not need to wrap the component in `<Suspense>`. You can simply return the final UI directly since there is no async boundary needed.
-- If asynchronous fetching is required, you can use a `<Suspense>` boundary and a fallback to indicate a loading state while data is loading.
-- Server components cannot be imported into client components. If you want to use a server component in a client component, you must pass the as props using the "children" prop
-- params in server pages should be awaited such as `const { courseId } = await params` where the type is `params: Promise<{ courseId: string }>`
+- If asynchronous fetching is required, you can use a `<Suspense>` boundary and a fallback (e.g., a skeleton loader component) to indicate a loading state while data is loading.
+- Server components cannot be imported into client components directly. To use a server component's output within a client component, pass it as props, often via the `children` prop.
+- `params` in server pages should be destructured from the props: `export default async function Page({ params }: { params: { courseId: string }}) { const { courseId } = params; ... }`. Data fetching *within* the component is async.
 
 Example of a server layout:
-
 ```tsx
 "use server"
 
@@ -49,92 +145,167 @@ export default async function ExampleServerLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  // Potentially fetch global layout data here
+  return (
+    <html>
+      <body>
+        {/* Common layout structure */}
+        <main>{children}</main>
+      </body>
+    </html>
+  )
 }
 ```
 
 Example of a server page (with async logic):
-
 ```tsx
 "use server"
 
 import { Suspense } from "react"
-import { SomeAction } from "@/actions/some-actions"
+// import { SomeAction } from "@/actions/some-actions" // Assuming actions are for mutations or specific data ops
 import SomeComponent from "./_components/some-component"
 import SomeSkeleton from "./_components/some-skeleton"
 
+// Example: Fetching data directly in the page component
+async function getData() {
+  // Replace with your actual data fetching logic
+  const res = await fetch('https://api.example.com/data', { next: { revalidate: 3600 } });
+  if (!res.ok) throw new Error('Failed to fetch data');
+  return res.json();
+}
+
 export default async function ExampleServerPage() {
+  // Data fetching initiated here
+  const dataPromise = getData();
+
   return (
-    <Suspense fallback={<SomeSkeleton className="some-class" />}>
-      <SomeComponentFetcher />
-    </Suspense>
+    <div>
+      <h1>Server Page with Async Data</h1>
+      <Suspense fallback={<SomeSkeleton className="some-class" />}>
+        {/* Component that awaits the data */}
+        <SomeDataRenderer dataPromise={dataPromise} />
+      </Suspense>
+    </div>
   )
 }
 
-async function SomeComponentFetcher() {
-  const { data } = await SomeAction()
-  return <SomeComponent className="some-class" initialData={data || []} />
+async function SomeDataRenderer({ dataPromise }: { dataPromise: Promise<any> }) {
+  const data = await dataPromise; // Data is resolved here
+  // If SomeAction was for fetching, it could be: const { data } = await SomeAction();
+  return <SomeComponent className="some-class" initialData={data || []} />;
 }
 ```
 
-Example of a server page (no async logic required):
-
+Example of a server page (no async logic required within this specific component, data might be passed from layout or static):
 ```tsx
 "use server"
 
 import SomeClientComponent from "./_components/some-client-component"
 
-// In this case, no asynchronous work is being done, so no Suspense or fallback is required.
+// In this case, no *new* asynchronous work is being done directly in this page component itself.
+// Data might be passed from a layout, or it's a static page.
 export default async function ExampleServerPage() {
-  return <SomeClientComponent initialData={[]} />
+  const staticData = { items: [{ id: 1, name: "Static Item" }] }; // Or fetched in a parent layout
+  return <SomeClientComponent initialData={staticData.items} />
 }
 ```
 
-Example of a server component:
-
+Example of a server component (general purpose):
 ```tsx
 "use server"
 
-interface ExampleServerComponentProps {
-  // Your props here
+// Example: A component that fetches its own data
+async function getSpecificItem(id: string) {
+  const res = await fetch(`https://api.example.com/items/${id}`);
+  if (!res.ok) return null; // Or throw error
+  return res.json();
 }
 
-export async function ExampleServerComponent({
-  props
-}: ExampleServerComponentProps) {
-  // Your code here
+interface ExampleServerComponentProps {
+  itemId: string;
+  // Other props
+}
+
+export async function ExampleServerComponent({ itemId }: ExampleServerComponentProps) {
+  const item = await getSpecificItem(itemId);
+
+  if (!item) {
+    return <div>Item not found.</div>;
+  }
+
+  return (
+    <div>
+      <h2>{item.name}</h2>
+      <p>{item.description}</p>
+    </div>
+  );
 }
 ```
 
 ##### Client Components
 
-- Use `"use client"` at the top of the file
-- Client components can safely rely on props passed down from server components, or handle UI interactions without needing <Suspense> if there’s no async logic.
-- Never use server actions in client components. If you need to create a new server action, create it in `/actions`
+- Use `"use client"` at the top of the file.
+- Client components can safely rely on props passed down from server components (which may include fetched data).
+- They handle UI interactions, state management (e.g., `useState`, `useEffect`), and browser-only APIs.
+- If there’s no async logic *within* the client component itself (e.g., it just renders props or handles clicks), `<Suspense>` is not needed around it for its own operations.
+- Never call Server Actions directly from the main body/render path of a Client Component as if they are regular functions for data fetching. Use them in event handlers, `useEffect`, or via `startTransition`. For mutations, they are typically called from event handlers (e.g., form submissions).
 
 Example of a client page:
-
 ```tsx
 "use client"
 
+import { useState, useEffect } from 'react';
+
 export default function ExampleClientPage() {
-  // Your code here
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // Example of client-side effect
+    document.title = `Count: ${count}`;
+  }, [count]);
+
+  return (
+    <div>
+      <h1>Client Page</h1>
+      <p>Current count: {count}</p>
+      <button 
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
+        onClick={() => setCount(prev => prev + 1)}
+      >
+        Increment
+      </button>
+    </div>
+  )
 }
 ```
 
 Example of a client component:
-
 ```tsx
 "use client"
 
+import { useState } from 'react';
+// import { someServerAction } from '@/actions/form-actions'; // Example for mutations
+
 interface ExampleClientComponentProps {
-  initialData: any[]
+  initialData: any[];
 }
 
 export default function ExampleClientComponent({
   initialData
 }: ExampleClientComponentProps) {
-  // Client-side logic here
-  return <div>{initialData.length} items</div>
+  const [items, setItems] = useState(initialData);
+  // Client-side logic here, e.g., filtering, adding new temp items
+
+  // const handleSubmit = async (formData: FormData) => {
+  //   // await someServerAction(formData);
+  //   // Optionally refresh data or update UI
+  // }
+
+  return (
+    <div>
+      <p>{items.length} items</p>
+      {/* UI to interact with items, potentially a form calling a server action */}
+    </div>
+  );
 }
 ```

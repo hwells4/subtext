@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { AnimatedGroup } from "@/components/ui/animated-group"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowRight, Headphones, Mic, Sparkles } from "lucide-react"
 // Note: Uncomment this when you've installed lottie-react
 // import Lottie from "lottie-react"
+import { useInView } from "framer-motion"
 
 // Note: Replace with actual Lottie animation files from public folder
 // const recordingAnimation = require("/public/lottie/recording.json")
@@ -61,32 +62,45 @@ const steps = [
 
 export function LottieHowItWorks() {
   const [activeTab, setActiveTab] = useState("record")
-  const lottieContainerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: false, amount: 0.1 })
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient) {
+    return null // Prevent initial SSR render to avoid hydration issues
+  }
 
   return (
-    <section className="w-full bg-slate-50 py-24 dark:bg-slate-900">
+    <section
+      ref={sectionRef}
+      className="w-full bg-slate-50 py-16 md:py-24 dark:bg-slate-900"
+    >
       <div className="container px-4 md:px-6">
         <AnimatedGroup
-          className="mb-12 flex flex-col items-center text-center"
+          className="mb-8 flex flex-col items-center text-center md:mb-12"
           variants={{
             container: {
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
                 transition: {
-                  staggerChildren: 0.1
+                  staggerChildren: 0.05 // Reduced stagger
                 }
               }
             },
             item: {
-              hidden: { opacity: 0, y: 20 },
+              hidden: { opacity: 0, y: 10 }, // Reduced y-offset
               visible: {
                 opacity: 1,
                 y: 0,
                 transition: {
                   type: "spring",
-                  bounce: 0.3,
-                  duration: 0.6
+                  bounce: 0.2, // Reduced bounce
+                  duration: 0.4 // Faster duration
                 }
               }
             }
@@ -101,112 +115,114 @@ export function LottieHowItWorks() {
           </p>
         </AnimatedGroup>
 
-        <Tabs
-          defaultValue="record"
-          value={activeTab}
-          onValueChange={setActiveTab}
-          className="mt-8 w-full"
-        >
-          <TabsList className="mb-12 grid w-full grid-cols-3">
-            {steps.map(step => (
-              <TabsTrigger
-                key={step.id}
-                value={step.id}
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground flex items-center gap-2"
-              >
-                {step.icon}
-                <span className="hidden sm:inline">{step.title}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {steps.map(step => (
-            <TabsContent key={step.id} value={step.id} className="mt-0">
-              <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-                <AnimatedGroup
-                  className="flex flex-col space-y-6"
-                  variants={{
-                    container: {
-                      hidden: { opacity: 0 },
-                      visible: {
-                        opacity: 1,
-                        transition: {
-                          staggerChildren: 0.1,
-                          delayChildren: 0.1
-                        }
-                      }
-                    },
-                    item: {
-                      hidden: { opacity: 0, x: -20 },
-                      visible: {
-                        opacity: 1,
-                        x: 0,
-                        transition: {
-                          type: "spring",
-                          bounce: 0.3,
-                          duration: 0.6
-                        }
-                      }
-                    }
-                  }}
+        {isInView && (
+          <Tabs
+            defaultValue="record"
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="mt-8 w-full"
+          >
+            <TabsList className="mb-6 grid w-full grid-cols-3 md:mb-12">
+              {steps.map(step => (
+                <TabsTrigger
+                  key={step.id}
+                  value={step.id}
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground flex items-center gap-2"
                 >
-                  <div>
-                    <h3 className="text-2xl font-bold">{step.title}</h3>
-                    <p className="text-muted-foreground mt-2">
-                      {step.description}
-                    </p>
-                  </div>
+                  {step.icon}
+                  <span className="hidden sm:inline">{step.title}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
 
-                  <div className="space-y-3">
-                    <h4 className="font-medium">Key Features:</h4>
-                    <ul className="space-y-2">
-                      {step.features.map((feature, index) => (
-                        <li key={index} className="flex items-center gap-2">
-                          <div className="bg-primary size-1.5 rounded-full" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+            {steps.map(step => (
+              <TabsContent key={step.id} value={step.id} className="mt-0">
+                <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-2 lg:gap-8">
+                  <AnimatedGroup
+                    className="flex flex-col space-y-4 md:space-y-6"
+                    variants={{
+                      container: {
+                        hidden: { opacity: 0 },
+                        visible: {
+                          opacity: 1,
+                          transition: {
+                            staggerChildren: 0.05,
+                            delayChildren: 0.05
+                          }
+                        }
+                      },
+                      item: {
+                        hidden: { opacity: 0, x: -10 },
+                        visible: {
+                          opacity: 1,
+                          x: 0,
+                          transition: {
+                            type: "spring",
+                            bounce: 0.2,
+                            duration: 0.4
+                          }
+                        }
+                      }
+                    }}
+                  >
+                    <div>
+                      <h3 className="text-2xl font-bold">{step.title}</h3>
+                      <p className="text-muted-foreground mt-2">
+                        {step.description}
+                      </p>
+                    </div>
 
-                  <Button className="group w-fit">
-                    Learn More
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </AnimatedGroup>
+                    <div className="space-y-3">
+                      <h4 className="font-medium">Key Features:</h4>
+                      <ul className="space-y-2">
+                        {step.features.map((feature, index) => (
+                          <li key={index} className="flex items-center gap-2">
+                            <div className="bg-primary size-1.5 rounded-full" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                <Card className="relative flex h-[300px] items-center justify-center overflow-hidden p-6">
-                  <div ref={lottieContainerRef} className="size-full">
-                    {/* Replace with actual Lottie animation when available */}
-                    {/* <Lottie
+                    <Button className="group w-fit">
+                      Learn More
+                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </AnimatedGroup>
+
+                  <Card className="relative flex h-[300px] items-center justify-center overflow-hidden p-6">
+                    <div className="size-full">
+                      {/* Replace with actual Lottie animation when available */}
+                      {/* <Lottie
                       animationData={step.id === "record" ? recordingAnimation : step.id === "analyze" ? analysisAnimation : insightsAnimation}
                       loop={true}
                       className="w-full h-full"
                     /> */}
 
-                    {/* Placeholder until Lottie animations are available */}
-                    <div className="bg-primary/5 flex size-full items-center justify-center rounded-lg">
-                      <div className="text-center">
-                        <div className="bg-primary/10 mx-auto mb-4 flex size-20 items-center justify-center rounded-full">
-                          {step.id === "record" ? (
-                            <Mic className="text-primary size-10" />
-                          ) : step.id === "analyze" ? (
-                            <Sparkles className="text-primary size-10" />
-                          ) : (
-                            <Headphones className="text-primary size-10" />
-                          )}
+                      {/* Placeholder until Lottie animations are available */}
+                      <div className="bg-primary/5 flex size-full items-center justify-center rounded-lg">
+                        <div className="text-center">
+                          <div className="bg-primary/10 mx-auto mb-4 flex size-20 items-center justify-center rounded-full">
+                            {step.id === "record" ? (
+                              <Mic className="text-primary size-10" />
+                            ) : step.id === "analyze" ? (
+                              <Sparkles className="text-primary size-10" />
+                            ) : (
+                              <Headphones className="text-primary size-10" />
+                            )}
+                          </div>
+                          <p className="text-muted-foreground text-sm">
+                            [Lottie {step.title} Animation]
+                          </p>
                         </div>
-                        <p className="text-muted-foreground text-sm">
-                          [Lottie {step.title} Animation]
-                        </p>
                       </div>
                     </div>
-                  </div>
-                </Card>
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+                  </Card>
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        )}
       </div>
     </section>
   )

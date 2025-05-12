@@ -33,7 +33,7 @@ const steps: StepItem[] = [
       "Input your keyword, question, or define your target audience. Subtext instantly dives into Reddit – where millions of people talk openly. We analyze thousands of raw, unprompted discussions relevant to your specific query.",
     insight: "Real Words, Not Guesswork:",
     insightText:
-      "Every insight comes from what people actually said, verifiable and authentic. No AI making things up",
+      "Every insight comes from what people actually said, verifiable and authentic. No AI making things up.",
     icon: <Search className="size-full" />,
     iconColor: "text-blue-500",
     accentColor: "bg-blue-500",
