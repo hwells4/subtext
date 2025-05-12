@@ -39,17 +39,17 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "mx-auto mt-4 max-w-7xl px-6 transition-all duration-300 ease-in-out lg:px-12",
+            "mx-auto mt-2 max-w-7xl px-4 transition-all duration-300 ease-in-out sm:mt-4 sm:px-6 lg:px-12",
             "rounded-2xl border border-transparent bg-white/10 backdrop-blur-md",
             isScrolled
-              ? "mt-2 max-w-6xl border-slate-200/20 bg-white/25 py-1 shadow-lg backdrop-blur-xl lg:px-8"
-              : "py-3"
+              ? "mt-1 max-w-6xl border-slate-200/20 bg-white/25 py-1 shadow-lg backdrop-blur-xl lg:px-8"
+              : "py-2 sm:py-3"
           )}
         >
           <div
             className={cn(
               "relative flex items-center justify-between gap-6 lg:gap-0",
-              isScrolled ? "py-2" : "py-3 lg:py-4"
+              isScrolled ? "py-1 sm:py-2" : "py-2 lg:py-4"
             )}
           >
             <div className="flex items-center lg:w-auto">

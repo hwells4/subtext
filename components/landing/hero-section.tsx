@@ -27,7 +27,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-white pb-10 pt-4 md:pb-24 md:pt-16">
+    <section className="relative overflow-hidden bg-white pb-10 pt-24 md:pb-24 md:pt-32">
       <div className="container relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10">
         <motion.div
           className="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-10"
@@ -46,10 +46,12 @@ export function HeroSection() {
               <AvatarsDemo />
             </div>
 
-            <h1 className="mt-1 text-3xl font-semibold leading-tight tracking-tight text-slate-900 md:mt-0 md:text-5xl lg:text-7xl">
-              Instant Audience Research. Craft
+            <h1 className="mt-1 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:mt-0 md:text-5xl lg:text-7xl">
+              Instant Audience Research.
               <br />
-              Messaging That Connects.
+              Craft Messaging
+              <br />
+              That Connects.
               <span className="[-top_0.08em] relative ml-2 inline-block size-6 rotate-[3deg] align-middle sm:ml-3 sm:size-10 md:size-12 lg:ml-4 lg:size-14">
                 <Image
                   src="/lightning-icon.png"
@@ -69,7 +71,7 @@ export function HeroSection() {
               conversations as evidence.
             </p>
 
-            <div className="mt-1 flex w-full flex-col space-y-2 sm:flex-row sm:space-x-6 sm:space-y-0 md:mt-2">
+            <div className="mt-3 flex w-full flex-col space-y-2 sm:flex-row sm:space-x-6 sm:space-y-0 md:mt-4">
               <Link
                 href="/waitlist"
                 className="group flex items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-slate-800 md:px-6 md:py-3 md:text-base"
