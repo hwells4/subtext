@@ -64,7 +64,7 @@ export default function UserInsightsSection() {
   ]
 
   return (
-    <section className="relative w-full overflow-hidden bg-white px-4 py-16 pt-24 md:py-20 md:pt-32">
+    <section className="relative w-full overflow-hidden bg-white px-2 py-10 pt-16 md:px-4 md:py-20 md:pt-32">
       {/* Background decorative elements */}
       <div className="absolute inset-0 z-0">
         <div
@@ -89,21 +89,21 @@ export default function UserInsightsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="flex flex-col items-center"
+          className="flex flex-col items-start md:items-center"
         >
           {/* Section Header */}
           <motion.div
             variants={itemVariants}
-            className="mb-12 text-center md:mb-16"
+            className="mb-8 text-left md:mb-16 md:text-center"
           >
             <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-600">
               THE PROBLEM
             </h3>
-            <h2 className="mb-4 mt-2 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-5xl">
+            <h2 className="mb-4 mt-2 text-3xl font-semibold leading-tight tracking-tight text-slate-900 md:text-5xl">
               Stop Guessing What Your Audience{" "}
               <span className="italic">Really</span> Thinks
             </h2>
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
+            <p className="max-w-3xl text-lg leading-relaxed text-slate-600 md:mx-auto">
               Marketing without deep audience insight is just expensive
               guessing. Subtext uncovers what's hiding in plain sight across
               thousands of conversations.
@@ -113,9 +113,9 @@ export default function UserInsightsSection() {
           {/* Challenge Section */}
           <motion.div
             variants={itemVariants}
-            className="w-full rounded-3xl bg-slate-900 p-8 text-white shadow-lg md:p-12"
+            className="w-full rounded-3xl bg-slate-900 p-4 text-white shadow-lg md:p-12"
           >
-            <div className="grid gap-8 md:grid-cols-[1fr,2fr]">
+            <div className="grid gap-6 md:grid-cols-[1fr,2fr] md:gap-8">
               <div>
                 <h3 className="text-2xl font-semibold md:text-3xl">
                   The Challenge
@@ -127,9 +127,12 @@ export default function UserInsightsSection() {
                 </p>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-3 md:grid-cols-3 md:gap-4">
                 {challenges.map((challenge, index) => (
-                  <div key={index} className="rounded-xl bg-slate-800 p-6">
+                  <div
+                    key={index}
+                    className="rounded-xl bg-slate-800 p-4 md:p-6"
+                  >
                     <div className="mb-4 flex items-center">
                       {challenge.icon}
                       <h4 className="ml-2 text-lg font-semibold">
@@ -143,8 +146,8 @@ export default function UserInsightsSection() {
             </div>
 
             {/* Bottom solution teaser - inside the challenge card */}
-            <div className="mt-8 border-t border-slate-700 pt-8 text-center">
-              <p className="mx-auto max-w-2xl text-lg font-semibold text-slate-300">
+            <div className="mt-6 border-t border-slate-700 pt-6 text-left md:mt-8 md:pt-8 md:text-center">
+              <p className="max-w-2xl text-lg font-semibold text-slate-300 md:mx-auto">
                 That's why we built Subtext — to transform scattered
                 conversations into verifiable marketing intelligence, fast.
               </p>
