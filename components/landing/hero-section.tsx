@@ -46,10 +46,10 @@ export function HeroSection() {
               <AvatarsDemo />
             </div>
 
-            <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:mt-0 md:text-5xl lg:text-6xl">
-              Instant Audience Research to Help You
+            <h1 className="mt-2 text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:mt-0 md:text-5xl lg:text-7xl">
+              Instant Audience Research. Craft
               <br />
-              Write Better, Faster.
+              Messaging That Connects.
               <span className="[-top_0.08em] relative ml-2 inline-block size-8 rotate-[3deg] align-middle sm:ml-3 sm:size-10 md:size-12 lg:ml-4 lg:size-14">
                 <Image
                   src="/lightning-icon.png"
@@ -62,11 +62,12 @@ export function HeroSection() {
             </h1>
 
             <p className="text-base leading-relaxed text-slate-600 md:text-lg">
-              Subtext is your instant audience intelligence tool, mining real
-              online conversations (starting with Reddit) for your audience's
-              actual voice. Simply ask your research question to get their
-              verifiable language, raw pain points, emerging trends, and true
-              motivations in minutes. Say goodbye to AI fluff.
+              Subtext searches thousands of Reddit posts to show you exactly how
+              customers describe their problems in their own words. Discover
+              what frustrates them, what excites them, and what solutions
+              they're desperately seeking - all with links to hundreds of real
+              conversations as evidence. Create messaging that makes your
+              audience think, "Finally, someone who actually gets me."
             </p>
 
             <div className="mt-2 flex w-full flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
