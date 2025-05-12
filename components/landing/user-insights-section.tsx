@@ -64,7 +64,7 @@ export default function UserInsightsSection() {
   ]
 
   return (
-    <section className="relative w-full overflow-hidden bg-white px-2 py-10 pt-16 md:px-4 md:py-20 md:pt-32">
+    <section className="relative w-full overflow-hidden bg-white py-16 md:py-24">
       {/* Background decorative elements */}
       <div className="absolute inset-0 z-0">
         <div
@@ -83,7 +83,7 @@ export default function UserInsightsSection() {
         />
       </div>
 
-      <div className="container relative z-10 mx-auto max-w-7xl">
+      <div className="container relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -113,7 +113,7 @@ export default function UserInsightsSection() {
           {/* Challenge Section */}
           <motion.div
             variants={itemVariants}
-            className="w-full rounded-3xl bg-slate-900 p-4 text-white shadow-lg md:p-12"
+            className="w-full rounded-3xl bg-slate-900 p-6 text-white shadow-lg md:p-12"
           >
             <div className="grid gap-6 md:grid-cols-[1fr,2fr] md:gap-8">
               <div>
@@ -127,11 +127,11 @@ export default function UserInsightsSection() {
                 </p>
               </div>
 
-              <div className="grid gap-3 md:grid-cols-3 md:gap-4">
+              <div className="grid gap-4 md:grid-cols-3 md:gap-4">
                 {challenges.map((challenge, index) => (
                   <div
                     key={index}
-                    className="rounded-xl bg-slate-800 p-4 md:p-6"
+                    className="rounded-xl bg-slate-800 p-6 md:p-6"
                   >
                     <div className="mb-4 flex items-center">
                       {challenge.icon}

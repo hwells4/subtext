@@ -78,7 +78,7 @@ export default function HomePage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start bg-white">
       <Navbar />
-      <div className="w-full pt-24 md:pt-32">
+      <div className="w-full pt-16 md:pt-24">
         {/* Hero Section */}
         <HeroSection />
 
