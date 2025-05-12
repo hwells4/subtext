@@ -31,16 +31,39 @@ export default function HomePage() {
     // Mark that we're client-side
     setIsClient(true)
 
-    // Prefetch critical assets
+    // Prefetch critical assets - only prefetch assets that will be used later in the session
+    // Not on the current page
     const prefetchAssets = () => {
-      const links = ["/panel.svg", "/lightning-icon.png", "/subtext-logo.svg"]
+      // Only prefetch assets NOT used on the current page but needed later
+      // The logo is already used in the footer, so we don't need to prefetch it
+      const links = [
+        { href: "/panel.svg", type: "image/svg+xml", rel: "preload" },
+        { href: "/lightning-icon.png", type: "image/png", rel: "preload" }
+        // Removed subtext-logo.svg as it's already used in the footer and navbar
+      ]
 
-      links.forEach(href => {
-        const link = document.createElement("link")
-        link.rel = "prefetch"
-        link.href = href
-        link.as = href.endsWith(".svg") ? "image" : "image"
-        document.head.appendChild(link)
+      links.forEach(({ href, type, rel }) => {
+        // Check if image is already in the browser cache
+        fetch(href, { method: "HEAD", cache: "force-cache" })
+          .then(res => {
+            if (!res.ok) {
+              const link = document.createElement("link")
+              link.rel = rel
+              link.href = href
+              link.as = "image"
+              link.type = type
+              document.head.appendChild(link)
+            }
+          })
+          .catch(() => {
+            // If the request fails, try to preload anyway
+            const link = document.createElement("link")
+            link.rel = rel
+            link.href = href
+            link.as = "image"
+            link.type = type
+            document.head.appendChild(link)
+          })
       })
     }
 
