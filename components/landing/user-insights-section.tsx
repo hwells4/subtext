@@ -113,7 +113,7 @@ export default function UserInsightsSection() {
           {/* Challenge Section */}
           <motion.div
             variants={itemVariants}
-            className="w-full rounded-3xl bg-slate-900 p-6 text-white shadow-lg md:p-12"
+            className="w-full rounded-3xl bg-slate-900 p-6 pt-8 text-white shadow-lg md:p-12"
           >
             <div className="grid gap-6 md:grid-cols-[1fr,2fr] md:gap-8">
               <div>
@@ -131,7 +131,7 @@ export default function UserInsightsSection() {
                 {challenges.map((challenge, index) => (
                   <div
                     key={index}
-                    className="rounded-xl bg-slate-800 p-6 md:p-6"
+                    className="rounded-xl bg-slate-800 p-6 pt-8 md:p-8"
                   >
                     <div className="mb-4 flex items-center">
                       {challenge.icon}

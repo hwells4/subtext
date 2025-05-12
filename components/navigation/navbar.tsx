@@ -125,9 +125,8 @@ export function Navbar() {
                 "mt-2",
                 "flex-col items-center",
                 "rounded-lg border",
-                "bg-white/90 backdrop-blur-sm",
-                "p-6",
-                "shadow-lg"
+                "bg-white shadow-lg", // Changed from bg-white/90 backdrop-blur-sm to make it opaque
+                "p-6"
               )}
             >
               {/* Mobile Menu Items */}
