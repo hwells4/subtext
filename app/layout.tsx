@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.subtext.ai"),
+  metadataBase: new URL("https://trysubtext.vercel.app"),
   title: "Subtext.ai | Instant Audience Research",
   description:
     "Subtext provides instant audience research, mining real conversations for authentic language & pain points. Write better, faster with verifiable insights. Get early access!",
@@ -62,10 +62,10 @@ export const metadata: Metadata = {
     title: "Subtext.ai | Instant Audience Research",
     description:
       "Stop guessing & ditch AI fluff! Subtext delivers verifiable audience insights from real online conversations in minutes to help you write copy that truly converts.",
-    url: "https://www.subtext.ai",
+    url: "https://trysubtext.vercel.app",
     images: [
       {
-        url: "/subtext-open-graph.png",
+        url: "https://trysubtext.vercel.app/subtext-open-graph.png",
         width: 1200,
         height: 630,
         alt: "Subtext.ai - Instant Audience Research"
@@ -79,10 +79,20 @@ export const metadata: Metadata = {
     title: "subtext.ai | Instant Audience Research",
     description:
       "Stop guessing & ditch AI fluff! Subtext delivers verifiable audience insights from real online conversations in minutes to help you write copy that truly converts.",
-    images: ["/subtext-twitter-image.png"]
+    images: ["https://trysubtext.vercel.app/subtext-twitter-image.png"]
   },
   alternates: {
-    canonical: "https://www.subtext.ai"
+    canonical: "https://trysubtext.vercel.app"
+  },
+  appleWebApp: {
+    title: "Subtext.ai",
+    statusBarStyle: "default",
+    startupImage: [
+      {
+        url: "https://trysubtext.vercel.app/subtext-open-graph.png",
+        media: "(device-width: 768px) and (device-height: 1024px)"
+      }
+    ]
   }
 }
 
@@ -104,25 +114,6 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head>
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-          />
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="icon" href="/favicon.ico" sizes="any" />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
