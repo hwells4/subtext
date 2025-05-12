@@ -66,8 +66,7 @@ export function HeroSection() {
               customers describe their problems in their own words. Discover
               what frustrates them, what excites them, and what solutions
               they're desperately seeking - all with links to hundreds of real
-              conversations as evidence. Create messaging that makes your
-              audience think, "Finally, someone who actually gets me."
+              conversations as evidence.
             </p>
 
             <div className="mt-2 flex w-full flex-col space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
