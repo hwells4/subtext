@@ -34,17 +34,13 @@ export const metadata: Metadata = {
   description:
     "Subtext provides instant audience research, mining real conversations for authentic language & pain points. Write better, faster with verifiable insights. Get early access!",
   icons: {
-    icon: [
-      { url: "/favicon.ico", type: "image/x-icon" },
-      { url: "/favicon.svg", type: "image/svg+xml" }
-    ],
-    shortcut: "/favicon.ico",
+    icon: "/favicon.ico",
     apple: "/favicon.svg"
   },
   openGraph: {
     type: "website",
-    siteName: "subtext.ai",
-    title: "subtext.ai | Instant Audience Research",
+    siteName: "Subtext.ai",
+    title: "Subtext.ai | Instant Audience Research",
     description:
       "Stop guessing & ditch AI fluff! Subtext delivers verifiable audience insights from real online conversations in minutes to help you write copy that truly converts.",
     url: "https://www.subtext.ai",
@@ -89,6 +85,7 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <head>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{

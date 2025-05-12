@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "Instant Audience Research for Better Copy - Subtext.ai",
+  title: "Subtext.ai | Instant Audience Research",
   description:
     "Subtext provides instant audience research, mining real conversations for authentic language & pain points. Write better, faster with verifiable insights. Get early access!"
 }
