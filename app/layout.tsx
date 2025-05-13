@@ -9,6 +9,7 @@ import {
   getProfileByUserIdAction
 } from "@/actions/db/profiles-actions"
 import { Toaster } from "@/components/ui/toaster"
+import { GoogleAnalytics } from "@/components/utilities/google-analytics"
 import { PostHogPageview } from "@/components/utilities/posthog/posthog-pageview"
 import { PostHogUserIdentify } from "@/components/utilities/posthog/posthog-user-identity"
 import { Providers } from "@/components/utilities/providers"
@@ -175,6 +176,7 @@ export default async function RootLayout({
             enableSystem={false}
             disableTransitionOnChange
           >
+            <GoogleAnalytics />
             <PostHogUserIdentify />
             <PostHogPageview />
 
