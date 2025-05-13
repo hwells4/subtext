@@ -127,11 +127,13 @@ export default function UserInsightsSection() {
                 </p>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-3 md:gap-4">
+              <div className="grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3">
                 {challenges.map((challenge, index) => (
                   <div
                     key={index}
-                    className="rounded-xl bg-slate-800 p-6 pt-8 md:p-8"
+                    className={`rounded-xl bg-slate-800 p-6 pt-8 md:p-8 ${
+                      index === 2 ? "md:col-span-2 lg:col-span-1" : ""
+                    }`}
                   >
                     <div className="mb-4 flex items-center">
                       {challenge.icon}
