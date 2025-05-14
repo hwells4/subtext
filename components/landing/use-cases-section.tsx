@@ -1,7 +1,7 @@
 "use client"
 
-import React from "react"
-import { motion } from "framer-motion"
+import React, { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, CheckCircle } from "lucide-react"
 import Image from "next/image"
@@ -59,39 +59,63 @@ const useCases: UseCaseItem[] = [
 ]
 
 export default function UseCasesSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
+
+  // Optimized animation variants
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: {
-        staggerChildren: 0.15
+        staggerChildren: 0.08
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" }
     }
+  }
+
+  // Reusable style object for better performance
+  const cardStyle = {
+    background:
+      "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",
+    backdropFilter: "blur(10px)"
   }
 
   return (
     <section className="relative w-full overflow-hidden bg-white py-24 md:py-32">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 z-0 opacity-30">
-        <div className="bg-gradient-radial absolute -right-[30%] top-[5%] size-[500px] rounded-full from-slate-50 to-transparent opacity-70 blur-3xl" />
-        <div className="bg-gradient-radial absolute -left-[20%] top-[60%] size-[600px] rounded-full from-slate-50 to-transparent opacity-70 blur-3xl" />
+      {/* Simplified decorative elements */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        <div
+          className="absolute -right-[30%] top-[5%] size-[500px] rounded-full blur-2xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(241, 245, 249, 1) 0%, transparent 70%)"
+          }}
+        />
+        <div
+          className="absolute -left-[20%] top-[60%] size-[600px] rounded-full blur-2xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(241, 245, 249, 1) 0%, transparent 70%)"
+          }}
+        />
       </div>
 
       <div className="container relative z-10 mx-auto max-w-[1220px] px-6 md:px-10">
         <motion.div
+          ref={ref}
           className="flex flex-col items-center"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate={isInView ? "visible" : "hidden"}
         >
           {/* Section Header */}
           <motion.div className="mb-20 text-center" variants={itemVariants}>
@@ -115,26 +139,23 @@ export default function UseCasesSection() {
                 key={useCase.headline}
                 variants={itemVariants}
                 className={
-                  `group relative size-full` +
+                  `group relative size-full will-change-transform` +
                   (index === 2 ? " md:col-span-2 lg:col-span-1" : "")
                 }
+                style={{ backfaceVisibility: "hidden" }}
               >
-                {/* Glass card with subtle border */}
+                {/* Glass card with simplified styling */}
                 <div
                   className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-md transition-all duration-300 hover:shadow-lg"
-                  style={{
-                    background:
-                      "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",
-                    backdropFilter: "blur(10px)"
-                  }}
+                  style={cardStyle}
                 >
-                  {/* Subtle gradient accent in corner */}
+                  {/* Simplified gradient accent in corner */}
                   <div
-                    className={`bg-gradient-radial absolute -right-20 -top-20 size-48 rounded-full ${useCase.accentGradient} opacity-60`}
+                    className={`absolute -right-20 -top-20 size-48 rounded-full ${useCase.accentGradient} opacity-50`}
                   />
 
                   {/* Content Section */}
-                  <div className="relative z-10 p-8">
+                  <div className="relative z-10 p-6 md:p-8">
                     <div className="mb-4 flex items-center justify-between">
                       <div className="size-12">
                         <div className="relative size-full">
@@ -143,7 +164,7 @@ export default function UseCasesSection() {
                             alt={useCase.headline}
                             width={48}
                             height={48}
-                            className={`size-12 transition-transform duration-300 group-hover:scale-110`}
+                            className="size-12"
                           />
                         </div>
                       </div>
@@ -177,21 +198,15 @@ export default function UseCasesSection() {
                     </div>
                   </div>
 
-                  {/* Bottom CTA Section - Full width black background on hover */}
+                  {/* Simplified bottom CTA section */}
                   <div className="relative mt-auto">
-                    {/* Dividing line */}
                     <div className="h-px w-full bg-slate-100" />
-
-                    {/* Black overlay that appears on hover */}
-                    <div className="absolute inset-0 z-0 bg-slate-900 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                    {/* CTA Button Area */}
                     <Link href="/waitlist" className="relative z-10 block py-4">
-                      <div className="group/button flex items-center justify-center transition-all duration-300">
-                        <span className="font-semibold text-slate-800 transition-colors duration-300 group-hover:text-white">
+                      <div className="flex items-center justify-center">
+                        <span className="font-semibold text-slate-800 group-hover:text-slate-900">
                           {useCase.cta}
                         </span>
-                        <ArrowRight className="ml-2 size-4 text-slate-800 transition-all duration-300 group-hover/button:translate-x-2 group-hover:translate-x-1 group-hover:text-white" />
+                        <ArrowRight className="ml-2 size-4 text-slate-800 transition-transform group-hover:translate-x-1" />
                       </div>
                     </Link>
                   </div>
@@ -202,14 +217,8 @@ export default function UseCasesSection() {
         </motion.div>
       </div>
 
-      {/* Decorative bottom gradient */}
-      <div
-        className="absolute bottom-0 left-0 z-0 h-px w-full"
-        style={{
-          background:
-            "radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%)"
-        }}
-      />
+      {/* Simple bottom border */}
+      <div className="absolute bottom-0 left-0 z-0 h-px w-full bg-slate-100/50" />
     </section>
   )
 }

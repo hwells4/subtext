@@ -1,8 +1,8 @@
 "use client"
 
-import React from "react"
+import React, { useRef } from "react"
 import { AlertCircle } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 
 interface FeatureItemProps {
@@ -22,23 +22,27 @@ const FeatureItem = ({ icon, text }: FeatureItemProps) => (
 )
 
 export default function UserInsightsSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
+
+  // Simplified variants with reduced duration for better performance
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3
+        staggerChildren: 0.08, // Reduced from 0.15
+        delayChildren: 0.1 // Reduced from 0.3
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 10 }, // Reduced from y: 20
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" } // Reduced from 0.6
     }
   }
 
@@ -65,30 +69,30 @@ export default function UserInsightsSection() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white py-16 md:py-24">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 z-0">
+      {/* Background decorative elements - simplified */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <div
-          className="absolute -right-[30%] top-[5%] size-[600px] rounded-full opacity-40 blur-3xl"
+          className="absolute -right-[30%] top-[5%] size-[600px] rounded-full opacity-30 blur-2xl"
           style={{
             background:
-              "radial-gradient(circle, rgba(219, 234, 254, 0.8) 0%, transparent 70%)"
+              "radial-gradient(circle, rgba(219, 234, 254, 0.7) 0%, transparent 70%)"
           }}
         />
         <div
-          className="absolute -left-[20%] top-[40%] size-[500px] rounded-full opacity-40 blur-3xl"
+          className="absolute -left-[20%] top-[40%] size-[500px] rounded-full opacity-30 blur-2xl"
           style={{
             background:
-              "radial-gradient(circle, rgba(209, 250, 229, 0.8) 0%, transparent 70%)"
+              "radial-gradient(circle, rgba(209, 250, 229, 0.7) 0%, transparent 70%)"
           }}
         />
       </div>
 
       <div className="container relative z-10 mx-auto max-w-7xl px-6 md:px-10">
         <motion.div
+          ref={ref}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate={isInView ? "visible" : "hidden"}
           className="flex flex-col items-start md:items-center"
         >
           {/* Section Header */}
@@ -110,10 +114,11 @@ export default function UserInsightsSection() {
             </p>
           </motion.div>
 
-          {/* Challenge Section */}
+          {/* Challenge Section - with will-change optimization */}
           <motion.div
             variants={itemVariants}
-            className="w-full rounded-3xl bg-slate-900 p-6 pt-8 text-white shadow-lg md:p-12"
+            className="w-full rounded-3xl bg-slate-900 p-6 pt-8 text-white shadow-lg will-change-transform md:p-12"
+            style={{ backfaceVisibility: "hidden" }}
           >
             <div className="grid gap-6 md:grid-cols-[1fr,2fr] md:gap-8">
               <div>
@@ -158,8 +163,8 @@ export default function UserInsightsSection() {
         </motion.div>
       </div>
 
-      {/* Bottom angle cut for transition to next section */}
-      <div className="absolute bottom-0 left-0 z-0 h-16 w-full overflow-hidden">
+      {/* Bottom angle cut for transition to next section - simplified */}
+      <div className="absolute bottom-0 left-0 z-0 h-16 w-full">
         <div
           className="absolute bottom-0 h-32 w-full -translate-y-16 bg-white"
           style={{ clipPath: "polygon(0 100%, 100% 0, 100% 100%, 0% 100%)" }}

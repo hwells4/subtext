@@ -1,28 +1,35 @@
 "use client"
 
-import { HeroSection } from "@/components/landing/hero-section"
-import KeyFeaturesSection from "@/components/landing/key-features-section"
+import React, { useState, useEffect, Suspense, lazy } from "react"
 import { Navbar } from "@/components/navigation"
-// import CompanyLogosSection from "@/components/landing/company-logos-section" <ai_context>This line is being commented out as per user request to hide the company logos section.</ai_context>
-import AppScreenshotSection from "@/components/landing/app-screenshot-section"
-import UserInsightsSection from "@/components/landing/user-insights-section"
-import CtaSection from "@/components/landing/cta-section"
-// import { ResultsShowcase } from "@/app/landing/_components/results-showcase" <ai_context>This line is being commented out as per user request to hide the results showcase section.</ai_context>
-// import { TestimonialsCarousel } from "@/app/landing/_components/testimonials-carousel" <ai_context>This line is being commented out as per user request to hide the testimonials carousel section.</ai_context>
-import VisualDemonstration from "@/components/landing/visual-demonstration"
-import UseCasesSection from "@/components/landing/use-cases-section"
-import DifferentiationSection from "@/components/landing/differentiation-section"
-import {
-  FaqSection,
-  ModernSplitFaqSection
-} from "@/components/marketing/faq-section"
-import FooterExample from "@/components/marketing/footer"
-import React, { useState, useEffect } from "react"
-import { HeroScrollDemo } from "@/components/landing/hero-scroll-demo"
 import { motion } from "framer-motion"
-import BenefitsSection from "@/components/benefits-section"
-import FeaturesHighlights from "@/components/features-highlights"
-import VoiceToConversionSection from "@/components/landing/voice-to-conversion-section"
+
+// Lazy load non-critical components
+const HeroSection = lazy(() => import("@/components/landing/hero-section"))
+const UserInsightsSection = lazy(
+  () => import("@/components/landing/user-insights-section")
+)
+const VoiceToConversionSection = lazy(
+  () => import("@/components/landing/voice-to-conversion-section")
+)
+const BenefitsSection = lazy(() => import("@/components/benefits-section"))
+const UseCasesSection = lazy(
+  () => import("@/components/landing/use-cases-section")
+)
+const ModernSplitFaqSection = lazy(() =>
+  import("@/components/marketing/faq-section").then(mod => ({
+    default: mod.ModernSplitFaqSection
+  }))
+)
+const CtaSection = lazy(() => import("@/components/landing/cta-section"))
+const FooterExample = lazy(() => import("@/components/marketing/footer"))
+
+// Simple loading components
+const SectionLoader = () => (
+  <div className="flex h-[400px] w-full items-center justify-center">
+    <div className="size-12 animate-spin rounded-full border-2 border-slate-900/20 border-t-slate-900"></div>
+  </div>
+)
 
 export default function HomePage() {
   const [isClient, setIsClient] = useState(false)
@@ -31,62 +38,63 @@ export default function HomePage() {
     // Mark that we're client-side
     setIsClient(true)
 
-    // Prefetch critical assets - only prefetch assets that will be used later in the session
-    // Not on the current page
+    // Prefetch critical assets
     const prefetchAssets = () => {
-      // Only prefetch assets NOT used on the current page but needed later
-      // The logo is already used in the footer, so we don't need to prefetch it
       const links = [
-        { href: "/panel.svg", type: "image/svg+xml", rel: "preload" },
-        { href: "/lightning-icon.png", type: "image/png", rel: "preload" }
-        // Removed subtext-logo.svg as it's already used in the footer and navbar
+        { href: "/panel.svg", type: "image/svg+xml" },
+        { href: "/lightning-icon.png", type: "image/png" }
       ]
 
-      links.forEach(({ href, type, rel }) => {
-        // Check if image is already in the browser cache
-        fetch(href, { method: "HEAD", cache: "force-cache" })
-          .then(res => {
-            if (!res.ok) {
-              const link = document.createElement("link")
-              link.rel = rel
-              link.href = href
-              link.as = "image"
-              link.type = type
-              document.head.appendChild(link)
-            }
-          })
-          .catch(() => {
-            // If the request fails, try to preload anyway
-            const link = document.createElement("link")
-            link.rel = rel
-            link.href = href
-            link.as = "image"
-            link.type = type
-            document.head.appendChild(link)
-          })
+      links.forEach(({ href }) => {
+        // Create a new Image object to preload images
+        const img = new window.Image()
+        img.src = href
       })
     }
 
-    // Defer non-critical initialization
-    if (window.requestIdleCallback) {
-      window.requestIdleCallback(prefetchAssets)
-    } else {
-      setTimeout(prefetchAssets, 1000)
+    // Execute prefetch immediately for critical assets
+    prefetchAssets()
+
+    // Load initial viewport immediately
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view")
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    document.querySelectorAll(".observe-me").forEach(el => {
+      observer.observe(el)
+    })
+
+    return () => {
+      if (observer) {
+        observer.disconnect()
+      }
     }
   }, [])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start bg-white">
+    <main
+      className="flex min-h-screen flex-col items-center justify-start"
+      style={{ backgroundColor: "#ede6e8" }}
+    >
       <Navbar />
       <div className="w-full pt-16 md:pt-24">
-        {/* Hero Section */}
-        <HeroSection />
+        {/* Hero Section - Loaded immediately */}
+        <Suspense fallback={<SectionLoader />}>
+          <HeroSection />
+        </Suspense>
 
-        {/* SVG Decoration Section - connecting the Hero and the Scroll Demo */}
+        {/* SVG Decoration Section - optimized spinner */}
         <div className="relative w-full">
-          {/* Spinning Gear SVG */}
-          <div className="pointer-events-none absolute -right-20 bottom-0 z-0 w-40 translate-y-1/4 opacity-[0.04] sm:-right-10 sm:w-48 sm:opacity-[0.05] md:right-10 md:w-56 lg:right-20 lg:w-64 lg:opacity-[0.06]">
-            {isClient && (
+          {isClient && (
+            <div className="pointer-events-none absolute -right-20 bottom-0 z-0 w-40 translate-y-1/4 opacity-[0.04] sm:-right-10 sm:w-48 sm:opacity-[0.05] md:right-10 md:w-56 lg:right-20 lg:w-64 lg:opacity-[0.06]">
               <motion.div
                 className="size-full bg-contain bg-center bg-no-repeat"
                 style={{ backgroundImage: "url(/gear.svg)" }}
@@ -98,35 +106,50 @@ export default function HomePage() {
                 }}
                 aria-hidden="true"
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
-        {/* Scrolling Animation Section */}
-        <div className="hidden md:block">
-          <HeroScrollDemo />
+        {/* Remaining sections with Suspense and progressive loading */}
+        <div className="observe-me">
+          <Suspense fallback={<SectionLoader />}>
+            <UserInsightsSection />
+          </Suspense>
         </div>
 
-        {/* User Insights Section - With Pain Points and Solution */}
-        <UserInsightsSection />
+        <div className="observe-me">
+          <Suspense fallback={<SectionLoader />}>
+            <VoiceToConversionSection />
+          </Suspense>
+        </div>
 
-        {/* Voice to Conversion Section - Shows the 4-step process */}
-        <VoiceToConversionSection />
+        <div className="observe-me">
+          <Suspense fallback={<SectionLoader />}>
+            <BenefitsSection />
+          </Suspense>
+        </div>
 
-        {/* Benefits Section - Shows tangible advantages */}
-        <BenefitsSection />
+        <div className="observe-me">
+          <Suspense fallback={<SectionLoader />}>
+            <UseCasesSection />
+          </Suspense>
+        </div>
 
-        {/* Use Cases Section - Role Specific */}
-        <UseCasesSection />
+        <div className="observe-me">
+          <Suspense fallback={<SectionLoader />}>
+            <ModernSplitFaqSection />
+          </Suspense>
+        </div>
 
-        {/* FAQ Section */}
-        <ModernSplitFaqSection />
+        <div className="observe-me">
+          <Suspense fallback={<SectionLoader />}>
+            <CtaSection />
+          </Suspense>
+        </div>
 
-        {/* Call to Action Section */}
-        <CtaSection />
-
-        {/* Footer */}
-        <FooterExample />
+        <Suspense fallback={<div className="h-[200px]"></div>}>
+          <FooterExample />
+        </Suspense>
       </div>
     </main>
   )

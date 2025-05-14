@@ -1,7 +1,7 @@
 "use client"
 
-import React from "react"
-import { motion } from "framer-motion"
+import React, { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import {
   ArrowRight,
   Check,
@@ -81,39 +81,52 @@ const steps: StepItem[] = [
 ]
 
 const VoiceToConversionSection = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
+
+  // Simplified variants with reduced durations
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.08, // Reduced from 0.2
+        when: "beforeChildren"
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 15 }, // Reduced from 40
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" } // Reduced from 0.7
     }
+  }
+
+  // Pre-compiled style objects for better performance
+  const backgroundGradient = {
+    background:
+      "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",
+    backdropFilter: "blur(10px)"
   }
 
   return (
     <section className="relative w-full overflow-hidden bg-white py-24 md:py-32">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <div className="bg-gradient-radial absolute -right-[35%] top-[10%] size-[600px] rounded-full from-slate-50 to-transparent opacity-80 blur-3xl" />
-        <div className="bg-gradient-radial absolute -left-[25%] top-[60%] size-[600px] rounded-full from-slate-50 to-transparent opacity-80 blur-3xl" />
+      {/* Simplified decorative background elements */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <div className="bg-gradient-radial absolute -right-[35%] top-[10%] size-[600px] rounded-full from-slate-50 to-transparent opacity-70 blur-2xl" />
+        <div className="bg-gradient-radial absolute -left-[25%] top-[60%] size-[600px] rounded-full from-slate-50 to-transparent opacity-70 blur-2xl" />
       </div>
 
       <div className="container relative z-10 mx-auto max-w-[1220px] px-6 md:px-10">
         <motion.div
+          ref={ref}
           className="flex flex-col items-center"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate={isInView ? "visible" : "hidden"}
         >
           {/* Section Header */}
           <motion.div
@@ -137,35 +150,30 @@ const VoiceToConversionSection = () => {
             </p>
           </motion.div>
 
-          {/* Process Steps */}
+          {/* Process Steps - With performance optimizations */}
           <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}
                 variants={itemVariants}
-                className="group flex h-full"
+                className="group flex h-full will-change-transform"
+                style={{ backfaceVisibility: "hidden" }}
               >
                 <div
                   className="relative flex size-full flex-col overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-md transition-all duration-300 hover:shadow-lg"
-                  style={{
-                    background:
-                      "linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",
-                    backdropFilter: "blur(10px)"
-                  }}
+                  style={backgroundGradient}
                 >
-                  {/* Subtle gradient accent in corner */}
+                  {/* Simplified gradient accent in corner */}
                   <div
-                    className={`bg-gradient-radial absolute -right-20 -top-20 size-48 rounded-full ${step.accentGradient} opacity-60`}
+                    className={`bg-gradient-radial absolute -right-20 -top-20 size-48 rounded-full ${step.accentGradient} opacity-50`}
                   />
 
                   {/* Content Section */}
-                  <div className="relative z-10 flex h-full flex-col p-8 md:p-8">
+                  <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
                     <div className="mb-4 flex items-center justify-between">
-                      {/* Icon wrapper with number label */}
+                      {/* Icon wrapper with number label - simplified animation */}
                       <div className="relative">
-                        <div
-                          className={`size-12 ${step.iconColor} transition-transform duration-300 group-hover:scale-110`}
-                        >
+                        <div className={`size-12 ${step.iconColor}`}>
                           {step.icon}
                         </div>
                         <div className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-white shadow-sm">
@@ -200,7 +208,7 @@ const VoiceToConversionSection = () => {
             ))}
           </div>
 
-          {/* Bottom CTA */}
+          {/* Bottom CTA - Simplified */}
           <motion.div variants={itemVariants} className="mt-16 text-center">
             <Link
               href="/waitlist"
@@ -217,7 +225,7 @@ const VoiceToConversionSection = () => {
         </motion.div>
       </div>
 
-      {/* Decorative bottom gradient */}
+      {/* Simple bottom gradient */}
       <div
         className="absolute bottom-0 left-0 z-0 h-px w-full"
         style={{

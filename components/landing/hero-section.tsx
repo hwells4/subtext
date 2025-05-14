@@ -1,28 +1,34 @@
 "use client"
 
-import React from "react"
-import { motion } from "framer-motion"
+import React, { useRef } from "react"
+import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import { ChevronRight, Calendar } from "lucide-react"
 import Image from "next/image"
 import { AvatarsDemo } from "@/components/ui/avatars-demo"
 
 export function HeroSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
+
+  // Simplified variants with reduced animation duration for better performance
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.1, // Reduced from 0.2
+        when: "beforeChildren"
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 }, // Reduced y offset
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" } // Reduced from 0.7
     }
   }
 
@@ -30,11 +36,11 @@ export function HeroSection() {
     <section className="relative overflow-hidden bg-white pb-10 pt-24 md:pb-24 md:pt-32">
       <div className="container relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10">
         <motion.div
+          ref={ref}
           className="grid w-full grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-10"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          animate={isInView ? "visible" : "hidden"}
         >
           {/* Text Content */}
           <motion.div
@@ -96,18 +102,18 @@ export function HeroSection() {
 
           {/* Glass Panes Mockup */}
           <motion.div
-            className="relative mx-auto w-full max-w-[360px] md:col-span-5 md:mx-0"
+            className="relative mx-auto w-full max-w-[360px] will-change-transform md:col-span-5 md:mx-0"
             variants={itemVariants}
+            style={{ backfaceVisibility: "hidden" }}
           >
-            {/* Background Glass Pane */}
+            {/* Background Glass Pane - Simplified */}
             <div
               className="absolute z-0 h-[240px] w-[220px] rounded-[32px] border-[3px] border-white/10 md:h-[380px] md:w-[320px] lg:h-[420px] lg:w-[360px]"
               style={{
                 top: "15%",
                 right: "10%",
                 filter: "blur(1.5px)",
-                boxShadow:
-                  "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003"
+                boxShadow: "0 9px 20px #0000004a, 0 37px 37px #00000042" // Simplified shadow
               }}
             >
               <div
@@ -119,12 +125,11 @@ export function HeroSection() {
               />
             </div>
 
-            {/* Main Glass Pane */}
+            {/* Main Glass Pane - Simplified */}
             <div
-              className="relative z-10 h-[300px] w-[240px] overflow-hidden rounded-[32px] border-[3px] border-white/20 bg-white/25 backdrop-blur-xl sm:w-[280px] md:h-[460px] md:w-full"
+              className="relative z-10 h-[300px] w-[240px] overflow-hidden rounded-[32px] border-[3px] border-white/20 bg-white/25 backdrop-blur-sm sm:w-[280px] md:h-[460px] md:w-full"
               style={{
-                boxShadow:
-                  "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003, 0 4px 12px rgba(0,0,0,0.1)"
+                boxShadow: "0 9px 20px #0000004a, 0 37px 37px #00000042" // Simplified shadow
               }}
             >
               <div className="flex h-full items-center justify-center p-2 md:p-3">
@@ -148,7 +153,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Decorative bottom gradient */}
+      {/* Decorative bottom gradient - keeping minimal */}
       <div
         className="absolute bottom-0 left-0 z-0 h-px w-full"
         style={{
