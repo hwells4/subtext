@@ -52,6 +52,7 @@ export function ResultsShowcase() {
       <div className="container px-4 md:px-6">
         <AnimatedGroup
           className="mb-12 flex flex-col items-center text-center"
+          viewportMargin="-25%"
           variants={{
             container: {
               hidden: { opacity: 0 },
@@ -112,6 +113,7 @@ export function ResultsShowcase() {
           <div className="lg:col-span-8">
             <AnimatedGroup
               className="grid h-full grid-cols-1 gap-4 md:grid-cols-3"
+              viewportMargin="-25%"
               variants={{
                 container: {
                   hidden: { opacity: 0 },

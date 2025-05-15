@@ -6,7 +6,7 @@ import { TrendingUp, Sparkles, Heart, DollarSign } from "lucide-react"
 
 export default function BenefitsSection() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
+  const isInView = useInView(ref, { once: true, amount: 0.25 })
 
   // Motion variants for staggered animations
   const containerVariants = {

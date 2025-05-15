@@ -71,6 +71,7 @@ export function TestimonialsCarousel() {
       <div className="container px-4 md:px-6">
         <AnimatedGroup
           className="mb-12 flex flex-col items-center text-center"
+          viewportMargin="-25%"
           variants={{
             container: {
               hidden: { opacity: 0 },
@@ -106,6 +107,7 @@ export function TestimonialsCarousel() {
         <div className="relative mx-auto mt-12 max-w-4xl">
           <AnimatedGroup
             className="relative overflow-hidden"
+            viewportMargin="-25%"
             variants={{
               container: {
                 hidden: { opacity: 0 },

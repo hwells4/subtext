@@ -29,10 +29,10 @@ export default function FeaturesHighlights() {
               initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
-                delay: index * 0.15,
-                duration: 0.5
+                delay: index * 0.1,
+                duration: 0.4
               }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-15%" }}
               className="flex rounded-xl bg-white p-6 shadow-sm"
             >
               <div className="mr-5 flex size-14 shrink-0 items-center justify-center rounded-lg bg-indigo-100">

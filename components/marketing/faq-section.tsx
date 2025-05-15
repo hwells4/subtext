@@ -158,12 +158,12 @@ const simpleAnimationVariants = {
   open: {
     opacity: 1,
     height: "auto",
-    transition: { duration: 0.25, ease: "easeOut" }
+    transition: { duration: 0.2, ease: "easeOut" }
   },
   collapsed: {
     opacity: 0,
     height: 0,
-    transition: { duration: 0.2, ease: "easeIn" }
+    transition: { duration: 0.15, ease: "easeIn" }
   }
 }
 

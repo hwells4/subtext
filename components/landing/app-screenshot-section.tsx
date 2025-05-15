@@ -18,7 +18,7 @@ const transitionVariants = {
       transition: {
         type: "spring",
         bounce: 0.3,
-        duration: 1.5
+        duration: 1.2
       }
     }
   }
@@ -27,12 +27,13 @@ const transitionVariants = {
 export default function AppScreenshotSection() {
   return (
     <AnimatedGroup
+      viewportMargin="-20%"
       variants={{
         container: {
           visible: {
             transition: {
               staggerChildren: 0.05,
-              delayChildren: 0.75
+              delayChildren: 0.5
             }
           }
         },

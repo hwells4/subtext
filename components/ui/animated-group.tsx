@@ -15,6 +15,7 @@ interface AnimatedGroupProps {
     item?: Variants
   }
   staggerDelay?: number
+  viewportMargin?: string
   // Add other specific HTML div props if needed, e.g., id?: string;
 }
 
@@ -22,7 +23,8 @@ export function AnimatedGroup({
   children,
   className,
   variants,
-  staggerDelay = 0.1 // Default stagger delay
+  staggerDelay = 0.1, // Default stagger delay
+  viewportMargin = "-20%" // Changed from -100px to -20% to make animations trigger earlier
 }: AnimatedGroupProps) {
   // <-- Use the refined props interface
 
@@ -60,7 +62,7 @@ export function AnimatedGroup({
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: viewportMargin }}
     >
       {childrenArray.map((child, index) =>
         React.isValidElement(child) ? (
