@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, CheckCircle } from "lucide-react"
@@ -61,6 +61,25 @@ const useCases: UseCaseItem[] = [
 export default function UseCasesSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
+  // State to track if the user is on a mobile device
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect if the user is on a mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobileBreakpoint = 768 // Standard mobile breakpoint
+      setIsMobile(window.innerWidth < mobileBreakpoint)
+    }
+
+    // Check on initial load
+    checkMobile()
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkMobile)
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // Optimized animation variants
   const containerVariants = {
@@ -198,15 +217,26 @@ export default function UseCasesSection() {
                     </div>
                   </div>
 
-                  {/* Simplified bottom CTA section */}
+                  {/* Bottom CTA section with hover and mobile-default styles */}
                   <div className="relative mt-auto">
                     <div className="h-px w-full bg-slate-100" />
-                    <Link href="/waitlist" className="relative z-10 block py-4">
-                      <div className="flex items-center justify-center">
-                        <span className="font-semibold text-slate-800 group-hover:text-slate-900">
+                    <Link
+                      href="/waitlist"
+                      className={`relative z-10 block transition-all group-hover:bg-slate-900 ${isMobile ? "bg-slate-900" : ""}`}
+                    >
+                      <div className="flex items-center justify-center py-4">
+                        <span
+                          className={`font-semibold group-hover:text-white ${isMobile ? "text-white" : "text-slate-800"}`}
+                        >
                           {useCase.cta}
                         </span>
-                        <ArrowRight className="ml-2 size-4 text-slate-800 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight
+                          className={`ml-2 size-4 transition-transform group-hover:translate-x-1 group-hover:text-white ${
+                            isMobile
+                              ? "translate-x-1 text-white"
+                              : "text-slate-800"
+                          }`}
+                        />
                       </div>
                     </Link>
                   </div>

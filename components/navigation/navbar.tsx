@@ -18,6 +18,10 @@ const menuItems = [
 const ctaButtonStyles =
   "rounded-lg bg-slate-900 px-6 py-2 text-base font-semibold text-white shadow-md transition-shadow duration-200 ease-in-out hover:bg-slate-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 
+// Specific style for the "Join Waitlist" button to ensure it has a black background
+const waitlistButtonStyles =
+  "rounded-lg !bg-black px-6 py-2 text-base font-semibold !text-white shadow-md transition-shadow duration-200 ease-in-out hover:!bg-slate-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+
 export function Navbar() {
   const [menuState, setMenuState] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -99,7 +103,9 @@ export function Navbar() {
                     <span>Login</span>
                   </button>
                   <button
-                    className={ctaButtonStyles}
+                    className={waitlistButtonStyles}
+                    data-navbar-button="true"
+                    data-waitlist-button="true"
                     onClick={() => router.push("/waitlist")}
                   >
                     <span>Join Waitlist</span>
@@ -107,7 +113,9 @@ export function Navbar() {
                 </>
               ) : (
                 <button
-                  className={ctaButtonStyles}
+                  className={waitlistButtonStyles}
+                  data-navbar-button="true"
+                  data-waitlist-button="true"
                   onClick={() => router.push("/waitlist")}
                 >
                   <span>Join Waitlist</span>
@@ -160,7 +168,9 @@ export function Navbar() {
                   </button>
                 )}
                 <button
-                  className={ctaButtonStyles}
+                  className={waitlistButtonStyles}
+                  data-navbar-button="true"
+                  data-waitlist-button="true"
                   onClick={() => {
                     router.push("/waitlist")
                     setMenuState(false) // Close menu on click
