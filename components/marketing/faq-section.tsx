@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, memo, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Info,
@@ -22,6 +22,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
+// Memoize data to prevent recreation on each render
 const faqSectionsData = [
   {
     id: "understanding",
@@ -152,56 +153,68 @@ const clientFaqData = [
   }
 ]
 
-interface FaqItemProps {
-  question: string
-  answer: string
-  isOpen: boolean
-  onToggle: () => void
+// More optimized animation variants with reduced complexity
+const simpleAnimationVariants = {
+  open: {
+    opacity: 1,
+    height: "auto",
+    transition: { duration: 0.25, ease: "easeOut" }
+  },
+  collapsed: {
+    opacity: 0,
+    height: 0,
+    transition: { duration: 0.2, ease: "easeIn" }
+  }
 }
 
-const FaqCard: React.FC<FaqItemProps> = ({
-  question,
-  answer,
-  isOpen,
-  onToggle
-}) => {
-  return (
-    <div className="bg-card rounded-lg border border-slate-200 shadow-sm transition-shadow hover:shadow-md">
-      <button
-        onClick={onToggle}
-        className="focus-visible:ring-primary flex w-full items-center justify-between rounded-t-lg p-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 md:p-6"
-        aria-expanded={isOpen}
-      >
-        <h4 className="text-lg font-semibold text-slate-800">{question}</h4>
-        {isOpen ? (
-          <MinusCircle className="text-primary size-6 shrink-0" />
-        ) : (
-          <PlusCircle className="size-6 shrink-0 text-slate-500" />
-        )}
-      </button>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="content"
-            initial="collapsed"
-            animate="open"
-            exit="collapsed"
-            variants={{
-              open: { opacity: 1, height: "auto" },
-              collapsed: { opacity: 0, height: 0 }
-            }}
-            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
-            className="overflow-hidden"
-          >
-            <div className="p-5 pt-0 md:p-6 md:pt-0">
-              <p className="text-base text-slate-600">{answer}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
-}
+// Memoized FaqItem component to reduce re-renders
+const FaqCard = memo(
+  ({
+    question,
+    answer,
+    isOpen,
+    onToggle
+  }: {
+    question: string
+    answer: string
+    isOpen: boolean
+    onToggle: () => void
+  }) => {
+    return (
+      <div className="bg-card rounded-lg border border-slate-200 shadow-sm transition-shadow hover:shadow-md">
+        <button
+          onClick={onToggle}
+          className="focus-visible:ring-primary flex w-full items-center justify-between rounded-t-lg p-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 md:p-6"
+          aria-expanded={isOpen}
+        >
+          <h4 className="text-lg font-semibold text-slate-800">{question}</h4>
+          {isOpen ? (
+            <MinusCircle className="text-primary size-6 shrink-0" />
+          ) : (
+            <PlusCircle className="size-6 shrink-0 text-slate-500" />
+          )}
+        </button>
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              key="content"
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={simpleAnimationVariants}
+              className="overflow-hidden"
+            >
+              <div className="p-5 pt-0 md:p-6 md:pt-0">
+                <p className="text-base text-slate-600">{answer}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    )
+  }
+)
+FaqCard.displayName = "FaqCard"
 
 // Original FAQ Section
 export function FaqSection() {
@@ -257,49 +270,51 @@ export function FaqSection() {
 
 // Modern redesigned FAQ with split layout
 export function ModernSplitFaqSection() {
+  const [activeQuestion, setActiveQuestion] = useState<string | null>(null)
+
+  // Memoized toggle handler to prevent recreation on each render
+  const toggleQuestion = useCallback((id: string) => {
+    setActiveQuestion(prevId => (prevId === id ? null : id))
+  }, [])
+
   return (
-    <section className="bg-background w-full py-20 lg:py-32">
-      <div className="container mx-auto px-4">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div className="flex flex-col gap-10 text-left">
-            <div className="flex flex-col gap-4">
-              <div>
-                <Badge variant="outline">FAQ</Badge>
-              </div>
-              <div className="flex flex-col gap-2">
-                <h4 className="max-w-xl text-left text-3xl font-semibold tracking-tighter md:text-5xl">
-                  Frequently Asked Questions
-                </h4>
-                <p className="text-muted-foreground max-w-xl text-left text-lg leading-relaxed tracking-tight lg:max-w-lg">
-                  Find answers to common questions about Subtext.ai.
-                </p>
-              </div>
-              <div>
-                <Button
-                  asChild
-                  className="gap-4 text-base font-semibold"
-                  variant="outline"
-                >
-                  <Link href="/waitlist">
-                    Any questions? Reach out <PhoneCall className="size-4" />
-                  </Link>
-                </Button>
-              </div>
+    <section className="w-full bg-white py-16 md:py-24">
+      <div className="container px-4 md:px-6">
+        <div className="grid gap-10 md:grid-cols-2">
+          <div className="space-y-4">
+            <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
+              FAQs
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-muted-foreground max-w-md text-lg">
+              Everything you need to know about our service and how we can help
+              your team succeed.
+            </p>
+            <div className="flex flex-col space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
+              <Button asChild className="w-full sm:w-auto">
+                <Link href="/waitlist" prefetch={false}>
+                  Get Started
+                </Link>
+              </Button>
+              <Button variant="outline" className="w-full sm:w-auto" asChild>
+                <Link href="/waitlist" prefetch={false}>
+                  <PhoneCall className="mr-2 size-4" /> Contact Sales
+                </Link>
+              </Button>
             </div>
           </div>
-          <div>
-            <Accordion type="single" collapsible className="w-full text-left">
-              {clientFaqData.map((faq, index) => (
-                <AccordionItem key={faq.id} value={faq.id}>
-                  <AccordionTrigger className="py-4 text-left text-base font-semibold">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-left text-base">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+          <div className="space-y-4">
+            {clientFaqData.slice(0, 4).map(faq => (
+              <FaqCard
+                key={faq.id}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={activeQuestion === faq.id}
+                onToggle={() => toggleQuestion(faq.id)}
+              />
+            ))}
           </div>
         </div>
       </div>

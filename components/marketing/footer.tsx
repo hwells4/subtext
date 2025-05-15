@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { memo, useState, useCallback } from "react"
 import {
   Github,
   Twitter,
@@ -15,7 +16,8 @@ import {
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import Link from "next/link"
+import { Logo } from "@/components/layout/logo"
 
 interface SocialLink {
   name: string
@@ -38,7 +40,6 @@ interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   brand: {
     name: string
     description: string
-    logo?: string
   }
   socialLinks: SocialLink[]
   columns: FooterColumn[]
@@ -46,168 +47,196 @@ interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   newsletter?: boolean
 }
 
-const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
-  (
-    {
-      className,
-      brand,
-      socialLinks,
-      columns,
-      copyright,
-      newsletter = true,
-      ...props
-    },
-    ref
-  ) => {
-    const [email, setEmail] = React.useState("")
-    const [subscribeStatus, setSubscribeStatus] = React.useState<
-      "idle" | "loading" | "success" | "error"
+// Memoized social link component to reduce re-renders
+const SocialLinkItem = memo(({ link }: { link: SocialLink }) => (
+  <a
+    href={link.href}
+    className="text-muted-foreground hover:text-foreground transition-colors"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={link.name}
+  >
+    {link.icon}
+  </a>
+))
+SocialLinkItem.displayName = "SocialLinkItem"
+
+// Memoized footer link component
+const FooterLinkItem = memo(({ link }: { link: FooterLink }) => (
+  <li>
+    <Link
+      href={link.href}
+      className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm transition-colors"
+      prefetch={false}
+    >
+      {link.icon}
+      <span>{link.name}</span>
+    </Link>
+  </li>
+))
+FooterLinkItem.displayName = "FooterLinkItem"
+
+// Memoized footer column component
+const FooterColumnComponent = memo(({ column }: { column: FooterColumn }) => (
+  <div>
+    <h3 className="mb-4 text-sm font-semibold">{column.title}</h3>
+    <ul className="space-y-2">
+      {column.links.map(link => (
+        <FooterLinkItem key={link.name} link={link} />
+      ))}
+    </ul>
+  </div>
+))
+FooterColumnComponent.displayName = "FooterColumnComponent"
+
+// Reduced weight newsletter component
+const Newsletter = memo(
+  ({ onSubscribe }: { onSubscribe: (email: string) => Promise<void> }) => {
+    const [email, setEmail] = useState("")
+    const [subscribeStatus, setSubscribeStatus] = useState<
+      "idle" | "loading" | "success"
     >("idle")
 
-    const handleSubscribe = async (e: React.FormEvent) => {
-      e.preventDefault()
-      setSubscribeStatus("loading")
+    const handleSubscribe = useCallback(
+      async (e: React.FormEvent) => {
+        e.preventDefault()
+        if (!email) return
 
-      // Simulate API call
-      setTimeout(() => {
-        setSubscribeStatus("success")
-        setEmail("")
-      }, 1000)
-    }
+        setSubscribeStatus("loading")
+        try {
+          await onSubscribe(email)
+          setSubscribeStatus("success")
+          setEmail("")
+        } catch (error) {
+          setSubscribeStatus("idle")
+        }
+      },
+      [email, onSubscribe]
+    )
 
     return (
-      <footer
-        ref={ref}
-        className={`bg-background border-border border-t pt-16 ${className}`}
-        {...props}
-      >
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <div className="mb-4 flex items-center gap-2">
-                {brand.logo ? (
-                  <Image
-                    src={brand.logo}
-                    alt="Subtext.ai Logo"
-                    width={32}
-                    height={32}
-                    className="h-8 w-auto"
-                  />
-                ) : (
-                  <span className="text-foreground text-lg font-semibold">
-                    {brand.name}
-                  </span>
-                )}
-              </div>
-              <p className="text-muted-foreground mb-6 text-sm">
-                {brand.description}
-              </p>
+      <div className="mb-8 mt-6">
+        <h3 className="mb-2 text-sm font-semibold">
+          Subscribe to our newsletter
+        </h3>
+        <form onSubmit={handleSubscribe} className="flex gap-2">
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            className="max-w-xs"
+            required
+            aria-label="Email address"
+          />
+          <Button type="submit" disabled={subscribeStatus === "loading"}>
+            {subscribeStatus === "loading" ? "Subscribing..." : "Subscribe"}
+          </Button>
+        </form>
+        {subscribeStatus === "success" && (
+          <p className="text-muted-foreground mt-2 text-xs">
+            Thanks for subscribing!
+          </p>
+        )}
+      </div>
+    )
+  }
+)
+Newsletter.displayName = "Newsletter"
 
-              {newsletter && (
-                <div className="mb-8 mt-6">
-                  <h3 className="mb-2 text-sm font-semibold">
-                    Subscribe to our newsletter
-                  </h3>
-                  <form onSubmit={handleSubscribe} className="flex gap-2">
-                    <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      className="max-w-xs"
-                      required
-                    />
-                    <Button
-                      type="submit"
-                      disabled={subscribeStatus === "loading"}
-                    >
-                      {subscribeStatus === "loading"
-                        ? "Subscribing..."
-                        : "Subscribe"}
-                    </Button>
-                  </form>
-                  {subscribeStatus === "success" && (
-                    <p className="text-muted-foreground mt-2 text-xs">
-                      Thanks for subscribing!
-                    </p>
-                  )}
+const Footer = memo(
+  React.forwardRef<HTMLDivElement, FooterProps>(
+    (
+      {
+        className,
+        brand,
+        socialLinks,
+        columns,
+        copyright,
+        newsletter = true,
+        ...props
+      },
+      ref
+    ) => {
+      const handleSubscribe = useCallback(async (email: string) => {
+        // Simulate API call with faster response time
+        return new Promise<void>(resolve => {
+          setTimeout(() => {
+            resolve()
+          }, 300)
+        })
+      }, [])
+
+      return (
+        <footer
+          ref={ref}
+          className={`bg-background border-border border-t pt-12 ${className}`}
+          {...props}
+        >
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-4">
+                <div className="mb-4 flex items-center">
+                  <Logo />
                 </div>
-              )}
+                <p className="text-muted-foreground mb-6 text-sm">
+                  {brand.description}
+                </p>
 
-              <div className="mt-6 flex space-x-4">
-                {socialLinks.map(link => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.name}
-                  >
-                    {link.icon}
-                  </a>
+                {newsletter && <Newsletter onSubscribe={handleSubscribe} />}
+
+                <div className="mt-6 flex space-x-4">
+                  {socialLinks.map(link => (
+                    <SocialLinkItem key={link.name} link={link} />
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:col-span-8 lg:justify-items-end">
+                {columns.map(column => (
+                  <FooterColumnComponent key={column.title} column={column} />
                 ))}
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:col-span-8 lg:justify-items-end">
-              {columns.map(column => (
-                <div key={column.title}>
-                  <h3 className="mb-4 text-sm font-semibold">{column.title}</h3>
-                  <ul className="space-y-2">
-                    {column.links.map(link => (
-                      <li key={link.name}>
-                        <a
-                          href={link.href}
-                          className="text-muted-foreground hover:text-foreground flex items-center gap-2 text-sm transition-colors"
-                        >
-                          {link.icon}
-                          <span>{link.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+            {copyright && (
+              <div className="border-border mt-10 flex flex-col items-center justify-between border-t py-6 md:flex-row">
+                <p className="text-muted-foreground text-xs">{copyright}</p>
+                <div className="mt-4 flex gap-6 md:mt-0">
+                  <Link
+                    href="/privacy"
+                    className="text-muted-foreground hover:text-foreground text-xs"
+                    prefetch={false}
+                  >
+                    Privacy Policy
+                  </Link>
+                  <Link
+                    href="/terms"
+                    className="text-muted-foreground hover:text-foreground text-xs"
+                    prefetch={false}
+                  >
+                    Terms of Service
+                  </Link>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {copyright && (
-            <div className="border-border mt-12 flex flex-col items-center justify-between border-t pb-8 pt-6 md:flex-row">
-              <p className="text-muted-foreground text-xs">{copyright}</p>
-              <div className="mt-4 flex gap-6 md:mt-0">
-                <a
-                  href="/privacy"
-                  className="text-muted-foreground hover:text-foreground text-xs"
-                >
-                  Privacy Policy
-                </a>
-                <a
-                  href="/terms"
-                  className="text-muted-foreground hover:text-foreground text-xs"
-                >
-                  Terms of Service
-                </a>
               </div>
-            </div>
-          )}
-        </div>
-      </footer>
-    )
-  }
+            )}
+          </div>
+        </footer>
+      )
+    }
+  )
 )
 
 Footer.displayName = "Footer"
 
-// Usage example
-function FooterExample() {
+// Usage example optimized with memoization to prevent unnecessary re-renders
+const FooterExample = memo(function FooterExample() {
   return (
     <Footer
       brand={{
         name: "Subtext.ai",
         description:
-          "AI-powered audience intelligence and messaging insight platform.",
-        logo: "/subtext-logo.svg"
+          "AI-powered audience intelligence and messaging insight platform."
       }}
       socialLinks={[
         {
@@ -249,11 +278,6 @@ function FooterExample() {
               name: "Documentation",
               href: "/docs",
               icon: <BookOpen className="size-4" />
-            },
-            {
-              name: "API",
-              href: "/api",
-              icon: <FileText className="size-4" />
             }
           ]
         },
@@ -271,11 +295,6 @@ function FooterExample() {
               icon: <FileText className="size-4" />
             },
             {
-              name: "Careers",
-              href: "/careers",
-              icon: <Users className="size-4" />
-            },
-            {
               name: "Contact",
               href: "/contact",
               icon: <MessageSquare className="size-4" />
@@ -283,29 +302,29 @@ function FooterExample() {
           ]
         },
         {
-          title: "Support",
+          title: "Legal",
           links: [
             {
-              name: "Help Center",
-              href: "/help",
-              icon: <HelpCircle className="size-4" />
-            },
-            {
-              name: "Community",
-              href: "/community",
-              icon: <Users className="size-4" />
-            },
-            {
-              name: "Status",
-              href: "/status",
+              name: "Privacy",
+              href: "/privacy",
               icon: <Shield className="size-4" />
+            },
+            {
+              name: "Terms",
+              href: "/terms",
+              icon: <FileText className="size-4" />
+            },
+            {
+              name: "FAQ",
+              href: "/faq",
+              icon: <HelpCircle className="size-4" />
             }
           ]
         }
       ]}
-      copyright="© 2024 Subtext.ai. All rights reserved."
+      copyright="© 2023 Subtext.ai. All rights reserved."
     />
   )
-}
+})
 
 export default FooterExample

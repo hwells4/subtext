@@ -11,24 +11,24 @@ export function HeroSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
 
-  // Simplified variants with reduced animation duration for better performance
+  // Extremely simplified variants for fastest performance
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, // Reduced from 0.2
+        staggerChildren: 0.05,
         when: "beforeChildren"
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 }, // Reduced y offset
+    hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: "easeOut" } // Reduced from 0.7
+      transition: { duration: 0.3, ease: "easeOut" }
     }
   }
 
@@ -62,9 +62,11 @@ export function HeroSection() {
                 <Image
                   src="/lightning-icon.png"
                   alt="Lightning Bolt"
-                  fill
+                  width={56}
+                  height={56}
                   className="object-contain transition-transform duration-200 ease-in-out hover:scale-110"
                   priority
+                  sizes="(max-width: 640px) 24px, (max-width: 768px) 40px, (max-width: 1024px) 48px, 56px"
                 />
               </span>
             </h1>
@@ -81,6 +83,7 @@ export function HeroSection() {
               <Link
                 href="/waitlist"
                 className="group flex items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white shadow-md transition-all hover:bg-slate-800 md:px-6 md:py-3 md:text-base"
+                prefetch={false}
               >
                 Join Waitlist & Get Early Access
                 <ChevronRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
@@ -88,6 +91,7 @@ export function HeroSection() {
               <Link
                 href="/waitlist"
                 className="group flex items-center justify-center rounded-lg border border-slate-900 bg-transparent px-5 py-2.5 text-center text-sm font-semibold text-slate-900 shadow-md transition-all hover:bg-slate-100 md:px-6 md:py-3 md:text-base"
+                prefetch={false}
               >
                 <Calendar className="mr-2 size-4 md:size-5" />
                 Book Demo
@@ -100,51 +104,47 @@ export function HeroSection() {
             </p>
           </motion.div>
 
-          {/* Glass Panes Mockup */}
+          {/* Glass Panes Mockup - Optimized */}
           <motion.div
             className="relative mx-auto w-full max-w-[360px] will-change-transform md:col-span-5 md:mx-0"
             variants={itemVariants}
-            style={{ backfaceVisibility: "hidden" }}
+            style={{ transform: "translateZ(0)" }} // Hardware acceleration hint
           >
-            {/* Background Glass Pane - Simplified */}
+            {/* Background Glass Pane - Simplified with fewer effects */}
             <div
               className="absolute z-0 h-[240px] w-[220px] rounded-[32px] border-[3px] border-white/10 md:h-[380px] md:w-[320px] lg:h-[420px] lg:w-[360px]"
               style={{
                 top: "15%",
                 right: "10%",
-                filter: "blur(1.5px)",
-                boxShadow: "0 9px 20px #0000004a, 0 37px 37px #00000042" // Simplified shadow
+                boxShadow: "0 10px 25px rgba(0,0,0,0.12)"
               }}
             >
               <div
-                className="relative size-full rounded-[28px] bg-cover bg-center"
+                className="relative size-full rounded-[28px]"
                 style={{
-                  background:
-                    "linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)"
+                  background: "rgba(255,255,255,0.05)"
                 }}
               />
             </div>
 
-            {/* Main Glass Pane - Simplified */}
+            {/* Main Glass Pane - Using more performant CSS */}
             <div
-              className="relative z-10 h-[300px] w-[240px] overflow-hidden rounded-[32px] border-[3px] border-white/20 bg-white/25 backdrop-blur-sm sm:w-[280px] md:h-[460px] md:w-full"
+              className="relative z-10 h-[300px] w-[240px] overflow-hidden rounded-[32px] border-[3px] border-white/20 bg-white/25 sm:w-[280px] md:h-[460px] md:w-full"
               style={{
-                boxShadow: "0 9px 20px #0000004a, 0 37px 37px #00000042" // Simplified shadow
+                boxShadow: "0 10px 25px rgba(0,0,0,0.12)"
               }}
             >
               <div className="flex h-full items-center justify-center p-2 md:p-3">
-                <div
-                  className="relative size-[100%] rounded-2xl"
-                  style={{
-                    backgroundSize: "100% 100%"
-                  }}
-                >
-                  {/* Primary Image */}
-                  <div
-                    className="size-full bg-contain bg-center bg-no-repeat"
-                    style={{
-                      backgroundImage: `url(/panel.svg)`
-                    }}
+                <div className="relative size-[100%] rounded-2xl">
+                  {/* Primary Image - Using Next.js Image for optimization */}
+                  <Image
+                    src="/panel.svg"
+                    alt="Dashboard Panel"
+                    width={320}
+                    height={400}
+                    className="size-full object-contain"
+                    priority
+                    sizes="(max-width: 768px) 240px, (max-width: 1024px) 280px, 320px"
                   />
                 </div>
               </div>
@@ -153,12 +153,12 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Decorative bottom gradient - keeping minimal */}
+      {/* Decorative bottom gradient - ultra minimal version */}
       <div
-        className="absolute bottom-0 left-0 z-0 h-px w-full"
+        className="absolute bottom-0 left-0 z-0 h-px w-full opacity-25"
         style={{
           background:
-            "radial-gradient(50% 50% at 50% 50%, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0) 100%)"
+            "linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent)"
         }}
       />
     </section>

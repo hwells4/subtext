@@ -14,6 +14,34 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}"
   ],
+  // Safelist critical classes that might be dynamically generated
+  safelist: [
+    // Important button variants
+    'bg-slate-900',
+    'text-white',
+    'bg-slate-100',
+    'hover:bg-slate-800',
+    'hover:bg-slate-200',
+    // Animation classes that might be added dynamically
+    'animate-spin',
+    'animate-pulse',
+    // Loading states
+    'opacity-50',
+    'cursor-wait',
+    // Dynamic sizing utilities
+    'size-4',
+    'size-5',
+    'size-6',
+    'size-8',
+    'size-10',
+    'size-12',
+    'size-20',
+  ],
+  // Performance optimization for CSS generation
+  future: {
+    hoverOnlyWhenSupported: true,
+    respectDefaultRingColorOpacity: true,
+  },
   prefix: "",
   theme: {
     container: {
@@ -76,25 +104,15 @@ const config = {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0"
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)"
-          }
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" }
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)"
-          },
-          to: {
-            height: "0"
-          }
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" }
         },
         gradient: {
-          to: {
-            backgroundPosition: "var(--bg-size) 0"
-          }
+          to: { backgroundPosition: "var(--bg-size) 0" }
         }
       },
       animation: {
@@ -104,7 +122,10 @@ const config = {
       }
     }
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")]
+  plugins: [
+    require("tailwindcss-animate"), 
+    require("@tailwindcss/typography")
+  ]
 } satisfies Config
 
 export default config

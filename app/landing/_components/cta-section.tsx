@@ -1,7 +1,6 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
+import { useState, useCallback, memo } from "react"
 import { AnimatedGroup } from "@/components/ui/animated-group"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -14,32 +13,99 @@ import {
   Shield,
   Zap
 } from "lucide-react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
+
+// Memoized components to prevent unnecessary re-renders
+const FeatureItem = memo(({ children }: { children: React.ReactNode }) => (
+  <div className="flex items-center gap-2">
+    <CheckCircle2 className="text-primary size-5" />
+    <span className="font-medium">{children}</span>
+  </div>
+))
+FeatureItem.displayName = "FeatureItem"
+
+const PlanFeature = memo(
+  ({ title, description }: { title: string; description: string }) => (
+    <div className="flex items-center gap-3">
+      <div className="bg-primary/10 rounded-full p-1.5">
+        <Zap className="text-primary size-4" />
+      </div>
+      <div>
+        <div className="font-medium">{title}</div>
+        <div className="text-muted-foreground text-sm">{description}</div>
+      </div>
+    </div>
+  )
+)
+PlanFeature.displayName = "PlanFeature"
+
+// Simplified animation variants
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 }, // Reduced y offset
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.2, // Reduced bounce for performance
+      duration: 0.4 // Faster animations
+    }
+  }
+}
+
+const containerVariants = {
+  container: {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05 // Reduced stagger time
+      }
+    }
+  },
+  item: itemVariants
+}
 
 export function CtaSection() {
   const [email, setEmail] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [formState, setFormState] = useState<"idle" | "submitting" | "success">(
+    "idle"
+  )
   const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  // Memoized handlers for better performance
+  const handleEmailChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setEmail(e.target.value)
+    },
+    []
+  )
 
-    if (!email) return
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault()
+      if (!email) return
 
-    setIsSubmitting(true)
+      setFormState("submitting")
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSuccess(true)
-      setEmail("")
-      router.push("/waitlist") // Redirect to waitlist page
+      // Use requestAnimationFrame for better performance during transitions
+      requestAnimationFrame(() => {
+        // Simulate API call
+        setTimeout(() => {
+          setFormState("success")
+          setEmail("")
 
-      // Reset success message after 3 seconds
-      setTimeout(() => setIsSuccess(false), 3000)
-    }, 1500)
-  }
+          // Delay redirect slightly to show success state
+          setTimeout(() => router.push("/waitlist"), 400)
+        }, 800) // Reduced timeout for better UX
+      })
+    },
+    [email, router]
+  )
+
+  const isSubmitting = formState === "submitting"
+  const isSuccess = formState === "success"
 
   return (
     <section className="from-primary/5 to-primary/10 dark:from-primary/10 dark:to-primary/5 w-full border-t bg-gradient-to-br py-24">
@@ -47,29 +113,7 @@ export function CtaSection() {
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <AnimatedGroup
             className="flex flex-col space-y-8"
-            variants={{
-              container: {
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.1
-                  }
-                }
-              },
-              item: {
-                hidden: { opacity: 0, y: 20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    bounce: 0.3,
-                    duration: 0.6
-                  }
-                }
-              }
-            }}
+            variants={containerVariants}
           >
             <div className="space-y-4">
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
@@ -84,22 +128,9 @@ export function CtaSection() {
 
             <div className="space-y-6">
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="text-primary size-5" />
-                  <span className="font-medium">
-                    Unlimited voice recordings
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="text-primary size-5" />
-                  <span className="font-medium">
-                    Complete analytics dashboard
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="text-primary size-5" />
-                  <span className="font-medium">Priority customer support</span>
-                </div>
+                <FeatureItem>Unlimited voice recordings</FeatureItem>
+                <FeatureItem>Complete analytics dashboard</FeatureItem>
+                <FeatureItem>Priority customer support</FeatureItem>
               </div>
 
               <div className="flex items-center gap-2 text-sm">
@@ -119,10 +150,11 @@ export function CtaSection() {
                   type="email"
                   placeholder="Enter your email"
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={handleEmailChange}
                   required
                   className="h-12"
                   disabled={isSubmitting}
+                  aria-label="Email address"
                 />
               </div>
               <Button
@@ -148,14 +180,14 @@ export function CtaSection() {
             className="overflow-hidden rounded-xl border shadow-xl"
             variants={{
               container: {
-                hidden: { opacity: 0, scale: 0.95 },
+                hidden: { opacity: 0, y: 10 },
                 visible: {
                   opacity: 1,
-                  scale: 1,
+                  y: 0,
                   transition: {
                     type: "spring",
-                    bounce: 0.3,
-                    duration: 0.8
+                    bounce: 0.2,
+                    duration: 0.5
                   }
                 }
               }
@@ -176,49 +208,26 @@ export function CtaSection() {
               </div>
 
               <div className="space-y-4 p-6">
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary/10 rounded-full p-1.5">
-                    <Zap className="text-primary size-4" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Unlimited recordings</div>
-                    <div className="text-muted-foreground text-sm">
-                      No cap on monthly usage
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary/10 rounded-full p-1.5">
-                    <Zap className="text-primary size-4" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Advanced analytics</div>
-                    <div className="text-muted-foreground text-sm">
-                      Deep insights into your data
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary/10 rounded-full p-1.5">
-                    <Zap className="text-primary size-4" />
-                  </div>
-                  <div>
-                    <div className="font-medium">Team collaboration</div>
-                    <div className="text-muted-foreground text-sm">
-                      Up to 10 team members
-                    </div>
-                  </div>
-                </div>
+                <PlanFeature
+                  title="Unlimited recordings"
+                  description="No cap on monthly usage"
+                />
+                <PlanFeature
+                  title="Advanced analytics"
+                  description="Deep insights into your data"
+                />
+                <PlanFeature
+                  title="Team collaboration"
+                  description="Up to 10 team members"
+                />
               </div>
 
               <div className="border-t p-6">
                 <Button className="group w-full" size="lg" asChild>
-                  <a href="/waitlist">
+                  <Link href="/waitlist" prefetch={false}>
                     Join Waitlist
                     <ChevronRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                  </a>
+                  </Link>
                 </Button>
                 <p className="text-muted-foreground mt-3 text-center text-xs">
                   Be the first to know when we launch.

@@ -1,12 +1,13 @@
 "use client"
 
-import React from "react"
+import React, { useCallback, useEffect, useState, memo } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/layout/logo"
 import { useRouter } from "next/navigation"
 import { HamburgerButton } from "@/components/ui/hamburger-button"
 
+// Extracting static data to outside the component to prevent re-creation
 const menuItems = [
   { name: "Features", href: "#link" },
   { name: "Solution", href: "#link" },
@@ -22,18 +23,94 @@ const ctaButtonStyles =
 const waitlistButtonStyles =
   "rounded-lg !bg-black px-6 py-2 text-base font-semibold !text-white shadow-md transition-shadow duration-200 ease-in-out hover:!bg-slate-800 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 
+// Memoized MenuItem component for better performance
+const MenuItem = memo(
+  ({
+    item,
+    onClick
+  }: {
+    item: { name: string; href: string }
+    onClick?: () => void
+  }) => (
+    <li>
+      <Link
+        href={item.href}
+        onClick={onClick}
+        className="text-muted-foreground hover:text-foreground block duration-150"
+        prefetch={false}
+      >
+        <span>{item.name}</span>
+      </Link>
+    </li>
+  )
+)
+MenuItem.displayName = "MenuItem"
+
+// Memoized WaitlistButton component
+const WaitlistButton = memo(
+  ({ onClick, className }: { onClick: () => void; className?: string }) => (
+    <button
+      className={cn(waitlistButtonStyles, className)}
+      data-navbar-button="true"
+      data-waitlist-button="true"
+      onClick={onClick}
+    >
+      <span>Join Waitlist</span>
+    </button>
+  )
+)
+WaitlistButton.displayName = "WaitlistButton"
+
 export function Navbar() {
-  const [menuState, setMenuState] = React.useState(false)
-  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [menuState, setMenuState] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const router = useRouter()
 
-  React.useEffect(() => {
-    const handleScroll = () => {
+  // Memoize handleScroll function to prevent recreation on each render
+  const handleScroll = useCallback(() => {
+    // Use requestAnimationFrame for better performance with scroll events
+    requestAnimationFrame(() => {
       setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    })
   }, [])
+
+  // Memoize the navigation handler
+  const handleNavigateToWaitlist = useCallback(() => {
+    router.push("/waitlist")
+  }, [router])
+
+  // Combined navigation and menu close handler for mobile
+  const handleMobileWaitlistClick = useCallback(() => {
+    router.push("/waitlist")
+    setMenuState(false)
+  }, [router])
+
+  // Toggle menu state handler
+  const toggleMenu = useCallback((state: boolean) => {
+    setMenuState(state)
+  }, [])
+
+  useEffect(() => {
+    // Use passive event listener for improved scroll performance
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    // Initial check for scroll position on mount
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [handleScroll])
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuState) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [menuState])
 
   return (
     <header className="absolute inset-x-0 top-0 w-full">
@@ -61,6 +138,7 @@ export function Navbar() {
                 href="/"
                 aria-label="home"
                 className="flex items-center space-x-2"
+                prefetch={false}
               >
                 <Logo />
               </Link>
@@ -69,7 +147,7 @@ export function Navbar() {
             <div className="relative z-20 block lg:hidden">
               <HamburgerButton
                 open={menuState}
-                setOpen={setMenuState}
+                setOpen={toggleMenu}
                 className="relative z-20"
               />
             </div>
@@ -77,14 +155,7 @@ export function Navbar() {
             <div className="hidden lg:flex lg:items-center lg:justify-center">
               <ul className="flex gap-8 text-sm">
                 {menuItems.map((item, index) => (
-                  <li key={index}>
-                    <Link
-                      href={item.href}
-                      className="text-muted-foreground hover:text-foreground block duration-150"
-                    >
-                      <span>{item.name}</span>
-                    </Link>
-                  </li>
+                  <MenuItem key={index} item={item} />
                 ))}
               </ul>
             </div>
@@ -102,84 +173,57 @@ export function Navbar() {
                   >
                     <span>Login</span>
                   </button>
-                  <button
-                    className={waitlistButtonStyles}
-                    data-navbar-button="true"
-                    data-waitlist-button="true"
-                    onClick={() => router.push("/waitlist")}
-                  >
-                    <span>Join Waitlist</span>
-                  </button>
+                  <WaitlistButton onClick={handleNavigateToWaitlist} />
                 </>
               ) : (
-                <button
-                  className={waitlistButtonStyles}
-                  data-navbar-button="true"
-                  data-waitlist-button="true"
-                  onClick={() => router.push("/waitlist")}
-                >
-                  <span>Join Waitlist</span>
-                </button>
+                <WaitlistButton onClick={handleNavigateToWaitlist} />
               )}
             </div>
 
-            {/* Mobile Menu Overlay & Content */}
-            <div
-              className={cn(
-                "lg:hidden", // Only visible on mobile
-                menuState ? "flex" : "hidden", // Control visibility based on menu state
-                "absolute inset-x-0 top-full",
-                "w-full",
-                "mt-2",
-                "flex-col items-center",
-                "rounded-lg border",
-                "bg-white shadow-lg", // Changed from bg-white/90 backdrop-blur-sm to make it opaque
-                "p-6"
-              )}
-            >
-              {/* Mobile Menu Items */}
-              <div className="mb-6 w-full">
-                <ul className="space-y-6 text-base">
-                  {menuItems.map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={item.href}
-                        onClick={() => setMenuState(false)}
-                        className="text-muted-foreground hover:text-accent-foreground block duration-150"
-                      >
-                        <span>{item.name}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Mobile Action Buttons Container */}
-              <div className="flex w-full flex-col space-y-3">
-                {!isScrolled && (
-                  <button
-                    className={cn(
-                      ctaButtonStyles,
-                      "bg-transparent text-slate-900 shadow-none hover:bg-slate-100",
-                      "border border-slate-300"
-                    )}
-                  >
-                    <span>Login</span>
-                  </button>
+            {/* Mobile Menu Overlay & Content - Only render when needed */}
+            {menuState && (
+              <div
+                className={cn(
+                  "lg:hidden",
+                  "absolute inset-x-0 top-full",
+                  "w-full",
+                  "mt-2",
+                  "flex flex-col items-center",
+                  "rounded-lg border",
+                  "bg-white shadow-lg",
+                  "p-6"
                 )}
-                <button
-                  className={waitlistButtonStyles}
-                  data-navbar-button="true"
-                  data-waitlist-button="true"
-                  onClick={() => {
-                    router.push("/waitlist")
-                    setMenuState(false) // Close menu on click
-                  }}
-                >
-                  <span>Join Waitlist</span>
-                </button>
+              >
+                {/* Mobile Menu Items */}
+                <div className="mb-6 w-full">
+                  <ul className="space-y-6 text-base">
+                    {menuItems.map((item, index) => (
+                      <MenuItem
+                        key={index}
+                        item={item}
+                        onClick={() => setMenuState(false)}
+                      />
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Mobile Action Buttons Container */}
+                <div className="flex w-full flex-col space-y-3">
+                  {!isScrolled && (
+                    <button
+                      className={cn(
+                        ctaButtonStyles,
+                        "bg-transparent text-slate-900 shadow-none hover:bg-slate-100",
+                        "border border-slate-300"
+                      )}
+                    >
+                      <span>Login</span>
+                    </button>
+                  )}
+                  <WaitlistButton onClick={handleMobileWaitlistClick} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </nav>

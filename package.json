@@ -12,7 +12,11 @@
     "lint:fix": "next lint --fix",
     "format:write": "prettier --write \"{app,lib,db,components,context,types}/**/*.{ts,tsx}\" --cache",
     "format:check": "prettier --check \"{app,lib,db,components,context,types}**/*.{ts,tsx}\" --cache",
-    "analyze": "ANALYZE=true npm run build",
+    "analyze": "ANALYZE=true next build",
+    "analyze:server": "ANALYZE=true BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "ANALYZE=true BUNDLE_ANALYZE=browser next build",
+    "audit": "next build && npx lighthouse http://localhost:3000 --view",
+    "performance": "next build && next start -p 3000 && npm run audit",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate",
     "prepare": "husky install"
@@ -54,6 +58,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "critters": "^0.0.23",
     "date-fns": "^3.6.0",
     "drizzle-orm": "^0.33.0",
     "embla-carousel-react": "^8.5.1",
@@ -93,6 +98,7 @@
     "postcss": "^8",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }
