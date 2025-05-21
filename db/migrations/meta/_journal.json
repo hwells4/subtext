@@ -15,6 +15,20 @@
       "when": 1746650532411,
       "tag": "0001_previous_abomination",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1747718146432,
+      "tag": "0002_chunky_serpent_society",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1747767132815,
+      "tag": "0003_freezing_giant_girl",
+      "breakpoints": true
     }
   ]
 }

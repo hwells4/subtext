@@ -7,3 +7,6 @@ Exports the database schema for the app.
 export * from "./profiles-schema"
 export * from "./todos-schema"
 export * from "./waitlist-entries-schema"
+export * from "./runs-schema"
+export * from "./posts-schema"
+export * from "./quotes-schema"
